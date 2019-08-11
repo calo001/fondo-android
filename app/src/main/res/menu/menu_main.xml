@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="io.codyffly.fondo.ui.main.MainActivity">
+    <item android:id="@+id/action_settings"
+          android:title="@string/action_settings"
+          app:showAsAction="never"/>
+    <item android:id="@+id/action_search"
+          android:icon="@drawable/ic_menu_search"
+          android:title="@string/action_search"
+          app:showAsAction="ifRoom"/>
+    <item android:id="@+id/action_night_mode"
+          android:icon="@drawable/ic_menu_night"
+          android:title="@string/action_night_mode"
+          app:showAsAction="ifRoom"/>
+</menu>

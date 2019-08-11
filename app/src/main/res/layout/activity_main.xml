@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorPrimary"
+        tools:context=".ui.main.MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:elevation="@dimen/zero">
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    app:cardElevation="6dp"
+                    app:cardCornerRadius="20dp"
+                    app:layout_scrollFlags="scroll|enterAlways">
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="?attr/colorPrimary"
+                        app:theme="@style/ThemeOverlay.AppCompat.Light"/>
+            </androidx.cardview.widget.CardView>
+    </com.google.android.material.appbar.AppBarLayout>
+
+        <FrameLayout
+                android:id="@+id/mainFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:itemIconTint="@drawable/bottom_navigation_states"
+            app:itemTextColor="@drawable/bottom_navigation_states"
+            app:menu="@menu/menu_bottom_navbar"
+            android:id="@+id/bottomNavigationView"
+            android:background="?android:attr/windowBackground"
+            app:labelVisibilityMode="unlabeled"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+    />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

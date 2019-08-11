@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Fondo</string>
+    <string name="action_settings">Settings</string>
+    <string name="toolbar_title_today">Today</string>
+    <string name="action_search">Search</string>
+    <string name="action_night_mode">Night mode</string>
+    <string name="content_description_photo_from_unsplash">Photo from unsplash</string>
+    <string name="animal">Animal</string>
+    <string name="nature">Nature</string>
+    <string name="food_drink"><![CDATA[Food & drink]]></string>
+    <string name="space">Space</string>
+    <string name="sport">Sport</string>
+    <string name="business_work"><![CDATA[Business & work]]></string>
+    <string name="fashion">Fashion</string>
+    <string name="art_culture"><![CDATA[Art & culture]]></string>
+    <string name="architecture">Architecture</string>
+    <string name="texture_pattern"><![CDATA[Texture & pattern]]></string>
+    <string name="technology">Technology</string>
+    <string name="flatlay">Flatlay</string>
+    <string name="menu_bnavbar_daily">Daily</string>
+    <string name="menu_bnavbar_categories">Categories</string>
+    <string name="menu_bnavbar_history">History</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="photo_transition">photo_transition</string>
+    <string name="download">Download</string>
+    <string name="downloadingWallpaper">Downloading wallpaper</string>
+    <string name="downloaded">Downloaded</string>
+    <string name="wallpaperDownloadComplete">Wallpaper Download Complete</string>
+</resources>

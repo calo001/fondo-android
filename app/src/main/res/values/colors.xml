@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F5F5F5</color>
+    <color name="colorPrimaryDark">#F5F5F5</color>
+    <color name="colorAccent">#2af5f5</color>
+    <color name="black">#000000</color>
+    <color name="gray">#818181</color>
+    <color name="search_gray">#E9E9E9</color>
+    <color name="gradient_green">#2af598</color>
+    <color name="gradient_blue">#009efd</color>
+    <color name="nature_color_1">#B5AC49</color>
+    <color name="nature_color_2">#11998E</color>
+    <color name="animal_color_1">#9B5F62</color>
+    <color name="animal_color_2">#DDA165</color>
+    <color name="food_drink_color_1">#FF5858</color>
+    <color name="food_drink_color_2">#F09819</color>
+    <color name="space_color_1">#29323C</color>
+    <color name="space_color_2">#483874</color>
+    <color name="sport_color_1">#533D84</color>
+    <color name="sport_color_2">#7E2F77</color>
+    <color name="business_work_color_1">#3C171A</color>
+    <color name="business_work_color_2">#5D293A</color>
+    <color name="fashion_color_1">#E16145</color>
+    <color name="fashion_color_2">#FE337C</color>
+    <color name="arts_culture_color_1">#4481EB</color>
+    <color name="arts_culture_color_2">#04BEFE</color>
+    <color name="architecture_color_1">#203A43</color>
+    <color name="architecture_color_2">#2C645A</color>
+    <color name="techcnology_color_1">#D42900</color>
+    <color name="techonology_color_2">#FF156A</color>
+    <color name="flatlay_color_1">#AAA600</color>
+    <color name="flatlay_color_2">#E99C00</color>
+    <color name="texture_pattern_color_1">#13547A</color>
+    <color name="texture_pattern_color_2">#42B18D</color>
+    <color name="colorBottomNavbar">#E6FFFFFF</color>
+
+</resources>

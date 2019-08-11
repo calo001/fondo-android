@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/navbar_home"
+          android:icon="@drawable/home"
+          android:title="@string/menu_bnavbar_daily"/>
+    <item android:id="@+id/navbar_categories"
+          android:icon="@drawable/view_day"
+          android:title="@string/menu_bnavbar_categories"/>
+    <item android:id="@+id/navbar_history"
+          android:icon="@drawable/history"
+          android:title="@string/menu_bnavbar_history"/>
+</menu>

@@ -1,2 +1,2 @@
 # fondo-android
-Find beautiful wallpapers for Android
+Find the most beautiful wallpapers for Android
