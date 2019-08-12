@@ -65,6 +65,7 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener, Photo
     private fun startImageDownload() {
         val intent = Intent(this, BackgroundNotificationService::class.java)
         intent.putExtra(BackgroundNotificationService.URL_EXTRA, mDownloadLink)
+        intent.putExtra(BackgroundNotificationService.ID_PHOTO_EXTRA, mCurrentPhoto.id)
         startService(intent)
     }
 
