@@ -1,16 +1,19 @@
 package io.codyffly.fondo.service
 
 import android.app.IntentService
+import android.app.WallpaperManager
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.media.ThumbnailUtils
+import android.net.Uri
+import android.os.Build
+import android.util.Log
 import android.widget.Toast
-import io.codyffly.fondo.util.FondoDownloadManager
-import io.codyffly.fondo.util.FondoNotificationManager
-import io.codyffly.fondo.util.getExternalDir
+import io.codyffly.fondo.util.*
 import java.io.File
+import java.io.IOException
 
-class BackgroundNotificationService: IntentService(DOWNLOAD_SERVICE), FondoDownloadManager.DownloadListener {
+class NotificationService: IntentService(DOWNLOAD_SERVICE), FondoDownloadManager.DownloadListener {
     private lateinit var mNotificationManager: FondoNotificationManager
     private lateinit var mDownloadManager: FondoDownloadManager
     private var mUrl: String? = null
@@ -50,10 +53,12 @@ class BackgroundNotificationService: IntentService(DOWNLOAD_SERVICE), FondoDownl
     }
 
     private fun setupWallpaper(file: File) {
-        Toast.makeText(this, "Download Complete at: ${file.absolutePath}!", Toast.LENGTH_LONG).show()
+        val wallpaperManager = FondoWallpaperManager(this, file.absolutePath)
+        wallpaperManager.setWallpaper()
     }
 
     companion object {
+        const val TAG = "NotificationService"
         const val DOWNLOAD_SERVICE = "download_service"
         const val ID_PHOTO_EXTRA = "photo_id"
         const val URL_EXTRA = "url"
