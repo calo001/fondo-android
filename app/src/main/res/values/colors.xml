@@ -32,6 +32,7 @@
     <color name="flatlay_color_2">#E99C00</color>
     <color name="texture_pattern_color_1">#13547A</color>
     <color name="texture_pattern_color_2">#42B18D</color>
-    <color name="colorBottomNavbar">#E6FFFFFF</color>
+    <color name="colorBottomNavbar">#E6F5F5F5</color>
+    <color name="statusTransparent">#CDF5F5F5</color>
 
 </resources>

@@ -2,12 +2,12 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="zero">0dp</dimen>
     <dimen name="photo_radius">4dp</dimen>
-    <dimen name="photo_padding">2dp</dimen>
+    <dimen name="photo_padding">8dp</dimen>
     <dimen name="category_hight">150dp</dimen>
     <dimen name="marginCardItem">4dp</dimen>
     <dimen name="search_radius">23dp</dimen>
     <dimen name="photo_margin">4dp</dimen>
     <dimen name="bottom_sheet_corner_radius">20dp</dimen>
     <dimen name="bottom_sheet_top_padding">10dp</dimen>
-    <dimen name="card_radius">20dp</dimen>
+    <dimen name="card_radius">8dp</dimen>
 </resources>

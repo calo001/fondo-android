@@ -1,15 +1,21 @@
 package io.codyffly.fondo.ui.main
 
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.ViewCompat
 import io.codyffly.fondo.R
 import io.codyffly.fondo.ui.main.fragment.category.CategoriesFragment
 import io.codyffly.fondo.ui.main.fragment.photo.PhotosFragment
 import io.codyffly.fondo.ui.main.fragment.search.SearchFragment
+import io.codyffly.fondo.util.makeStatusBarTransparent
+import io.codyffly.fondo.util.setMarginTop
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), PhotosFragment.OnFragmentInteractionListener{
@@ -37,6 +43,13 @@ class MainActivity : AppCompatActivity(), PhotosFragment.OnFragmentInteractionLi
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        makeStatusBarTransparent()
+        ViewCompat.setOnApplyWindowInsetsListener(mainContainer) { _, insets ->
+            //mainCardView.setMarginTop(insets.systemWindowInsetTop)
+            insets.consumeSystemWindowInsets()
+        }
+
+        //mainAppBarLayout.setMarginTop(40)
         setSupportActionBar(toolbar)
         setupToolbar(getString(R.string.toolbar_title_today))
         setupFragments()
@@ -68,7 +81,7 @@ class MainActivity : AppCompatActivity(), PhotosFragment.OnFragmentInteractionLi
     }
 
     fun setupToolbar(title: String) {
-        supportActionBar?.title = title
+        supportActionBar?.title = null
     }
 
     fun toogleDayNight() {
@@ -90,14 +103,14 @@ class MainActivity : AppCompatActivity(), PhotosFragment.OnFragmentInteractionLi
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
             R.id.action_settings -> return true
-            R.id.action_search -> {
-                supportFragmentManager
+            /*R.id.action_search -> {
+            /    supportFragmentManager
                     .beginTransaction()
                     .hide(activeFragment)
                     .show(searchFragment)
                     .commit()
                 activeFragment = searchFragment
-            }
+            }*/
             else -> super.onOptionsItemSelected(item)
         }
 

@@ -6,17 +6,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        app:cardElevation="6dp"
+        app:cardElevation="3dp"
         app:cardCornerRadius="@dimen/card_radius">
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
         <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                app:srcCompat="@drawable/back_loading_photo"
                 android:id="@+id/imgPhoto"
                 android:contentDescription="@string/content_description_photo_from_unsplash"
                 android:scaleType="fitXY"
@@ -24,25 +23,46 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" tools:targetApi="lollipop"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/dark_gradient"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                android:id="@+id/bottomShadow"/>
         <TextView
                 tools:text="Autor"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtAutor"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:layout_margin="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/imgPhoto" app:layout_constraintStart_toStartOf="parent"
-                app:fontFamily="@font/open_sans_bold" android:layout_marginTop="16dp" android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp" android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:fontFamily="@font/open_sans_semibold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="@+id/bottomShadow" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView" android:layout_marginRight="8dp"/>
         <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="20dp"
                 app:srcCompat="@drawable/ic_share"
-                app:layout_constraintTop_toBottomOf="@+id/imgPhoto" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="16dp"
-                android:contentDescription="@string/app_name"/>
+                android:contentDescription="@string/app_name"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/imageView2" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="@+id/bottomShadow"/>
+        <ImageView
+                android:layout_width="40dp"
+                android:layout_height="20dp" app:srcCompat="@drawable/ic_wallpaper"
+                android:id="@+id/imageView" app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="@+id/bottomShadow"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

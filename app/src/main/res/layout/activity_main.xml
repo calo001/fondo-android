@@ -3,29 +3,66 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mainContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/colorPrimary"
+        android:fitsSystemWindows="false"
         tools:context=".ui.main.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            app:elevation="@dimen/zero">
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:background="@android:color/transparent"
+            android:fitsSystemWindows="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlways">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:text="TODAY"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:textSize="15sp"
+                    android:textColor="#000"
+                    android:gravity="start|bottom"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"/>
+
             <androidx.cardview.widget.CardView
+                    android:id="@+id/mainCardView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="20dp"
-                    app:layout_scrollFlags="scroll|enterAlways">
+                    app:cardCornerRadius="8dp"
+                    app:cardBackgroundColor="#FFF"
+                    android:layout_margin="11dp"
+                    app:cardElevation="3dp"
+                    app:contentPadding="0dp">
                 <androidx.appcompat.widget.Toolbar
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        android:background="?attr/colorPrimary"
-                        app:theme="@style/ThemeOverlay.AppCompat.Light"/>
+                        android:layout_height="45dp"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                        app:theme="@style/ThemeOverlay.AppCompat.Light">
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:drawableStart="@drawable/ic_search"
+                            android:drawableLeft="@drawable/ic_search"
+                            android:drawablePadding="4dp"
+                            android:text="Search photos Unsplash"/>
+                </androidx.appcompat.widget.Toolbar>
             </androidx.cardview.widget.CardView>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
     </com.google.android.material.appbar.AppBarLayout>
 
         <FrameLayout
@@ -42,7 +79,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_gravity="bottom"
             app:itemIconTint="@drawable/bottom_navigation_states"
             app:itemTextColor="@drawable/bottom_navigation_states"

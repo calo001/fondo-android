@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
@@ -17,7 +16,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import io.codyffly.fondo.R
 import io.codyffly.fondo.dialog.MenuFragment
 import io.codyffly.fondo.model.Photo
-import io.codyffly.fondo.service.BackgroundNotificationService
+import io.codyffly.fondo.service.NotificationService
 import kotlinx.android.synthetic.main.activity_photo_detail.*
 import kotlin.math.max
 import kotlin.math.min
@@ -63,9 +62,9 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener, Photo
     }
 
     private fun startImageDownload() {
-        val intent = Intent(this, BackgroundNotificationService::class.java)
-        intent.putExtra(BackgroundNotificationService.URL_EXTRA, mDownloadLink)
-        intent.putExtra(BackgroundNotificationService.ID_PHOTO_EXTRA, mCurrentPhoto.id)
+        val intent = Intent(this, NotificationService::class.java)
+        intent.putExtra(NotificationService.URL_EXTRA, mDownloadLink)
+        intent.putExtra(NotificationService.ID_PHOTO_EXTRA, mCurrentPhoto.id)
         startService(intent)
     }
 

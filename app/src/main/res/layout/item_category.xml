@@ -4,21 +4,21 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/category_hight"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/marginCardItem"
         android:id="@+id/cardCategory">
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="8dp">
         <TextView
                 tools:text="Nature"
                 android:textColor="@android:color/white"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtCategoryName"
-                android:textSize="35sp"
-                android:drawableStart="@drawable/nature"
-                android:drawableLeft="@drawable/nature"
+                android:textSize="20sp"
+                android:drawableTop="@drawable/nature"
                 android:drawablePadding="@dimen/photo_padding"
                 android:gravity="center"
                 android:layout_marginEnd="24dp"
