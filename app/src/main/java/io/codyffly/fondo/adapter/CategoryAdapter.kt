@@ -4,6 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.cardview.widget.CardView
 import io.codyffly.fondo.R
 import io.codyffly.fondo.model.Category
 import kotlinx.android.synthetic.main.item_category.view.*
@@ -18,13 +20,13 @@ class CategoryAdapter(val items: List<Category>, val context: Context?) : androi
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.categoryName.text = context?.getText(items.get(position).name)
-        viewHolder.categoryName.setCompoundDrawablesWithIntrinsicBounds(items.get(position).icon, 0,0,0)
-        viewHolder.cardCategory.setBackgroundResource(items.get(position).background)
+        viewHolder.categoryName.text = context?.getText(items[position].name)
+        viewHolder.categoryName.setCompoundDrawablesWithIntrinsicBounds(0, items[position].icon,0,0)
+        viewHolder.cardCategory.setBackgroundResource(items[position].background)
     }
 
     class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder (itemView){
-        val categoryName = itemView.txtCategoryName
-        val cardCategory = itemView.cardCategory
+        val categoryName: TextView = itemView.txtCategoryName
+        val cardCategory: CardView = itemView.cardCategory
     }
 }
