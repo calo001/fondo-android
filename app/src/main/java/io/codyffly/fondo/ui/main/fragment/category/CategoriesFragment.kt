@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import io.codyffly.fondo.R
 import io.codyffly.fondo.adapter.CategoryAdapter
 import io.codyffly.fondo.repository.CategoriesRepositoryProvider
@@ -43,7 +45,7 @@ class CategoriesFragment : androidx.fragment.app.Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        rvCategories.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
+        rvCategories.layoutManager = GridLayoutManager(activity, 2)
         rvCategories.adapter = CategoryAdapter(CategoriesRepositoryProvider.provideCategoriesRepository(), context)
     }
 
