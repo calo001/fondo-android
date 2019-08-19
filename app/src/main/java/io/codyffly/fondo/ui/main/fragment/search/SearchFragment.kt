@@ -101,6 +101,8 @@ class SearchFragment : androidx.fragment.app.Fragment() {
     }
 
     companion object {
+        const val TAG = "SearchFragment"
+
         @JvmStatic
         fun newInstance() = SearchFragment()
     }
