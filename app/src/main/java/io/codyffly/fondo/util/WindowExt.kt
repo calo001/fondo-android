@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 
-fun Activity.makeStatusBarTransparent() {
+fun Activity.makeStatusBarTransparent(color: String) {
     if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         window.apply {
             clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
@@ -18,7 +18,7 @@ fun Activity.makeStatusBarTransparent() {
             } else {
                 decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
             }
-            statusBarColor = Color.parseColor("#CDF5F5F5")
+            statusBarColor = Color.parseColor(color)
         }
     }
 }
