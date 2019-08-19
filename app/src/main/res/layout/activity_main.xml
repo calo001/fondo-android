@@ -22,20 +22,6 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlways">
-
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:text="TODAY"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:textSize="15sp"
-                    android:textColor="#000"
-                    android:gravity="start|bottom"
-                    android:layout_gravity="bottom|center"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"/>
-
             <androidx.cardview.widget.CardView
                     android:id="@+id/mainCardView"
                     android:layout_width="match_parent"
@@ -43,6 +29,8 @@
                     app:cardCornerRadius="8dp"
                     app:cardBackgroundColor="#FFF"
                     android:layout_margin="11dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     app:cardElevation="3dp"
                     app:contentPadding="0dp">
                 <androidx.appcompat.widget.Toolbar
@@ -50,15 +38,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                        app:theme="@style/ThemeOverlay.AppCompat.Light">
+                        app:theme="@style/ThemeOverlay.AppCompat.Light"
+                        android:transitionName="@string/simple_fragment_transition">
                     <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:drawableStart="@drawable/ic_search"
                             android:drawableLeft="@drawable/ic_search"
-                            android:drawablePadding="4dp"
-                            android:text="Search photos Unsplash"/>
+                            android:drawablePadding="8dp"
+                            android:text="@string/search_photos_unsplash"/>
                 </androidx.appcompat.widget.Toolbar>
             </androidx.cardview.widget.CardView>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -79,7 +68,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_gravity="bottom"
             app:itemIconTint="@drawable/bottom_navigation_states"
             app:itemTextColor="@drawable/bottom_navigation_states"

@@ -28,4 +28,7 @@
     <string name="downloadingWallpaper">Downloading wallpaper</string>
     <string name="downloaded">Downloaded</string>
     <string name="wallpaperDownloadComplete">Wallpaper Download Complete</string>
+    <string name="today">TODAY</string>
+    <string name="search_photos_unsplash">Search photos Unsplash</string>
+    <string name="simple_fragment_transition">search_transition</string>
 </resources>
