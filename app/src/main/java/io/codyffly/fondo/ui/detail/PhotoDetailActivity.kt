@@ -14,29 +14,35 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import io.codyffly.fondo.R
-import io.codyffly.fondo.dialog.MenuFragment
+import io.codyffly.fondo.dialog.DetailUserFragment
 import io.codyffly.fondo.model.Photo
 import io.codyffly.fondo.service.NotificationService
+import io.codyffly.fondo.util.makeStatusBarTransparent
 import kotlinx.android.synthetic.main.activity_photo_detail.*
 import kotlin.math.max
 import kotlin.math.min
 
 class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener, PhotoDetailViewContract {
-    private lateinit var detailFragment: MenuFragment
+    private lateinit var detailFragment: DetailUserFragment
     private lateinit var mCurrentPhoto: Photo
     private lateinit var mScaleGestureDetector: ScaleGestureDetector
     private lateinit var mDownloadLink: String
     private val presenter = PhotoDetailPresenterImpl(this)
-
     private var mScaleFactor = 1.0f
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_photo_detail)
 
+        setupStatusbar()
         getExtraInfo()
         setupFragment()
         setupEvents()
         showImage()
+    }
+
+    private fun setupStatusbar() {
+        makeStatusBarTransparent("#00000000")
     }
 
     private fun setupEvents() {
@@ -100,11 +106,11 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener, Photo
     }
 
     private fun getExtraInfo() {
-        mCurrentPhoto = intent?.extras?.getSerializable("object") as Photo
+        mCurrentPhoto = intent?.extras?.getSerializable(EXTRA_OBJECT) as Photo
     }
 
     private fun setupFragment() {
-        detailFragment = MenuFragment(this, mCurrentPhoto)
+        detailFragment = DetailUserFragment(this, mCurrentPhoto)
     }
 
     fun showDetails(view: View) {
@@ -130,6 +136,7 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener, Photo
 
     companion object {
         const val PERMISSION_REQUEST_CODE = 1
+        const val EXTRA_OBJECT = "PhotoObject"
     }
 }
 

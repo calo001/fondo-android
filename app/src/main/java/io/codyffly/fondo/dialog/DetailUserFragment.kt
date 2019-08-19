@@ -11,7 +11,7 @@ import io.codyffly.fondo.model.Photo
 import io.codyffly.fondo.ui.detail.OnSetAsWallpaperListener
 import kotlinx.android.synthetic.main.dialog_bottom_sheet.*
 
-class MenuFragment(private val listener: OnSetAsWallpaperListener, private val photo: Photo) : RoundedBottomSheetDialogFragment() {
+class DetailUserFragment(private val listener: OnSetAsWallpaperListener, private val photo: Photo) : RoundedBottomSheetDialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.dialog_bottom_sheet, container, false)
     }
@@ -25,8 +25,7 @@ class MenuFragment(private val listener: OnSetAsWallpaperListener, private val p
             .into(userPicture)
 
         txtUsername.text = photo.user.username
-        //txtUserBio.text = photo.user.bio
-        txtUserBio.text = photo.links.download_location
+        txtUserBio.text = photo.user.bio
         txtImgDescription.text = photo.description
         txtImgCreatedAt.text = photo.created_at
         txtImgWidth.text = photo.width.toString()
@@ -39,10 +38,6 @@ class MenuFragment(private val listener: OnSetAsWallpaperListener, private val p
 
         with(txtImgDescription) {
             if (text.isNullOrEmpty()) visibility = View.GONE
-        }
-
-        fabSetAsWallpaper.setOnClickListener {
-            listener.onSetWallpaper()
         }
     }
 }

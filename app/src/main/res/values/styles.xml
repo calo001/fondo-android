@@ -26,9 +26,24 @@
     <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
         <item name="bottomSheetStyle">@style/BottomSheet</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/black</item>
     </style>
 
     <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog">
 
+    </style>
+
+    <!-- FULL DIALOG THEME -->
+    <style name="FullScreenDialogStyle" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+
+        <!-- Set this to true if you want full screen without status bar -->
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">false</item>
+
+        <!-- Background of window color -->
+        <item name="android:windowBackground">@color/colorPrimary</item>
     </style>
 </resources>
