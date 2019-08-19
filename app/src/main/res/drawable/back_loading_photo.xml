@@ -7,5 +7,4 @@
             android:endColor="@color/gradient_blue"
             android:startColor="@color/gradient_green"
             android:angle="135" />
-    <size android:height="150dp"/>
 </shape>

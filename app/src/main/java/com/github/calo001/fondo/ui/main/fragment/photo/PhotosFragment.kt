@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.adapter.PhotosAdapter
+import com.github.calo001.fondo.adapter.PhotosAdapter.OnItemInteraction
 import com.github.calo001.fondo.listener.InfiniteScrollListener
 import com.github.calo001.fondo.listener.InfiniteScrollListener.OnLoadMoreListener
 import com.github.calo001.fondo.model.Photo
@@ -22,10 +23,10 @@ class PhotosFragment : Fragment(), PhotoViewContract,
     OnItemInteraction, OnLoadMoreListener {
     private lateinit var adapter: PhotosAdapter
     private lateinit var scrollListener: InfiniteScrollListener
+    private var page = FIRST_PAGE
 
     private val presenter: PhotosPresenterContract =
         PhotosPresenterImpl(this)
-    var page = FIRST_PAGE
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_photos, container, false)
@@ -94,8 +95,4 @@ class PhotosFragment : Fragment(), PhotoViewContract,
         @JvmStatic
         fun newInstance() = PhotosFragment()
     }
-}
-
-interface OnItemInteraction {
-    fun onItemInteraction(view: View, item: Photo)
 }

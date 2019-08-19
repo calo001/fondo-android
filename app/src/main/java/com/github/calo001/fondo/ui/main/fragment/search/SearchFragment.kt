@@ -1,106 +1,111 @@
 package com.github.calo001.fondo.ui.main.fragment.search
 
 
-import android.annotation.SuppressLint
+import android.app.ActivityOptions
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.calo001.fondo.R
+import com.github.calo001.fondo.adapter.PhotosAdapter
+import com.github.calo001.fondo.adapter.PhotosAdapter.OnItemInteraction
+import com.github.calo001.fondo.listener.InfiniteScrollListener
+import com.github.calo001.fondo.listener.InfiniteScrollListener.OnLoadMoreListener
 import com.github.calo001.fondo.model.Photo
 import com.github.calo001.fondo.model.Result
+import com.github.calo001.fondo.ui.detail.PhotoDetailActivity
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_search.*
+import kotlinx.android.synthetic.main.fragment_search.constraint
+import kotlinx.android.synthetic.main.fragment_search.progress
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class SearchFragment : Fragment(), SearchViewContract,
+    OnItemInteraction, OnLoadMoreListener {
+    private lateinit var adapter: PhotosAdapter
 
-/**
- * A simple [Fragment] subclass.
- *
- */
-class SearchFragment : androidx.fragment.app.Fragment() {
-    var photos: MutableList<Photo?> = mutableListOf()
-    var isLoading = false
-    var query = "cat"
-    var page = 1
+    private lateinit var scrollListener: InfiniteScrollListener
+    private var page = FIRST_PAGE
+    private var query = ""
+    private val presenter: SearchPresenterContract =
+        SearchPresenterImpl(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        rvSearchPhotos.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
-        activity.let {
-            //rvSearchPhotos.adapter = PhotosAdapter(photos, activity!!.application,)
-            initScrollListener()
-            setupPhotoList()
+        val linearLayoutManager = LinearLayoutManager(activity)
+        scrollListener = InfiniteScrollListener(linearLayoutManager, this)
+        rvSearchPhotos.layoutManager = linearLayoutManager
+        rvSearchPhotos.addOnScrollListener(scrollListener)
+        activity?.let {
+            adapter = PhotosAdapter(mutableListOf(), it, this)
+            adapter.addHeader(getString(R.string.search_header))
+            rvSearchPhotos.adapter = adapter
         }
     }
 
-    @SuppressLint("CheckResult")
-    private fun setupPhotoList() {
-        if (!query.trim().isEmpty()) {
+    override fun onLoadPhotosSuccess(result: Result) {
+        hideLoading()
+        adapter.removeNullItem()
+        adapter.updateHeader(query)
+        adapter.addPage(result.results)
+    }
 
+    override fun showLoading() {
+        progress.visibility = View.VISIBLE
+    }
+
+    override fun hideLoading() {
+        progress.visibility = View.GONE
+        scrollListener.loading = false
+    }
+
+    override fun onError(error: String) {
+        Snackbar.make(constraint, error, Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun onItemInteraction(view: View, item: Photo) {
+        val intent = Intent(activity, PhotoDetailActivity::class.java)
+        intent.putExtra(PhotoDetailActivity.EXTRA_OBJECT, item)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val options = ActivityOptions
+                .makeSceneTransitionAnimation(activity, view, resources.getString(R.string.photo_transition))
+            startActivity(intent, options.toBundle())
+        } else {
+            startActivity(intent)
         }
     }
 
-    fun onPhotosListError(error: Throwable) {
-        clearLoading()
-        Toast.makeText(this.context, "ERROR CUSTOM: " + error.localizedMessage, Toast.LENGTH_LONG).show()
+    override fun onLoadMore() {
+        page++
+        presenter.loadPhotos(query, page)
+        adapter.addNullItem()
     }
 
-    private fun onPhotoListSucces(result: Result) {
-        clearLoading()
-        photos.addAll(result.results)
-        rvSearchPhotos.adapter?.notifyDataSetChanged()
+    fun newSearchQuery(newQuery: String) {
+        cleanData()
+        query = newQuery
+        presenter.loadPhotos(query, page)
     }
 
-    fun updateQuerySearch(query: String) {
-        clearList()
-        setupPhotoList()
+    fun cleanData() {
+        page = 1
+        adapter.clear()
     }
 
-    private fun clearLoading() {
-        isLoading = false;
-        if (photos.size > 0) {
-            photos.removeAt(photos.size.minus(1))
-        }
-    }
-
-    private fun clearList() {
-        photos.clear()
-        rvSearchPhotos.adapter?.notifyDataSetChanged()
-    }
-
-    private fun initScrollListener() {
-        rvSearchPhotos.addOnScrollListener(object: androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                val layoutManager = recyclerView.layoutManager
-                if (!isLoading) {
-                    if (layoutManager is androidx.recyclerview.widget.LinearLayoutManager &&
-                        layoutManager.findLastCompletelyVisibleItemPosition() == photos.size.minus(1)) {
-                        page++
-                        isLoading = true
-                        loadMore()
-                    }
-                }
-            }
-        })
-    }
-
-    private fun loadMore() {
-        photos.add(null)
-        rvSearchPhotos.adapter?.notifyItemInserted(photos.size.minus(1))
-        setupPhotoList()
+    fun scrollToUp() {
+        rvSearchPhotos.smoothScrollToPosition(0)
     }
 
     companion object {
         const val TAG = "SearchFragment"
+        const val FIRST_PAGE = 1
 
         @JvmStatic
         fun newInstance() = SearchFragment()

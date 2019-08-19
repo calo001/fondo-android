@@ -31,4 +31,5 @@
     <string name="today">TODAY</string>
     <string name="search_photos_unsplash">Search photos Unsplash</string>
     <string name="simple_fragment_transition">search_transition</string>
+    <string name="search_header">SEARCH</string>
 </resources>

@@ -10,18 +10,20 @@ import androidx.fragment.app.Fragment
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.dialog.SearchDialogFragment
 import com.github.calo001.fondo.dialog.SearchDialogFragment.OnSearchListener
+import com.github.calo001.fondo.model.Category
 import com.github.calo001.fondo.ui.main.fragment.category.CategoriesFragment
+import com.github.calo001.fondo.ui.main.fragment.category.CategoriesFragment.OnCategoryListener
 import com.github.calo001.fondo.ui.main.fragment.photo.PhotosFragment
 import com.github.calo001.fondo.ui.main.fragment.search.SearchFragment
 import com.github.calo001.fondo.util.makeStatusBarTransparent
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), OnSearchListener {
+class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener {
     private val mainFragment: PhotosFragment =              PhotosFragment.newInstance()
+
     private val categoriesFragment: CategoriesFragment =    CategoriesFragment.newInstance()
     private val searchFragment: SearchFragment =            SearchFragment.newInstance()
     private lateinit var activeFragment: Fragment
-
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
@@ -90,8 +92,11 @@ class MainActivity : AppCompatActivity(), OnSearchListener {
                             .commit()
                         activeFragment = mainFragment
                     }
-                    }
+                }
                 R.id.navbar_categories -> {
+                    if (activeFragment == categoriesFragment) {
+                        categoriesFragment.scrollToUp()
+                    } else {
                         supportFragmentManager
                             .beginTransaction()
                             .hide(activeFragment)
@@ -99,19 +104,30 @@ class MainActivity : AppCompatActivity(), OnSearchListener {
                             .commit()
                         activeFragment = categoriesFragment
                     }
+                }
             }
             true
         }
     }
 
     override fun onSearch(term: String) {
-        Toast.makeText(this, "Query: $term", Toast.LENGTH_SHORT).show()
         supportFragmentManager
             .beginTransaction()
             .hide(activeFragment)
             .show(searchFragment)
             .commit()
         activeFragment = searchFragment
+        searchFragment.newSearchQuery(term)
+    }
+
+    override fun onCategoryClick(category: Category) {
+        supportFragmentManager
+            .beginTransaction()
+            .hide(activeFragment)
+            .show(searchFragment)
+            .commit()
+        activeFragment = searchFragment
+        searchFragment.newSearchQuery(category.query)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

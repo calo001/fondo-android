@@ -14,7 +14,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.model.Photo
-import com.github.calo001.fondo.ui.main.fragment.photo.OnItemInteraction
 import kotlinx.android.synthetic.main.item_header.view.*
 import kotlinx.android.synthetic.main.item_photo.view.*
 
@@ -56,6 +55,7 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
                 glide
                     .load(items[position]?.urls?.small)
                     .placeholder(R.drawable.back_loading_photo)
+                    .fitCenter()
                     .transition(withCrossFade())
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(holder.photo)
@@ -119,6 +119,12 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
         }
     }
 
+    fun clear() {
+        items = items.filter { it == null } as MutableList<Photo?>
+        title = ""
+        notifyDataSetChanged()
+    }
+
     companion object {
         private const val VIEW_TYPE_ITEM = 0
         private const val VIEW_TYPE_LOADING = 1
@@ -130,9 +136,14 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
     class HeaderViewHolder(itemView: View): DynamicViewHolder(itemView) {
         val header: TextView = itemView.header
     }
+
     class ItemViewHolder(itemView: View) : DynamicViewHolder(itemView) {
         val author: TextView = itemView.txtAutor
         val photo: ImageView = itemView.imgPhoto
         val cardView: CardView = itemView.cardPhoto
+    }
+
+    interface OnItemInteraction {
+        fun onItemInteraction(view: View, item: Photo)
     }
 }
