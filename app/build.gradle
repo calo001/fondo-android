@@ -9,7 +9,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "io.codyffly.fondo"
+        applicationId 'com.github.calo001.fondo'
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
