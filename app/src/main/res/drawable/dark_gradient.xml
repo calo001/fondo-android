@@ -15,7 +15,7 @@
                     android:startColor="#1A000000"
                     android:endColor="#0D000000"
                     android:angle="90"/>
-            <size android:height="15dp"/>
+            <size android:height="8dp"/>
         </shape>
     </item>
 </layer-list>
