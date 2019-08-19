@@ -1,61 +1,135 @@
 package io.codyffly.fondo.adapter
 
-import android.app.ActivityOptions
 import android.content.Context
-import android.content.Intent
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
-import com.bumptech.glide.request.RequestOptions
 import io.codyffly.fondo.R
-import io.codyffly.fondo.config.Constants
 import io.codyffly.fondo.model.Photo
-import io.codyffly.fondo.ui.detail.PhotoDetailActivity
 import io.codyffly.fondo.ui.main.fragment.photo.OnItemInteraction
+import kotlinx.android.synthetic.main.item_header.view.*
 import kotlinx.android.synthetic.main.item_photo.view.*
 
-class PhotosAdapter(private var items: MutableList<Photo?>, val context: Context, private val interaction: OnItemInteraction) :
-    RecyclerView.Adapter<PhotosAdapter.ItemViewHolder>() {
+class PhotosAdapter(private var items: MutableList<Photo?>,
+                    private val context: Context,
+                    private val interaction: OnItemInteraction) :
+    RecyclerView.Adapter<PhotosAdapter.DynamicViewHolder>() {
 
     private var glide: RequestManager = Glide.with(context)
+    private lateinit var title: String
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        return ItemViewHolder(LayoutInflater.from(context).inflate(R.layout.item_photo, parent,false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DynamicViewHolder {
+        return when (viewType) {
+            VIEW_TYPE_HEADER -> {
+                HeaderViewHolder(LayoutInflater.from(context)
+                    .inflate(R.layout.item_header, parent,false))
+            }
+            VIEW_TYPE_ITEM -> {
+                ItemViewHolder(LayoutInflater.from(context)
+                    .inflate(R.layout.item_photo, parent,false))
+            }
+            else -> {
+                ProgressViewHolder(LayoutInflater.from(context)
+                    .inflate(R.layout.item_loading, parent,false))
+            }
+        }
     }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int){
-        glide
-            .load(items[position]?.urls?.small)
-            .transition(withCrossFade())
-            .into(holder.photo)
+    override fun onBindViewHolder(holder: DynamicViewHolder, position: Int) {
+        when (holder) {
+            is ItemViewHolder -> {
+                glide
+                    .load(items[position]?.urls?.small)
+                    .placeholder(R.drawable.back_loading_photo)
+                    .transition(withCrossFade())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.photo)
 
-        holder.autor.text = items[position]?.user?.name
+                holder.author.text = items[position]?.user?.name
 
-        holder.photo.setOnClickListener { view ->
-            items[position]?.let { photo ->
-                interaction.onItemInteraction(view, photo)
+                holder.cardView.setOnClickListener { view ->
+                    items[position]?.let { photo ->
+                        interaction.onItemInteraction(view, photo)
+                    }
+                }
+            }
+            is HeaderViewHolder -> {
+                holder.header.text = title
+            }
+            is ProgressViewHolder -> {
+                Toast.makeText(context, "Progress", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     override fun getItemCount(): Int = items.size
 
-    fun addPage(list: List<Photo>) {
-        items = (items + list) as MutableList<Photo?>
-        notifyDataSetChanged()
+    override fun getItemViewType(position: Int): Int {
+        return when {
+            (position == 0) and (items[position] == null)   -> VIEW_TYPE_HEADER
+            (position >  0) and (items[position] == null)   -> VIEW_TYPE_LOADING
+            else                                            -> VIEW_TYPE_ITEM
+        }
     }
 
-    class ItemViewHolder(itemView: View) : ViewHolder (itemView) {
-        val autor: TextView = itemView.txtAutor
+    fun addHeader(header: String) {
+        items.add(null)
+        updateHeader(header)
+    }
+
+    fun addNullItem() {
+        items.add(null)
+        val lastPosition = items.size - 1
+        notifyItemInserted(lastPosition)
+    }
+
+    fun removeNullItem() {
+        if(items.size > 1) {
+            val lastPosition = items.size - 1
+            items.removeAt(lastPosition)
+            notifyItemRemoved(lastPosition)
+        }
+    }
+
+    fun updateHeader(title: String) {
+        this.title = title
+        notifyItemChanged(0)
+    }
+
+    fun addPage(list: List<Photo>) {
+        val count = items.size
+        items.addAll(count, list)
+
+        if (count <= 1) {
+            notifyDataSetChanged()
+        } else {
+            notifyItemRangeInserted(count, items.size)
+        }
+    }
+
+    companion object {
+        private const val VIEW_TYPE_ITEM = 0
+        private const val VIEW_TYPE_LOADING = 1
+        private const val VIEW_TYPE_HEADER = 2
+    }
+
+    open class DynamicViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    class ProgressViewHolder(itemView: View): DynamicViewHolder(itemView)
+    class HeaderViewHolder(itemView: View): DynamicViewHolder(itemView) {
+        val header: TextView = itemView.header
+    }
+    class ItemViewHolder(itemView: View) : DynamicViewHolder(itemView) {
+        val author: TextView = itemView.txtAutor
         val photo: ImageView = itemView.imgPhoto
+        val cardView: CardView = itemView.cardPhoto
     }
 }

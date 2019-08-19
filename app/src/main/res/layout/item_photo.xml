@@ -7,7 +7,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         app:cardElevation="3dp"
-        app:cardCornerRadius="@dimen/card_radius">
+        app:cardCornerRadius="@dimen/card_radius"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/cardPhoto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -19,10 +22,13 @@
                 android:id="@+id/imgPhoto"
                 android:contentDescription="@string/content_description_photo_from_unsplash"
                 android:scaleType="fitXY"
-                android:transitionName="@string/photo_transition"
+                android:src="@drawable/back_loading_photo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" tools:targetApi="lollipop"/>
+                app:layout_constraintTop_toTopOf="parent"
+                tools:targetApi="lollipop"
+                android:transitionName="@string/photo_transition"
+                app:layout_constraintBottom_toBottomOf="parent"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="0dp"
@@ -31,7 +37,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
                 android:id="@+id/bottomShadow"/>
         <TextView
                 tools:text="Autor"
