@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -19,14 +20,14 @@ import com.github.calo001.fondo.model.Photo
 import com.github.calo001.fondo.ui.detail.PhotoDetailActivity
 import kotlinx.android.synthetic.main.fragment_photos.*
 
-class PhotosFragment : Fragment(), PhotoViewContract,
+class TodayFragment : Fragment(), TodayContract,
     OnItemInteraction, OnLoadMoreListener {
     private lateinit var adapter: PhotosAdapter
+
     private lateinit var scrollListener: InfiniteScrollListener
     private var page = FIRST_PAGE
-
-    private val presenter: PhotosPresenterContract =
-        PhotosPresenterImpl(this)
+    private val presenter: TodayPresenterContract =
+        TodayPresenterImpl(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_photos, container, false)
@@ -71,7 +72,7 @@ class PhotosFragment : Fragment(), PhotoViewContract,
         Snackbar.make(constraint, error, Snackbar.LENGTH_SHORT).show()
     }
 
-    override fun onItemInteraction(view: View, item: Photo) {
+    override fun onItemClick(view: View, item: Photo) {
         val intent = Intent(activity, PhotoDetailActivity::class.java)
         intent.putExtra(PhotoDetailActivity.EXTRA_OBJECT, item)
 
@@ -84,15 +85,33 @@ class PhotosFragment : Fragment(), PhotoViewContract,
         }
     }
 
+    override fun onShareClick(photo: Photo) {
+        activity?.let {
+            val shareIntent = ShareCompat.IntentBuilder.from(activity)
+                .setType("text/plain")
+                .setSubject("${getString(R.string.share_photo_by)} ${photo.user.name}")
+                .setText(
+                    """${getString(R.string.photo_by)} ${photo.user.name} ${getString(R.string.on_unsplash)}
+                |${photo.links.html}
+                """.trimMargin())
+                .intent
+            it.packageManager?.let { startActivity(shareIntent) }
+        }
+    }
+
+    override fun onSetWallClick(photo: Photo) {
+
+    }
+
     fun scrollToUp() {
         rvTodayPhotos.smoothScrollToPosition(0)
     }
 
     companion object {
-        const val TAG = "PhotosFragment"
+        const val TAG = "TodayFragment"
         const val FIRST_PAGE = 1
 
         @JvmStatic
-        fun newInstance() = PhotosFragment()
+        fun newInstance() = TodayFragment()
     }
 }

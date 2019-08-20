@@ -18,7 +18,7 @@ import java.util.*
 
 interface UnsplashApiService {
     @GET("photos/")
-    fun dailyPhotos(@Query("client_id") clientID: String,
+    fun todayPhotos(@Query("client_id") clientID: String,
                     @Query("page") page: Int,
                     @Query("per_page") perPage: Int,
                     @Query("order_by") orderBy: String): Observable<List<Photo>>

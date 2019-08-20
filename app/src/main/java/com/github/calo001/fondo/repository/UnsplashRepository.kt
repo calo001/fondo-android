@@ -13,8 +13,8 @@ import okhttp3.ResponseBody
 object UnsplashRepository {
     private val client by lazy { UnsplashApiService.create() }
 
-    fun getDailyPhotos(page: Int, perPage: Int = 12, orderBy: String = "latest"): Observable<List<Photo>> {
-        return client.dailyPhotos(Constants.API_KEY_UNSPLASH, page, perPage, orderBy)
+    fun getTodayPhotos(page: Int, perPage: Int = 12, orderBy: String = "latest"): Observable<List<Photo>> {
+        return client.todayPhotos(Constants.API_KEY_UNSPLASH, page, perPage, orderBy)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }

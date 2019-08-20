@@ -3,10 +3,10 @@ package com.github.calo001.fondo.ui.main.fragment.photo
 import android.annotation.SuppressLint
 import com.github.calo001.fondo.model.Photo
 
-class PhotosPresenterImpl (private val view: PhotoViewContract) :
-    PhotosPresenterContract {
-    private val interactor: PhotosInteractorContract =
-        PhotosInteractorImpl(this)
+class TodayPresenterImpl (private val view: TodayContract) :
+    TodayPresenterContract {
+    private val interactor: TodayInteractorContract =
+        TodayInteractorImpl(this)
 
     @SuppressLint("CheckResult")
     override fun loadPhotos(page: Int) {

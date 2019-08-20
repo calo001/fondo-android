@@ -3,12 +3,12 @@ package com.github.calo001.fondo.ui.main.fragment.photo
 import android.annotation.SuppressLint
 import com.github.calo001.fondo.repository.UnsplashRepository
 
-class PhotosInteractorImpl (private val presenter: PhotosPresenterContract):
-    PhotosInteractorContract {
+class TodayInteractorImpl (private val presenter: TodayPresenterContract):
+    TodayInteractorContract {
 
     @SuppressLint("CheckResult")
     override fun loadPhotos(page: Int) {
-        UnsplashRepository.getDailyPhotos(page)
+        UnsplashRepository.getTodayPhotos(page)
             .subscribe ( { list ->
                 presenter.onPhotosSuccess(list)
             }, { error ->
