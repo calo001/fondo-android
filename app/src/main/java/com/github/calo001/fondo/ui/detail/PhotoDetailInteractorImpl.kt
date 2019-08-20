@@ -15,5 +15,4 @@ class PhotoDetailInteractorImpl(private val presenter: PhotoDetailPresenterContr
                 presenter.onError(error.localizedMessage)
             })
     }
-
 }

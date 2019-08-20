@@ -32,4 +32,8 @@
     <string name="search_photos_unsplash">Search photos Unsplash</string>
     <string name="simple_fragment_transition">search_transition</string>
     <string name="search_header">SEARCH</string>
+    <string name="share_photo_by">Share photo by</string>
+    <string name="photo_by">Photo by</string>
+    <string name="on_unsplash">on Unsplash </string>
+    <string name="share_photo_to">Share photo to...</string>
 </resources>

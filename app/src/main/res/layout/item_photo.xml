@@ -32,7 +32,7 @@
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:background="@drawable/dark_gradient"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,28 +46,43 @@
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:layout_margin="8dp"
+                android:shadowColor="@color/darker_gray"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="8"
                 app:fontFamily="@font/open_sans_semibold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"
-                android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toTopOf="@+id/bottomShadow" android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/imageView" android:layout_marginRight="8dp"/>
-        <ImageView
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="@+id/bottomShadow"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/btnSetWall"
+                android:layout_marginRight="8dp"
+                android:paddingTop="8dp" android:paddingBottom="8dp"/>
+        <ImageButton
                 android:layout_width="40dp"
-                android:layout_height="20dp"
+                android:layout_height="0dp"
                 app:srcCompat="@drawable/ic_share"
                 android:contentDescription="@string/app_name"
-                android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/imageView2" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toTopOf="@+id/bottomShadow"/>
-        <ImageView
+                android:id="@+id/btnShare"
+                app:layout_constraintTop_toTopOf="@+id/bottomShadow"
+                android:padding="8dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"/>
+        <ImageButton
                 android:layout_width="40dp"
-                android:layout_height="20dp" app:srcCompat="@drawable/ic_wallpaper"
-                android:id="@+id/imageView" app:layout_constraintEnd_toStartOf="@+id/imageView2"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toTopOf="@+id/bottomShadow"/>
+                android:layout_height="0dp" app:srcCompat="@drawable/ic_wallpaper"
+                android:id="@+id/btnSetWall" app:layout_constraintEnd_toStartOf="@+id/btnShare"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/bottomShadow"
+                android:padding="8dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/app_name"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

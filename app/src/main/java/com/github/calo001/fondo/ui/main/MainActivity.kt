@@ -3,7 +3,6 @@ package com.github.calo001.fondo.ui.main
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
@@ -13,13 +12,13 @@ import com.github.calo001.fondo.dialog.SearchDialogFragment.OnSearchListener
 import com.github.calo001.fondo.model.Category
 import com.github.calo001.fondo.ui.main.fragment.category.CategoriesFragment
 import com.github.calo001.fondo.ui.main.fragment.category.CategoriesFragment.OnCategoryListener
-import com.github.calo001.fondo.ui.main.fragment.photo.PhotosFragment
+import com.github.calo001.fondo.ui.main.fragment.photo.TodayFragment
 import com.github.calo001.fondo.ui.main.fragment.search.SearchFragment
 import com.github.calo001.fondo.util.makeStatusBarTransparent
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener {
-    private val mainFragment: PhotosFragment =              PhotosFragment.newInstance()
+    private val mainFragment: TodayFragment =              TodayFragment.newInstance()
 
     private val categoriesFragment: CategoriesFragment =    CategoriesFragment.newInstance()
     private val searchFragment: SearchFragment =            SearchFragment.newInstance()
@@ -60,17 +59,17 @@ class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener {
     private fun setupFragments() {
         with(supportFragmentManager) {
             val ft = beginTransaction()
-            if (supportFragmentManager.findFragmentByTag(PhotosFragment.TAG) == null) {
-                ft.add(R.id.mainFragment, mainFragment, PhotosFragment.TAG)
+            if (supportFragmentManager.findFragmentByTag(TodayFragment.TAG) == null) {
+                ft.add(R.id.mainFragment, mainFragment, TodayFragment.TAG)
                 activeFragment = mainFragment
             }
 
-            if (supportFragmentManager.findFragmentByTag(PhotosFragment.TAG) == null) {
+            if (supportFragmentManager.findFragmentByTag(TodayFragment.TAG) == null) {
                 ft.add(R.id.mainFragment, searchFragment, SearchFragment.TAG)
                 ft.hide(searchFragment)
             }
 
-            if(supportFragmentManager.findFragmentByTag(PhotosFragment.TAG) == null) {
+            if(supportFragmentManager.findFragmentByTag(TodayFragment.TAG) == null) {
                 ft.add(R.id.mainFragment, categoriesFragment, CategoriesFragment.TAG)
                 ft.hide(categoriesFragment)
             }

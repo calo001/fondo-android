@@ -34,5 +34,5 @@
     <color name="texture_pattern_color_2">#42B18D</color>
     <color name="colorBottomNavbar">#E6F5F5F5</color>
     <color name="statusTransparent">#CDF5F5F5</color>
-
+    <color name="darker_gray">#4D000000</color>
 </resources>

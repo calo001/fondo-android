@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.calo001.fondo.R
@@ -69,7 +70,7 @@ class SearchFragment : Fragment(), SearchViewContract,
         Snackbar.make(constraint, error, Snackbar.LENGTH_SHORT).show()
     }
 
-    override fun onItemInteraction(view: View, item: Photo) {
+    override fun onItemClick(view: View, item: Photo) {
         val intent = Intent(activity, PhotoDetailActivity::class.java)
         intent.putExtra(PhotoDetailActivity.EXTRA_OBJECT, item)
 
@@ -80,6 +81,24 @@ class SearchFragment : Fragment(), SearchViewContract,
         } else {
             startActivity(intent)
         }
+    }
+
+    override fun onShareClick(photo: Photo) {
+        activity?.let {
+            val shareIntent = ShareCompat.IntentBuilder.from(activity)
+                .setType("text/plain")
+                .setSubject("${getString(R.string.share_photo_by)} ${photo.user.name}")
+                .setText(
+                    """${getString(R.string.photo_by)} ${photo.user.name} ${getString(R.string.on_unsplash)}
+                |${photo.links.html}
+                """.trimMargin())
+                .intent
+            it.packageManager?.let { startActivity(shareIntent) }
+        }
+    }
+
+    override fun onSetWallClick(photo: Photo) {
+
     }
 
     override fun onLoadMore() {

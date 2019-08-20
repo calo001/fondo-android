@@ -61,10 +61,17 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
                     .into(holder.photo)
 
                 holder.author.text = items[position]?.user?.name
+                //holder.author.setShadowLayer(8f, 0f, 0f, Color.GRAY)
 
                 holder.cardView.setOnClickListener { view ->
                     items[position]?.let { photo ->
-                        interaction.onItemInteraction(view, photo)
+                        interaction.onItemClick(view, photo)
+                    }
+                }
+
+                holder.btnShare.setOnClickListener {
+                    items[position]?.let { photo ->
+                        interaction.onShareClick(photo)
                     }
                 }
             }
@@ -141,9 +148,13 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
         val author: TextView = itemView.txtAutor
         val photo: ImageView = itemView.imgPhoto
         val cardView: CardView = itemView.cardPhoto
+        val btnShare: ImageView = itemView.btnShare
+        val btnSetWall: ImageView = itemView.btnSetWall
     }
 
     interface OnItemInteraction {
-        fun onItemInteraction(view: View, item: Photo)
+        fun onItemClick(view: View, item: Photo)
+        fun onShareClick(photo: Photo)
+        fun onSetWallClick(photo: Photo)
     }
 }
