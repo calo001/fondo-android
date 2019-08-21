@@ -1,4 +1,4 @@
-package com.github.calo001.fondo.ui.main.fragment.photo
+package com.github.calo001.fondo.ui.main.fragment.today
 
 import android.app.ActivityOptions
 import android.content.Intent
@@ -8,19 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ShareCompat
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.adapter.PhotosAdapter
 import com.github.calo001.fondo.adapter.PhotosAdapter.OnItemInteraction
+import com.github.calo001.fondo.base.BasePhotoFragment
 import com.github.calo001.fondo.listener.InfiniteScrollListener
 import com.github.calo001.fondo.listener.InfiniteScrollListener.OnLoadMoreListener
 import com.github.calo001.fondo.model.Photo
 import com.github.calo001.fondo.ui.detail.PhotoDetailActivity
 import kotlinx.android.synthetic.main.fragment_photos.*
 
-class TodayFragment : Fragment(), TodayContract,
+class TodayFragment : BasePhotoFragment(), TodayContract,
     OnItemInteraction, OnLoadMoreListener {
     private lateinit var adapter: PhotosAdapter
 
@@ -100,7 +100,7 @@ class TodayFragment : Fragment(), TodayContract,
     }
 
     override fun onSetWallClick(photo: Photo) {
-
+        setAsWallpaper(photo)
     }
 
     fun scrollToUp() {

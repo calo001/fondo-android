@@ -1,4 +1,4 @@
-package com.github.calo001.fondo.ui.main.fragment.photo
+package com.github.calo001.fondo.ui.main.fragment.today
 
 import android.annotation.SuppressLint
 import com.github.calo001.fondo.repository.UnsplashRepository
