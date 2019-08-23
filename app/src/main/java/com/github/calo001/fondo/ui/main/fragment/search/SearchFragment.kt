@@ -1,6 +1,5 @@
 package com.github.calo001.fondo.ui.main.fragment.search
 
-
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Build
@@ -9,11 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ShareCompat
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.adapter.PhotosAdapter
 import com.github.calo001.fondo.adapter.PhotosAdapter.OnItemInteraction
+import com.github.calo001.fondo.base.BasePhotoFragment
 import com.github.calo001.fondo.listener.InfiniteScrollListener
 import com.github.calo001.fondo.listener.InfiniteScrollListener.OnLoadMoreListener
 import com.github.calo001.fondo.model.Photo
@@ -24,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.fragment_search.constraint
 import kotlinx.android.synthetic.main.fragment_search.progress
 
-class SearchFragment : Fragment(), SearchViewContract,
+class SearchFragment : BasePhotoFragment(), SearchViewContract,
     OnItemInteraction, OnLoadMoreListener {
     private lateinit var adapter: PhotosAdapter
 
@@ -43,6 +42,7 @@ class SearchFragment : Fragment(), SearchViewContract,
         scrollListener = InfiniteScrollListener(linearLayoutManager, this)
         rvSearchPhotos.layoutManager = linearLayoutManager
         rvSearchPhotos.addOnScrollListener(scrollListener)
+
         activity?.let {
             adapter = PhotosAdapter(mutableListOf(), it, this)
             adapter.addHeader(getString(R.string.search_header))
@@ -55,6 +55,12 @@ class SearchFragment : Fragment(), SearchViewContract,
         adapter.removeNullItem()
         adapter.updateHeader(query)
         adapter.addPage(result.results)
+    }
+
+    override fun onLoadMore() {
+        page++
+        presenter.loadPhotos(query, page)
+        adapter.addNullItem()
     }
 
     override fun showLoading() {
@@ -98,13 +104,16 @@ class SearchFragment : Fragment(), SearchViewContract,
     }
 
     override fun onSetWallClick(photo: Photo) {
-
+        presenter.getDownloadLink(photo.id)
     }
 
-    override fun onLoadMore() {
-        page++
-        presenter.loadPhotos(query, page)
-        adapter.addNullItem()
+    fun scrollToUp() {
+        rvSearchPhotos.smoothScrollToPosition(0)
+    }
+
+    override fun onDownloadLinkSuccess(url: String) {
+        downloadLink = url
+        setAsWallpaper()
     }
 
     fun newSearchQuery(newQuery: String) {
@@ -116,10 +125,6 @@ class SearchFragment : Fragment(), SearchViewContract,
     fun cleanData() {
         page = 1
         adapter.clear()
-    }
-
-    fun scrollToUp() {
-        rvSearchPhotos.smoothScrollToPosition(0)
     }
 
     companion object {

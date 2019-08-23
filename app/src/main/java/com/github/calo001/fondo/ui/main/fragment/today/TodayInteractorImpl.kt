@@ -15,5 +15,15 @@ class TodayInteractorImpl (private val presenter: TodayPresenterContract):
                 presenter.onError(error.localizedMessage.toString())
             })
     }
+
+    @SuppressLint("CheckResult")
+    override fun getDownloadLink(id: String) {
+        UnsplashRepository.getDownloadLinkLocation(id)
+            .subscribe({ response ->
+                presenter.onDownloadLinkSuccess(response.url)
+            }, { error ->
+                presenter.onError(error.localizedMessage)
+            })
+    }
 }
 

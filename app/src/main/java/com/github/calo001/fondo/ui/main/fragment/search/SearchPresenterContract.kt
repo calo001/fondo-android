@@ -6,4 +6,6 @@ interface SearchPresenterContract {
     fun loadPhotos(query: String, page: Int)
     fun onPhotosSuccess(result: Result)
     fun onError(msg: String)
+    fun getDownloadLink(id: String)
+    fun onDownloadLinkSuccess(url: String)
 }

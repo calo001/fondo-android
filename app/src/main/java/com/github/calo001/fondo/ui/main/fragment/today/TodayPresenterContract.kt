@@ -6,4 +6,6 @@ interface TodayPresenterContract {
     fun loadPhotos(page: Int)
     fun onPhotosSuccess(list: List<Photo>)
     fun onError(message: String)
+    fun getDownloadLink(id: String)
+    fun onDownloadLinkSuccess(url: String)
 }

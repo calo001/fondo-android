@@ -15,4 +15,14 @@ class SearchInteractorImpl(private val presenter: SearchPresenterContract) : Sea
             })
     }
 
+    @SuppressLint("CheckResult")
+    override fun getDownloadLink(id: String) {
+        UnsplashRepository.getDownloadLinkLocation(id)
+            .subscribe({ response ->
+                presenter.onDownloadLinkSuccess(response.url)
+            }, { error ->
+                presenter.onError(error.localizedMessage)
+            })
+    }
+
 }

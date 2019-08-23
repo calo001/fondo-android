@@ -20,12 +20,13 @@ import com.github.calo001.fondo.model.Photo
 import com.github.calo001.fondo.ui.detail.PhotoDetailActivity
 import kotlinx.android.synthetic.main.fragment_photos.*
 
-class TodayFragment : BasePhotoFragment(), TodayContract,
+class TodayFragment : BasePhotoFragment(), TodayViewContract,
     OnItemInteraction, OnLoadMoreListener {
     private lateinit var adapter: PhotosAdapter
 
     private lateinit var scrollListener: InfiniteScrollListener
     private var page = FIRST_PAGE
+
     private val presenter: TodayPresenterContract =
         TodayPresenterImpl(this)
 
@@ -100,11 +101,16 @@ class TodayFragment : BasePhotoFragment(), TodayContract,
     }
 
     override fun onSetWallClick(photo: Photo) {
-        setAsWallpaper(photo)
+        presenter.getDownloadLink(photo.id)
     }
 
     fun scrollToUp() {
         rvTodayPhotos.smoothScrollToPosition(0)
+    }
+
+    override fun onDownloadLinkSuccess(url: String) {
+        downloadLink = url
+        setAsWallpaper()
     }
 
     companion object {

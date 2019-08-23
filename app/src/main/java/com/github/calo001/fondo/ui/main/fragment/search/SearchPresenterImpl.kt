@@ -2,7 +2,8 @@ package com.github.calo001.fondo.ui.main.fragment.search
 
 import com.github.calo001.fondo.model.Result
 
-class SearchPresenterImpl(val view: SearchViewContract) : SearchPresenterContract {
+class SearchPresenterImpl(val view: SearchViewContract) :
+    SearchPresenterContract {
     private val interactor: SearchInteractorContract =
         SearchInteractorImpl(this)
 
@@ -11,6 +12,7 @@ class SearchPresenterImpl(val view: SearchViewContract) : SearchPresenterContrac
     }
 
     override fun onPhotosSuccess(result: Result) {
+        view.hideLoading()
         view.onLoadPhotosSuccess(result)
     }
 
@@ -18,4 +20,11 @@ class SearchPresenterImpl(val view: SearchViewContract) : SearchPresenterContrac
         view.onError(msg)
     }
 
+    override fun getDownloadLink(id: String) {
+        interactor.getDownloadLink(id)
+    }
+
+    override fun onDownloadLinkSuccess(url: String) {
+        view.onDownloadLinkSuccess(url)
+    }
 }

@@ -7,4 +7,5 @@ interface SearchViewContract {
     fun showLoading()
     fun hideLoading()
     fun onError(error: String)
+    fun onDownloadLinkSuccess(url: String)
 }
