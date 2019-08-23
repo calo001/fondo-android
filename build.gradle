@@ -12,12 +12,13 @@ buildscript {
     ext.scale_image_view = '3.10.0'
     ext.dagger_version = '2.23.1'
     ext.javax_version = '3.1.1'
+    ext.room_version = '2.2.0-alpha02'
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.android.tools.build:gradle:3.5.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
