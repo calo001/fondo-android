@@ -1,4 +1,4 @@
-package com.github.calo001.fondo.dialog
+package com.github.calo001.fondo.ui.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater

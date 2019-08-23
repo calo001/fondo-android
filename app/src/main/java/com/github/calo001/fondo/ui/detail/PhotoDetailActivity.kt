@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.github.calo001.fondo.R
-import com.github.calo001.fondo.dialog.DetailUserFragment
+import com.github.calo001.fondo.ui.dialog.DetailUserFragment
 import com.github.calo001.fondo.model.Photo
 import com.github.calo001.fondo.service.NotificationService
 import com.github.calo001.fondo.util.makeStatusBarTransparent
