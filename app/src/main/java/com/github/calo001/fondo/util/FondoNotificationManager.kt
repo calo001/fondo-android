@@ -57,7 +57,7 @@ class FondoNotificationManager(val context: Context) {
 
         if(timeNow - mTimePreviousProgress > 100) {
             mNotificationBuilder.setProgress(100, progress, false)
-            mNotificationBuilder.setContentText("${context.resources.getString(R.string.downloaded)}: $progress")
+            mNotificationBuilder.setContentText("${context.resources.getString(R.string.downloaded)}: $progress%")
             mNotificationManager.notify(0, mNotificationBuilder.build())
             mTimePreviousProgress = timeNow
         }
