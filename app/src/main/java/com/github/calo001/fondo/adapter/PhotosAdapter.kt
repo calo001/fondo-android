@@ -74,6 +74,12 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
                         interaction.onShareClick(photo)
                     }
                 }
+
+                holder.btnSetWall.setOnClickListener {
+                    items[position]?.let { photo ->
+                        interaction.onSetWallClick(photo)
+                    }
+                }
             }
             is HeaderViewHolder -> {
                 holder.header.text = title
