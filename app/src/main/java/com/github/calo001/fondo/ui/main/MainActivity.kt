@@ -7,12 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import com.github.calo001.fondo.R
-import com.github.calo001.fondo.dialog.SearchDialogFragment
-import com.github.calo001.fondo.dialog.SearchDialogFragment.OnSearchListener
+import com.github.calo001.fondo.ui.dialog.search.SearchDialogFragment
+import com.github.calo001.fondo.ui.dialog.search.SearchDialogFragment.OnSearchListener
 import com.github.calo001.fondo.model.Category
 import com.github.calo001.fondo.ui.main.fragment.category.CategoriesFragment
 import com.github.calo001.fondo.ui.main.fragment.category.CategoriesFragment.OnCategoryListener
-import com.github.calo001.fondo.ui.main.fragment.photo.TodayFragment
+import com.github.calo001.fondo.ui.main.fragment.today.TodayFragment
 import com.github.calo001.fondo.ui.main.fragment.search.SearchFragment
 import com.github.calo001.fondo.util.makeStatusBarTransparent
 import kotlinx.android.synthetic.main.activity_main.*
