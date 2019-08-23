@@ -74,7 +74,7 @@
             app:itemTextColor="@drawable/bottom_navigation_states"
             app:menu="@menu/menu_bottom_navbar"
             android:id="@+id/bottomNavigationView"
-            android:background="?android:attr/windowBackground"
+            android:background="@color/colorBottomNavbar"
             app:labelVisibilityMode="unlabeled"
             app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
     />
