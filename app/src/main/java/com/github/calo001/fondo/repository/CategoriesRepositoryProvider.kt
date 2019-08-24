@@ -9,6 +9,12 @@ object CategoriesRepositoryProvider {
             Category(
                 R.drawable.nature,
                 R.string.nature,
+                "Header",
+                R.drawable.back_nature
+            ),
+            Category(
+                R.drawable.nature,
+                R.string.nature,
                 "Nature",
                 R.drawable.back_nature
             ),
