@@ -5,18 +5,41 @@ import com.github.calo001.fondo.model.*
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonSyntaxException
+import com.google.gson.reflect.TypeToken
 import java.io.File
+import java.lang.ClassCastException
 
 class FondoJsonManager {
     private val file = File(getExternalDir(Fondo.getInstance()) + FILE_NAME)
 
+    init {
+        if (!file.exists()) {
+            file.createNewFile()
+            val gson: Gson = GsonBuilder().create()
+            val jsonString = gson.toJson(EmptyJson())
+
+            file.writeText(jsonString)
+        }
+    }
+
     fun addToHistory(photo: Photo): Boolean {
         return try {
             val list = getAllHistory() as MutableList
-            list.add(photo)
+
+            val exist = list.find {
+                it.id == photo.id
+            }
+
+            exist?.let {
+                list.remove(it)
+            }
+
+            list.add(0, photo)
             saveHistory(list)
         } catch (e: JsonSyntaxException) {
-            false
+            saveHistory(listOf(photo))
+        } catch (e: ClassCastException) {
+            saveHistory(listOf(photo))
         }
     }
 
@@ -29,14 +52,21 @@ class FondoJsonManager {
         // End = (page * perPage)
         // Sublis[Start, End)
 
-        val start = (page * perPage) - perPage
-        val end = (page * perPage) - 1
+        var start = (page * perPage) - perPage
+        var end = (page * perPage) - 1
 
-        try {
-            return gson.fromJson<List<Photo>>(inputString, Photo::class.java)
-                .subList(start, end)
+        return try {
+            val listType = object : TypeToken<List<Photo>>() {}.type
+            val result: List<Photo> = gson.fromJson(inputString, listType)
+            when {
+                start > result.size -> emptyList()
+                end > result.size -> result.subList(start, result.size)
+                else -> result.subList(start, end)
+            }
         } catch (e: JsonSyntaxException) {
-            return emptyList()
+            emptyList()
+        } catch (e: ClassCastException) {
+            emptyList()
         }
 
     }
@@ -44,10 +74,6 @@ class FondoJsonManager {
     private fun saveHistory(list: List<Photo>): Boolean {
         val gson: Gson = GsonBuilder().create()
         val jsonString = gson.toJson(list)
-
-        if (!file.exists()) {
-            if (!file.createNewFile()) return false
-        }
 
         file.writeText(jsonString)
         return true
@@ -59,7 +85,8 @@ class FondoJsonManager {
         val inputString = bufferedReader.use { it.readText() }
 
         try {
-            return gson.fromJson<List<Photo>>(inputString, Photo::class.java)
+            val listType = object : TypeToken<List<Photo>>() {}.type
+            return gson.fromJson(inputString, listType)
         } catch (e: JsonSyntaxException) {
             throw JsonSyntaxException(e)
         }
@@ -69,84 +96,3 @@ class FondoJsonManager {
         const val FILE_NAME = "fondo_history.json"
     }
 }
-
-/*fun main() {
-    val list = listOf<Photo>(
-        Photo(
-            listOf("a", "b", "c"),
-            "#DDD",
-            "created",
-            listOf("a", "b", "c", "d", "e"),
-            "description",
-            2300,
-            "ID234",
-            true,
-            12,
-            LinksPhoto("link", "link", "link", "link"),
-            true,
-            "Yo",
-            "id",
-            "updatedat",
-            Urls("urls", "urls", "urls", "urls", "urls"),
-            User(
-                true,
-                "bio",
-                "first",
-                "id",
-                "insta",
-                "last",
-                Links("links", "links", "links", "links", "links", "links", "links"),
-                "location",
-                "name",
-                "portfolio",
-                ProfileImage("img", "img", "img"),
-                12,
-                1,
-                2,
-                "twitter",
-                "updated at",
-                "usermane"
-            ),
-            123
-        ),
-        Photo(
-            listOf("z", "x", "y"),
-            "#DDD",
-            "created",
-            listOf("a", "b", "c", "d", "e"),
-            "description",
-            2300,
-            "ID234",
-            true,
-            12,
-            LinksPhoto("link", "link", "link", "link"),
-            true,
-            "Yo",
-            "id",
-            "updatedat",
-            Urls("urls", "urls", "urls", "urls", "urls"),
-            User(
-                true,
-                "bio",
-                "first",
-                "id",
-                "insta",
-                "last",
-                Links("links", "links", "links", "links", "links", "links", "links"),
-                "location",
-                "name",
-                "portfolio",
-                ProfileImage("img", "img", "img"),
-                12,
-                1,
-                2,
-                "twitter",
-                "updated at",
-                "usermane"
-            ),
-            123
-        )
-    )
-    val jsoninstring = FondoJsonManager().saveHistory(list)
-    println(jsoninstring)
-}*/

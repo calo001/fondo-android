@@ -1,11 +1,11 @@
-package com.github.calo001.fondo.ui.main.fragment.today
+package com.github.calo001.fondo.ui.main.fragment.history
 
 import com.github.calo001.fondo.model.Photo
 
-class TodayPresenterImpl (private val view: TodayViewContract) :
-    TodayPresenterContract {
-    private val interactor: TodayInteractorContract =
-        TodayInteractorImpl(this) // Must change
+class HistoryPresenterImpl (private val view: HistoryViewContract) :
+    HistoryPresenterContract {
+    private val interactor: HistoryInteractorContract =
+        HistoryInteractorImpl(this) // Must change
 
     override fun loadPhotos(page: Int) {
         interactor.loadPhotos(page)

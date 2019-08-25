@@ -1,6 +1,8 @@
 package com.github.calo001.fondo.ui.main.fragment.search
 
 import android.annotation.SuppressLint
+import com.github.calo001.fondo.model.Photo
+import com.github.calo001.fondo.repository.HistoryRepository
 import com.github.calo001.fondo.repository.UnsplashRepository
 
 class SearchInteractorImpl(private val presenter: SearchPresenterContract) : SearchInteractorContract {
@@ -23,6 +25,11 @@ class SearchInteractorImpl(private val presenter: SearchPresenterContract) : Sea
             }, { error ->
                 presenter.onError(error.localizedMessage)
             })
+    }
+
+    override fun addToHistory(photo: Photo) {
+        val repo = HistoryRepository()
+        repo.saveToHistory(photo)
     }
 
 }

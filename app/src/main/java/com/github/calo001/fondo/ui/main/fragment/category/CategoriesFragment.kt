@@ -37,7 +37,19 @@ class CategoriesFragment : Fragment(), OnCategoryInteraction {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        rvCategories.layoutManager = GridLayoutManager(activity, 2)
+        val manager = GridLayoutManager(activity, 2)
+        manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                if (position == 0) {
+                    return manager.spanCount
+                } else {
+                    return 1
+                }
+            }
+
+        }
+
+        rvCategories.layoutManager = manager
         rvCategories.adapter = CategoryAdapter(
             CategoriesRepositoryProvider.provideCategoriesRepository(),
             this,

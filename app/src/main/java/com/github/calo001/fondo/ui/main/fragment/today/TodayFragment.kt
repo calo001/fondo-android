@@ -1,5 +1,6 @@
 package com.github.calo001.fondo.ui.main.fragment.today
 
+import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Build
@@ -28,7 +29,7 @@ class TodayFragment : BasePhotoFragment(), TodayViewContract,
     private var page = FIRST_PAGE
 
     private val presenter: TodayPresenterContract =
-        TodayPresenterImpl(this)
+        TodayPresenterImpl(this) // Must change
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_photos, container, false)
@@ -41,23 +42,37 @@ class TodayFragment : BasePhotoFragment(), TodayViewContract,
         rvTodayPhotos.addOnScrollListener(scrollListener)
 
         activity?.let {
-            adapter = PhotosAdapter(mutableListOf(), it, this)
-            adapter.addHeader(resources.getString(R.string.today))
-            rvTodayPhotos.adapter = adapter
-            presenter.loadPhotos(page)
+            setupActivity(it)
         }
     }
 
+    // THIS MUST TO REIMPLEMENTENT ON TODAY
+    fun setupActivity(activity: Activity) {
+        adapter = PhotosAdapter(mutableListOf(), activity, this)
+        setupHeader()
+        rvTodayPhotos.adapter = adapter
+        presenter.loadPhotos(page)
+    }
+
+    fun setupHeader() {
+        adapter.addHeader(getString(R.string.today))
+    }
+
     override fun onloadPhotosSuccess(list: List<Photo>) {
-        hideLoading()
-        adapter.removeNullItem()
+        //hideLoading()
+        adapter.removeProgressItem()
         adapter.addPage(list)
     }
 
     override fun onLoadMore() {
         page++
-        presenter.loadPhotos(page)
         adapter.addNullItem()
+        loadPhotos()
+    }
+
+    // Must CHANGE
+    fun loadPhotos() {
+        presenter.loadPhotos(page)
     }
 
     override fun showLoading() {
@@ -102,6 +117,7 @@ class TodayFragment : BasePhotoFragment(), TodayViewContract,
 
     override fun onSetWallClick(photo: Photo) {
         presenter.getDownloadLink(photo.id)
+        presenter.addToHistory(photo)
     }
 
     fun scrollToUp() {

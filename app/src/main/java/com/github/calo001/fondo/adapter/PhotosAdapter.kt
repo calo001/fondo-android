@@ -55,6 +55,7 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
                 glide
                     .load(items[position]?.urls?.small)
                     .placeholder(R.drawable.back_loading_photo)
+                    .thumbnail(0.01f)
                     .fitCenter()
                     .transition(withCrossFade())
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -104,13 +105,13 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
 
     fun addNullItem() {
         items.add(null)
-        val lastPosition = items.size - 1
+        val lastPosition = items.lastIndex
         notifyItemInserted(lastPosition)
     }
 
-    fun removeNullItem() {
+    fun removeProgressItem() {
         if(items.size > 1) {
-            val lastPosition = items.size - 1
+            val lastPosition = items.lastIndex
             items.removeAt(lastPosition)
             notifyItemRemoved(lastPosition)
         }
@@ -123,18 +124,27 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
 
     fun addPage(list: List<Photo>) {
         val count = items.size
-        items.addAll(count, list)
 
-        if (count <= 1) {
-            notifyDataSetChanged()
-        } else {
-            notifyItemRangeInserted(count, items.size)
+        if (list.isNotEmpty()) {
+            items.addAll(count, list)
+            if (count <= 1) {
+                notifyDataSetChanged()
+            } else {
+                notifyItemRangeInserted(count, items.size)
+            }
         }
+        val last = items[items.lastIndex]
+        last
     }
 
     fun clear() {
         items = items.filter { it == null } as MutableList<Photo?>
         title = ""
+        notifyDataSetChanged()
+    }
+
+    fun clearOnlyData() {
+        items = items.filter { it == null } as MutableList<Photo?>
         notifyDataSetChanged()
     }
 

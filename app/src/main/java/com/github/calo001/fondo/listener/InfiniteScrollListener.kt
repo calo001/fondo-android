@@ -26,7 +26,7 @@ class InfiniteScrollListener(
     }
 
     companion object {
-        const val VISIBLE_THRESHOLD = 2
+        const val VISIBLE_THRESHOLD = 1
     }
 
     interface OnLoadMoreListener {

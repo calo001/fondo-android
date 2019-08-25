@@ -36,4 +36,6 @@
     <string name="photo_by">Photo by</string>
     <string name="on_unsplash">on Unsplash </string>
     <string name="share_photo_to">Share photo to...</string>
+    <string name="history">HISTORY</string>
+    <string name="categories">CATEGORIES</string>
 </resources>

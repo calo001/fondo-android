@@ -1,4 +1,4 @@
-package com.github.calo001.fondo.ui.main.fragment.search
+package com.github.calo001.fondo.ui.main.fragment.history
 
 import android.app.Activity
 import android.app.ActivityOptions
@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ShareCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.adapter.PhotosAdapter
 import com.github.calo001.fondo.adapter.PhotosAdapter.OnItemInteraction
@@ -17,32 +18,28 @@ import com.github.calo001.fondo.base.BasePhotoFragment
 import com.github.calo001.fondo.listener.InfiniteScrollListener
 import com.github.calo001.fondo.listener.InfiniteScrollListener.OnLoadMoreListener
 import com.github.calo001.fondo.model.Photo
-import com.github.calo001.fondo.model.Result
 import com.github.calo001.fondo.ui.detail.PhotoDetailActivity
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_search.*
-import kotlinx.android.synthetic.main.fragment_search.constraint
-import kotlinx.android.synthetic.main.fragment_search.progress
+import kotlinx.android.synthetic.main.fragment_history.*
 
-class SearchFragment : BasePhotoFragment(), SearchViewContract,
+class HistoryFragment : BasePhotoFragment(), HistoryViewContract,
     OnItemInteraction, OnLoadMoreListener {
     private lateinit var adapter: PhotosAdapter
 
     private lateinit var scrollListener: InfiniteScrollListener
     private var page = FIRST_PAGE
-    private var query = ""
-    private val presenter: SearchPresenterContract =
-        SearchPresenterImpl(this) // Must change
+
+    private val presenter: HistoryPresenterContract =
+        HistoryPresenterImpl(this) // Must change
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        return inflater.inflate(R.layout.fragment_history, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val linearLayoutManager = LinearLayoutManager(activity)
         scrollListener = InfiniteScrollListener(linearLayoutManager, this)
-        rvSearchPhotos.layoutManager = linearLayoutManager
-        rvSearchPhotos.addOnScrollListener(scrollListener)
+        rvHistoryPhotos.layoutManager = linearLayoutManager
+        rvHistoryPhotos.addOnScrollListener(scrollListener)
 
         activity?.let {
             setupActivity(it)
@@ -53,18 +50,18 @@ class SearchFragment : BasePhotoFragment(), SearchViewContract,
     fun setupActivity(activity: Activity) {
         adapter = PhotosAdapter(mutableListOf(), activity, this)
         setupHeader()
-        rvSearchPhotos.adapter = adapter
+        rvHistoryPhotos.adapter = adapter
 
     }
 
     fun setupHeader() {
-        adapter.addHeader(getString(R.string.search_header))
+        adapter.addHeader(getString(R.string.history))
     }
 
-    override fun onLoadPhotosSuccess(result: Result) {
+    override fun onloadPhotosSuccess(list: List<Photo>) {
         //hideLoading()
         adapter.removeProgressItem()
-        adapter.addPage(result.results)
+        adapter.addPage(list)
     }
 
     override fun onLoadMore() {
@@ -75,7 +72,7 @@ class SearchFragment : BasePhotoFragment(), SearchViewContract,
 
     // Must CHANGE
     fun loadPhotos() {
-        presenter.loadPhotos(query, page)
+        presenter.loadPhotos(page)
     }
 
     override fun showLoading() {
@@ -87,7 +84,7 @@ class SearchFragment : BasePhotoFragment(), SearchViewContract,
         scrollListener.loading = false
     }
 
-    override fun onError(error: String) {
+    override fun showError(error: String) {
         Snackbar.make(constraint, error, Snackbar.LENGTH_SHORT).show()
     }
 
@@ -124,7 +121,17 @@ class SearchFragment : BasePhotoFragment(), SearchViewContract,
     }
 
     fun scrollToUp() {
-        rvSearchPhotos.smoothScrollToPosition(0)
+        rvHistoryPhotos.smoothScrollToPosition(0)
+    }
+
+    fun reloadHistory() {
+        cleanData()
+        presenter.loadPhotos(page)
+    }
+
+    private fun cleanData() {
+        page = 1
+        adapter.clearOnlyData()
     }
 
     override fun onDownloadLinkSuccess(url: String) {
@@ -132,23 +139,11 @@ class SearchFragment : BasePhotoFragment(), SearchViewContract,
         setAsWallpaper()
     }
 
-    fun newSearchQuery(newQuery: String) {
-        cleanData()
-        query = newQuery
-        presenter.loadPhotos(query, page)
-        adapter.updateHeader(query)
-    }
-
-    fun cleanData() {
-        page = 1
-        adapter.clear()
-    }
-
     companion object {
-        const val TAG = "SearchFragment"
+        const val TAG = "HistoryFragment"
         const val FIRST_PAGE = 1
 
         @JvmStatic
-        fun newInstance() = SearchFragment()
+        fun newInstance() = HistoryFragment()
     }
 }

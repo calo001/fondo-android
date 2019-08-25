@@ -12,6 +12,7 @@ import com.github.calo001.fondo.ui.dialog.search.SearchDialogFragment.OnSearchLi
 import com.github.calo001.fondo.model.Category
 import com.github.calo001.fondo.ui.main.fragment.category.CategoriesFragment
 import com.github.calo001.fondo.ui.main.fragment.category.CategoriesFragment.OnCategoryListener
+import com.github.calo001.fondo.ui.main.fragment.history.HistoryFragment
 import com.github.calo001.fondo.ui.main.fragment.today.TodayFragment
 import com.github.calo001.fondo.ui.main.fragment.search.SearchFragment
 import com.github.calo001.fondo.util.makeStatusBarTransparent
@@ -19,9 +20,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener {
     private val mainFragment: TodayFragment =              TodayFragment.newInstance()
-
     private val categoriesFragment: CategoriesFragment =    CategoriesFragment.newInstance()
     private val searchFragment: SearchFragment =            SearchFragment.newInstance()
+    private val historyFragment: HistoryFragment =          HistoryFragment.newInstance()
+
     private lateinit var activeFragment: Fragment
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
@@ -64,14 +66,19 @@ class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener {
                 activeFragment = mainFragment
             }
 
-            if (supportFragmentManager.findFragmentByTag(TodayFragment.TAG) == null) {
+            if (supportFragmentManager.findFragmentByTag(SearchFragment.TAG) == null) {
                 ft.add(R.id.mainFragment, searchFragment, SearchFragment.TAG)
                 ft.hide(searchFragment)
             }
 
-            if(supportFragmentManager.findFragmentByTag(TodayFragment.TAG) == null) {
+            if(supportFragmentManager.findFragmentByTag(CategoriesFragment.TAG) == null) {
                 ft.add(R.id.mainFragment, categoriesFragment, CategoriesFragment.TAG)
                 ft.hide(categoriesFragment)
+            }
+
+            if(supportFragmentManager.findFragmentByTag(HistoryFragment.TAG) == null) {
+                ft.add(R.id.mainFragment, historyFragment, HistoryFragment.TAG)
+                ft.hide(historyFragment)
             }
             ft.commit()
         }
@@ -104,6 +111,20 @@ class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener {
                         activeFragment = categoriesFragment
                     }
                 }
+                R.id.navbar_history -> {
+                    if (activeFragment == historyFragment) {
+                        historyFragment.scrollToUp()
+                    } else {
+                        supportFragmentManager
+                            .beginTransaction()
+                            .hide(activeFragment)
+                            .show(historyFragment)
+                            .commit()
+                        historyFragment.reloadHistory()
+                        activeFragment = historyFragment
+                    }
+                }
+
             }
             true
         }

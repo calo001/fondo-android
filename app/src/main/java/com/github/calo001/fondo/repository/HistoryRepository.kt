@@ -6,8 +6,8 @@ import com.github.calo001.fondo.util.FondoJsonManager
 class HistoryRepository {
     private val jsonManager = FondoJsonManager()
 
-    fun getHistory(page: Int, perPage: Int): List<Photo> {
-        return jsonManager.getHistory(page, perPage)
+    fun getHistory(page: Int): List<Photo> {
+        return jsonManager.getHistory(page)
     }
 
     fun saveToHistory(photo: Photo): Boolean {
