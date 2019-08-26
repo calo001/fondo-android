@@ -18,7 +18,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.40"/>
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvTodayPhotos"
+            android:id="@+id/rvPhotos"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"

@@ -1,9 +1,7 @@
 package com.github.calo001.fondo.ui.main.fragment.today
 
-import com.github.calo001.fondo.model.Photo
+import com.github.calo001.fondo.base.BasePhotoInteractorContract
 
-interface TodayInteractorContract {
-    fun loadPhotos(page: Int) // Must change
-    fun getDownloadLink(id: String)
-    fun addToHistory(photo: Photo)
+interface TodayInteractorContract : BasePhotoInteractorContract {
+    fun loadPhotos(page: Int)
 }

@@ -1,12 +1,12 @@
 package com.github.calo001.fondo.ui.main.fragment.today
 
 import android.annotation.SuppressLint
-import com.github.calo001.fondo.model.Photo
-import com.github.calo001.fondo.repository.HistoryRepository
+import com.github.calo001.fondo.base.BasePhotoInteractorImpl
 import com.github.calo001.fondo.repository.UnsplashRepository
 
-class TodayInteractorImpl (private val presenter: TodayPresenterContract):
-    TodayInteractorContract {
+class TodayInteractorImpl (override val presenter: TodayPresenterContract):
+    BasePhotoInteractorImpl<TodayPresenterContract>(presenter), TodayInteractorContract {
+
     @SuppressLint("CheckResult")
     override fun loadPhotos(page: Int) {
         UnsplashRepository.getTodayPhotos(page)
@@ -15,21 +15,6 @@ class TodayInteractorImpl (private val presenter: TodayPresenterContract):
             }, { error ->
                 presenter.onError(error.localizedMessage.toString())
             })
-    }
-
-    @SuppressLint("CheckResult")
-    override fun getDownloadLink(id: String) {
-        UnsplashRepository.getDownloadLinkLocation(id)
-            .subscribe({ response ->
-                presenter.onDownloadLinkSuccess(response.url)
-            }, { error ->
-                presenter.onError(error.localizedMessage)
-            })
-    }
-
-    override fun addToHistory(photo: Photo) {
-        val repo = HistoryRepository()
-        repo.saveToHistory(photo)
     }
 }
 

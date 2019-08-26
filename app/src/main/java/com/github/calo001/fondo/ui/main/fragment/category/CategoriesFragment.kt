@@ -14,7 +14,6 @@ import com.github.calo001.fondo.adapter.CategoryAdapter.OnCategoryInteraction
 import com.github.calo001.fondo.model.Category
 import com.github.calo001.fondo.repository.CategoriesRepositoryProvider
 import kotlinx.android.synthetic.main.fragment_categories.*
-import java.lang.RuntimeException
 
 /**
  * A simple [Fragment] subclass.
