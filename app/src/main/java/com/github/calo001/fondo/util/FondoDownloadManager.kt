@@ -1,16 +1,10 @@
 package com.github.calo001.fondo.util
 
-import android.util.Log
 import com.github.calo001.fondo.repository.UnsplashRepository
 import io.reactivex.Observable
-import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
-import okio.Okio
-import okio.Okio.sink
-import retrofit2.Response
 import java.io.BufferedInputStream
 import java.io.File
 import java.io.FileOutputStream
