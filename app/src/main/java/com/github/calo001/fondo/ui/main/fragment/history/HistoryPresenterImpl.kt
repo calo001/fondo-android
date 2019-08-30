@@ -14,6 +14,6 @@ class HistoryPresenterImpl (override val view: HistoryViewContract) : BasePhotoP
 
     override fun onPhotosSuccess(list: List<Photo>) {
         view.hideLoading()
-        view.onloadPhotosSuccess(list)
+        view.onLoadPhotosSuccess(list)
     }
 }

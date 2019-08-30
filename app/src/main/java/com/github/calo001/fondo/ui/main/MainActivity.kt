@@ -10,19 +10,23 @@ import com.github.calo001.fondo.R
 import com.github.calo001.fondo.ui.dialog.search.SearchDialogFragment
 import com.github.calo001.fondo.ui.dialog.search.SearchDialogFragment.OnSearchListener
 import com.github.calo001.fondo.model.Category
+import com.github.calo001.fondo.base.BasePhotoFragment.OnFragmentInteractionListener
+import com.github.calo001.fondo.network.ApiError
 import com.github.calo001.fondo.ui.main.fragment.category.CategoriesFragment
 import com.github.calo001.fondo.ui.main.fragment.category.CategoriesFragment.OnCategoryListener
+import com.github.calo001.fondo.ui.main.fragment.error.ErrorFragment
 import com.github.calo001.fondo.ui.main.fragment.history.HistoryFragment
 import com.github.calo001.fondo.ui.main.fragment.today.TodayFragment
 import com.github.calo001.fondo.ui.main.fragment.search.SearchFragment
 import com.github.calo001.fondo.util.makeStatusBarTransparent
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener {
-    private val mainFragment: TodayFragment =              TodayFragment.newInstance()
+class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener, OnFragmentInteractionListener {
+    private val mainFragment: TodayFragment =               TodayFragment.newInstance()
     private val categoriesFragment: CategoriesFragment =    CategoriesFragment.newInstance()
     private val searchFragment: SearchFragment =            SearchFragment.newInstance()
     private val historyFragment: HistoryFragment =          HistoryFragment.newInstance()
+    private val errorFragment: ErrorFragment =              ErrorFragment.newInstance()
 
     private lateinit var activeFragment: Fragment
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +65,7 @@ class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener {
     private fun setupFragments() {
         with(supportFragmentManager) {
             val ft = beginTransaction()
+
             if (supportFragmentManager.findFragmentByTag(TodayFragment.TAG) == null) {
                 ft.add(R.id.mainFragment, mainFragment, TodayFragment.TAG)
                 activeFragment = mainFragment
@@ -80,6 +85,12 @@ class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener {
                 ft.add(R.id.mainFragment, historyFragment, HistoryFragment.TAG)
                 ft.hide(historyFragment)
             }
+
+            if(supportFragmentManager.findFragmentByTag(ErrorFragment.TAG) == null) {
+                ft.add(R.id.mainFragment, errorFragment, ErrorFragment.TAG)
+                ft.hide(errorFragment)
+            }
+
             ft.commit()
         }
     }
@@ -120,8 +131,8 @@ class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener {
                             .hide(activeFragment)
                             .show(historyFragment)
                             .commit()
-                        historyFragment.reloadHistory()
                         activeFragment = historyFragment
+                        historyFragment.reloadHistory()
                     }
                 }
 
@@ -136,8 +147,8 @@ class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener {
             .hide(activeFragment)
             .show(searchFragment)
             .commit()
-        activeFragment = searchFragment
         searchFragment.newSearchQuery(term)
+        activeFragment = searchFragment
     }
 
     override fun onCategoryClick(category: Category) {
@@ -146,8 +157,18 @@ class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener {
             .hide(activeFragment)
             .show(searchFragment)
             .commit()
-        activeFragment = searchFragment
         searchFragment.newSearchQuery(category.query)
+        activeFragment = searchFragment
+    }
+
+    override fun onFragmentDataError(error: ApiError) {
+        supportFragmentManager
+            .beginTransaction()
+            .hide(activeFragment)
+            .show(errorFragment)
+            .commit()
+        errorFragment.setErrorMessage(error)
+        activeFragment = errorFragment
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

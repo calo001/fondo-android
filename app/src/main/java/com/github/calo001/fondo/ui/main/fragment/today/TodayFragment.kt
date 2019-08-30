@@ -4,14 +4,19 @@ import android.app.Activity
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.base.BasePhotoFragment
 import com.github.calo001.fondo.model.Photo
+import com.github.calo001.fondo.network.ApiError
 
 class TodayFragment : BasePhotoFragment<TodayPresenterContract>(), TodayViewContract {
 
     override val presenter: TodayPresenterContract = TodayPresenterImpl(this)
 
-    override fun onloadPhotosSuccess(list: List<Photo>) {
-        mAdapter.removeProgressItem()
-        mAdapter.addPage(list)
+    override fun onLoadPhotosSuccess(list: List<Photo>) {
+        if (list.isEmpty() and (mPage == FIRST_PAGE)) {
+            onError(ApiError(204, resources.getString(R.string.no_photos_found)))
+        } else {
+            mAdapter.removeProgressItem()
+            mAdapter.addPage(list)
+        }
     }
 
     override fun setupActivity(activity: Activity) {

@@ -1,14 +1,15 @@
 package com.github.calo001.fondo.base
 
 import com.github.calo001.fondo.model.Photo
+import com.github.calo001.fondo.network.ApiError
 
 abstract class BasePhotoPresenter<V: BasePhotoViewContract, I : BasePhotoInteractorContract>
     (open val view: V): BasePhotoPresenterContract {
 
     abstract val interactor: I
 
-    override fun onError(message: String) {
-        view.onError(message)
+    override fun onError(error: ApiError) {
+        view.onError(error)
     }
 
     override fun getDownloadLink(id: String) {

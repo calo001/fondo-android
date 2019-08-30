@@ -15,6 +15,6 @@ class TodayPresenterImpl (override val view: TodayViewContract) :
 
     override fun onPhotosSuccess(list: List<Photo>) {
         view.hideLoading()
-        view.onloadPhotosSuccess(list)
+        view.onLoadPhotosSuccess(list)
     }
 }

@@ -2,6 +2,7 @@ package com.github.calo001.fondo.base
 
 import android.annotation.SuppressLint
 import com.github.calo001.fondo.model.Photo
+import com.github.calo001.fondo.network.ApiError
 import com.github.calo001.fondo.repository.HistoryRepository
 import com.github.calo001.fondo.repository.UnsplashRepository
 
@@ -18,7 +19,8 @@ abstract class BasePhotoInteractorImpl<P : BasePhotoPresenterContract>(open val 
             .subscribe({ response ->
                 presenter.onDownloadLinkSuccess(response.url)
             }, { error ->
-                presenter.onError(error.localizedMessage)
+                val apiError = ApiError(error)
+                presenter.onError(apiError)
             })
     }
 }

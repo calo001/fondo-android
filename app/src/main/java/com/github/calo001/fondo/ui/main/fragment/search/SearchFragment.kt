@@ -3,14 +3,19 @@ package com.github.calo001.fondo.ui.main.fragment.search
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.base.BasePhotoFragment
 import com.github.calo001.fondo.model.Result
+import com.github.calo001.fondo.network.ApiError
 
 class SearchFragment : BasePhotoFragment<SearchPresenterContract>(), SearchViewContract {
     override val presenter: SearchPresenterContract = SearchPresenterImpl(this)
     private var query = ""
 
     override fun onLoadPhotosSuccess(result: Result) {
-        mAdapter.removeProgressItem()
-        mAdapter.addPage(result.results)
+        if (result.results.isEmpty() and (mPage == FIRST_PAGE)) {
+            onError(ApiError(204, resources.getString(R.string.empty_search)))
+        } else {
+            mAdapter.removeProgressItem()
+            mAdapter.addPage(result.results)
+        }
     }
 
     override fun setupHeader() {

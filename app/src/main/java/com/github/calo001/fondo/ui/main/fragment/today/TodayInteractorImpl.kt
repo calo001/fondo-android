@@ -2,6 +2,7 @@ package com.github.calo001.fondo.ui.main.fragment.today
 
 import android.annotation.SuppressLint
 import com.github.calo001.fondo.base.BasePhotoInteractorImpl
+import com.github.calo001.fondo.network.ApiError
 import com.github.calo001.fondo.repository.UnsplashRepository
 
 class TodayInteractorImpl (override val presenter: TodayPresenterContract):
@@ -13,7 +14,8 @@ class TodayInteractorImpl (override val presenter: TodayPresenterContract):
             .subscribe ( { list ->
                 presenter.onPhotosSuccess(list)
             }, { error ->
-                presenter.onError(error.localizedMessage.toString())
+                val apiError = ApiError(error)
+                presenter.onError(apiError)
             })
     }
 }

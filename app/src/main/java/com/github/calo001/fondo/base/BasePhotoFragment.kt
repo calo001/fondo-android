@@ -3,6 +3,7 @@ package com.github.calo001.fondo.base
 import android.Manifest
 import android.app.Activity
 import android.app.ActivityOptions
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -22,14 +23,15 @@ import com.github.calo001.fondo.adapter.PhotosAdapter.OnItemInteraction
 import com.github.calo001.fondo.listener.InfiniteScrollListener
 import com.github.calo001.fondo.listener.InfiniteScrollListener.OnLoadMoreListener
 import com.github.calo001.fondo.model.Photo
+import com.github.calo001.fondo.network.ApiError
 import com.github.calo001.fondo.service.NotificationService
 import com.github.calo001.fondo.ui.detail.PhotoDetailActivity
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_photos.*
 
 abstract class BasePhotoFragment<P : BasePhotoPresenterContract> : Fragment(), BasePhotoViewContract,
     OnItemInteraction, OnLoadMoreListener {
     private lateinit var mScrollListener: InfiniteScrollListener
+    private var listener: OnFragmentInteractionListener? = null
     protected lateinit var mAdapter: PhotosAdapter
     protected var mPage = FIRST_PAGE
     var mDownloadLink: String? = null
@@ -78,8 +80,8 @@ abstract class BasePhotoFragment<P : BasePhotoPresenterContract> : Fragment(), B
         mScrollListener.loading = false
     }
 
-    override fun onError(error: String) {
-        Snackbar.make(constraint, error, Snackbar.LENGTH_SHORT).show()
+    override fun onError(error: ApiError) {
+        listener?.onFragmentDataError(error)
     }
 
     override fun onItemClick(view: View, item: Photo) {
@@ -123,7 +125,7 @@ abstract class BasePhotoFragment<P : BasePhotoPresenterContract> : Fragment(), B
         setAsWallpaper()
     }
 
-    fun setAsWallpaper() {
+    private fun setAsWallpaper() {
         if (checkPermission()) {
             startImageDownload()
         } else {
@@ -166,6 +168,23 @@ abstract class BasePhotoFragment<P : BasePhotoPresenterContract> : Fragment(), B
                 }
             }
         }
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is OnFragmentInteractionListener) {
+            listener = context
+        } else {
+            throw RuntimeException("$context mut implement OnFragmentInteractionListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+    interface OnFragmentInteractionListener {
+        fun onFragmentDataError(error: ApiError)
     }
 
     companion object {

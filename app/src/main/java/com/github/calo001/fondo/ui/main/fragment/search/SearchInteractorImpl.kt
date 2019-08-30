@@ -2,6 +2,7 @@ package com.github.calo001.fondo.ui.main.fragment.search
 
 import android.annotation.SuppressLint
 import com.github.calo001.fondo.base.BasePhotoInteractorImpl
+import com.github.calo001.fondo.network.ApiError
 import com.github.calo001.fondo.repository.UnsplashRepository
 
 class SearchInteractorImpl(override val presenter: SearchPresenterContract) :
@@ -13,7 +14,8 @@ class SearchInteractorImpl(override val presenter: SearchPresenterContract) :
             .subscribe({ result ->
                 presenter.onPhotosSuccess(result)
             }, { error ->
-                presenter.onError(error.localizedMessage.toString())
+                val apiError = ApiError(error)
+                presenter.onError(apiError)
             })
     }
 }

@@ -38,4 +38,8 @@
     <string name="share_photo_to">Share photo to...</string>
     <string name="history">HISTORY</string>
     <string name="categories">CATEGORIES</string>
+    <string name="auth_error">Auth error</string>
+    <string name="no_photos_found">No photos found</string>
+    <string name="empty_history">No photos added yet</string>
+    <string name="empty_search">Photos not found</string>
 </resources>

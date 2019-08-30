@@ -4,5 +4,5 @@ import com.github.calo001.fondo.base.BasePhotoViewContract
 import com.github.calo001.fondo.model.Photo
 
 interface HistoryViewContract : BasePhotoViewContract {
-    fun onloadPhotosSuccess(list: List<Photo>)
+    fun onLoadPhotosSuccess(list: List<Photo>)
 }
