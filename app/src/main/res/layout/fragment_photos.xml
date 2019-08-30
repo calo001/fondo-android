@@ -4,19 +4,27 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent" android:id="@+id/constraint">
-    <ProgressBar
-            style="?android:attr/progressBarStyle"
+    <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/progress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="8dp"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.40"/>
+            app:layout_constraintVertical_bias="0.30">
+        <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="8dp"
+                />
+    </androidx.cardview.widget.CardView>
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPhotos"
             android:layout_width="0dp"
