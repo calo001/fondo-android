@@ -170,7 +170,7 @@ abstract class BasePhotoFragment<P : BasePhotoPresenterContract> : Fragment(), B
         }
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
             listener = context
