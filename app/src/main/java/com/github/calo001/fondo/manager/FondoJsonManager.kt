@@ -1,7 +1,8 @@
-package com.github.calo001.fondo.util
+package com.github.calo001.fondo.manager
 
 import com.github.calo001.fondo.Fondo
 import com.github.calo001.fondo.model.*
+import com.github.calo001.fondo.util.getExternalDir
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonSyntaxException

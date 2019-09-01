@@ -112,6 +112,7 @@ abstract class BasePhotoFragment<P : BasePhotoPresenterContract> : Fragment(), B
     }
 
     override fun onSetWallClick(photo: Photo) {
+        mTmpPhoto = photo
         presenter.getDownloadLink(photo.id)
         presenter.addToHistory(photo)
     }

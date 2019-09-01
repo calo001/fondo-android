@@ -1,4 +1,4 @@
-package com.github.calo001.fondo.util
+package com.github.calo001.fondo.manager
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -15,6 +15,7 @@ class FondoNotificationManager(val context: Context) {
         context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     private lateinit var mNotificationBuilder: NotificationCompat.Builder
     private var mTimePreviousProgress: Long = Calendar.getInstance().timeInMillis
+    private val mNotificationID = FondoSharePreferences.getNextNotificationCount()
 
     init {
         setupNotificationChannel()
@@ -49,7 +50,7 @@ class FondoNotificationManager(val context: Context) {
             .setDefaults(0)
             .setProgress(0, 0, true)
 
-        mNotificationManager.notify(ID_NOTIFICATION, mNotificationBuilder.build())
+        mNotificationManager.notify(mNotificationID, mNotificationBuilder.build())
     }
 
     fun updateNotification(progress: Int){
@@ -58,13 +59,13 @@ class FondoNotificationManager(val context: Context) {
         if(timeNow - mTimePreviousProgress > 100) {
             mNotificationBuilder.setProgress(100, progress, false)
             mNotificationBuilder.setContentText("${context.resources.getString(R.string.downloaded)}: $progress%")
-            mNotificationManager.notify(0, mNotificationBuilder.build())
+            mNotificationManager.notify(mNotificationID, mNotificationBuilder.build())
             mTimePreviousProgress = timeNow
         }
     }
 
     fun updateNotificationForTerminate(thumbnailUtil: Bitmap){
-        mNotificationManager.cancel(ID_NOTIFICATION)
+        mNotificationManager.cancel(mNotificationID)
         with(mNotificationBuilder) {
             setProgress(0, 0, false)
             setContentText(context.resources.getString(R.string.wallpaperDownloadComplete))
@@ -74,12 +75,11 @@ class FondoNotificationManager(val context: Context) {
                 .bigPicture(thumbnailUtil)
                 .bigLargeIcon(null))
         }
-        mNotificationManager.notify(ID_NOTIFICATION, mNotificationBuilder.build())
+        mNotificationManager.notify(mNotificationID, mNotificationBuilder.build())
     }
 
     companion object {
         const val ID_DOWNLOAD_NOTIFICATION = "id_notification"
         const val NAME_DOWNLOAD_NOTIFICATION = "name_download_notification"
-        const val ID_NOTIFICATION = 0
     }
 }

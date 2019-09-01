@@ -1,4 +1,4 @@
-package com.github.calo001.fondo.util
+package com.github.calo001.fondo.manager
 
 import com.github.calo001.fondo.repository.UnsplashRepository
 import io.reactivex.Observable
@@ -62,23 +62,6 @@ class FondoDownloadManager(private val listener: DownloadListener) {
 
             it.onComplete()
         }
-
-            //listener.onDownloadComplete(outputFile)
-        /*return Observable.create {
-            try {
-                val destinationFile = File(externalDirectory, fileName)
-                val bufferedSink = Okio.buffer(sink(destinationFile))
-                bufferedSink.writeAll(response.source())
-                bufferedSink.close()
-
-                it.onNext(destinationFile)
-                it.onComplete()
-
-            } catch (e: IOException) {
-                e.printStackTrace()
-                it.onError(e)
-            }
-        }*/
     }
 
     companion object {

@@ -1,4 +1,4 @@
-package com.github.calo001.fondo.util
+package com.github.calo001.fondo.manager
 
 import android.app.WallpaperManager
 import android.content.Context
@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import android.util.Log
 import com.github.calo001.fondo.service.NotificationService
+import com.github.calo001.fondo.util.getContentUri
 import java.io.IOException
 
 class FondoWallpaperManager(val context: Context, val path: String) {
