@@ -3,6 +3,7 @@ package com.github.calo001.fondo.ui.detail
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Matrix
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.ui.dialog.DetailUserFragment
@@ -26,10 +28,8 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
     PhotoDetailViewContract {
     private lateinit var detailFragment: DetailUserFragment
     private lateinit var mCurrentPhoto: Photo
-    private lateinit var mScaleGestureDetector: ScaleGestureDetector
     private lateinit var mDownloadLink: String
     private val presenter = PhotoDetailPresenterImpl(this)
-    private var mScaleFactor = 1.0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,12 +49,8 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
     private fun setupEvents() {
         fabWallpaper.setOnClickListener {
             presenter.getDownloadLink(mCurrentPhoto.id)
+            it.visibility = View.GONE
         }
-    }
-
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        mScaleGestureDetector.onTouchEvent(event)
-        return true
     }
 
     private fun checkPermission(): Boolean {
@@ -91,20 +87,10 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
     private fun showImage() {
         Glide.with(this)
             .load(mCurrentPhoto.urls.regular)
+            .thumbnail(0.01f)
             .transition(DrawableTransitionOptions.withCrossFade())
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(bigImageView)
-
-        mScaleGestureDetector = ScaleGestureDetector(this, object: ScaleGestureDetector.SimpleOnScaleGestureListener() {
-            override fun onScale(detector: ScaleGestureDetector?): Boolean {
-                mScaleFactor *= detector?.scaleFactor!!
-                mScaleFactor = max(0.9f, min(mScaleFactor, 10.0f))
-                bigImageView.scaleX = mScaleFactor
-                bigImageView.scaleY = mScaleFactor
-
-                return true
-            }
-        })
-
     }
 
     private fun getExtraInfo() {
@@ -112,7 +98,7 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
     }
 
     private fun setupFragment() {
-        detailFragment = DetailUserFragment(this, mCurrentPhoto)
+        detailFragment = DetailUserFragment( mCurrentPhoto)
     }
 
     fun showDetails(view: View) {
