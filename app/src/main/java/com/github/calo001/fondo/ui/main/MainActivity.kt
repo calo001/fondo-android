@@ -1,5 +1,6 @@
 package com.github.calo001.fondo.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -18,6 +19,7 @@ import com.github.calo001.fondo.ui.main.fragment.error.ErrorFragment
 import com.github.calo001.fondo.ui.main.fragment.history.HistoryFragment
 import com.github.calo001.fondo.ui.main.fragment.today.TodayFragment
 import com.github.calo001.fondo.ui.main.fragment.search.SearchFragment
+import com.github.calo001.fondo.ui.settings.SettingsActivity
 import com.github.calo001.fondo.util.makeStatusBarTransparent
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -58,7 +60,9 @@ class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener, 
                     supportFragmentManager.beginTransaction()
                         .addSharedElement(toolbar, transitionName)
                 }
-            dialog.show(ft, SearchDialogFragment.TAG)
+            if (ft != null) {
+                dialog.show(ft, SearchDialogFragment.TAG)
+            }
         }
     }
 
@@ -178,7 +182,11 @@ class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener, 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_settings -> return true
+            R.id.action_settings -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+                return true
+            }
             else -> super.onOptionsItemSelected(item)
         }
         return true
