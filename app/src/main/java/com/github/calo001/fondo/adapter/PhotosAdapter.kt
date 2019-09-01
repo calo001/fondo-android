@@ -62,7 +62,6 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
                     .into(holder.photo)
 
                 holder.author.text = items[position]?.user?.name
-                //holder.author.setShadowLayer(8f, 0f, 0f, Color.GRAY)
 
                 holder.cardView.setOnClickListener { view ->
                     items[position]?.let { photo ->
@@ -79,6 +78,7 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
                 holder.btnSetWall.setOnClickListener {
                     items[position]?.let { photo ->
                         interaction.onSetWallClick(photo)
+                        it.visibility = View.GONE
                     }
                 }
             }
