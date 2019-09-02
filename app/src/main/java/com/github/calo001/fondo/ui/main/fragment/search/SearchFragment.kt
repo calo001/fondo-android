@@ -36,6 +36,7 @@ class SearchFragment : BasePhotoFragment<SearchPresenterContract>(), SearchViewC
     fun cleanData() {
         mPage = 1
         mAdapter.clear()
+        showLoading()
     }
 
     companion object {

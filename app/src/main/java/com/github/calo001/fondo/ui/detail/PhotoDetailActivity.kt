@@ -48,7 +48,8 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
         fabWallpaper.setOnClickListener {
             presenter.getDownloadLink(mCurrentPhoto.id)
             historyManager.addToHistory(mCurrentPhoto)
-            it.visibility = View.GONE
+            it.alpha = 0.4f
+            it.isEnabled = false
         }
     }
 

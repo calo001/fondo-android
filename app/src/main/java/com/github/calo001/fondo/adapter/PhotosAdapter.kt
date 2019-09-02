@@ -78,7 +78,8 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
                 holder.btnSetWall.setOnClickListener {
                     items[position]?.let { photo ->
                         interaction.onSetWallClick(photo)
-                        it.visibility = View.GONE
+                        it.alpha = 0.4f
+                        it.isEnabled = false
                     }
                 }
             }
