@@ -1,5 +1,7 @@
 package com.github.calo001.fondo.ui.detail
 
+import com.github.calo001.fondo.network.ApiError
+
 class PhotoDetailPresenterImpl(val view: PhotoDetailViewContract):
     PhotoDetailPresenterContract {
     val interactor: PhotoDetailInteractorContract =
@@ -9,12 +11,11 @@ class PhotoDetailPresenterImpl(val view: PhotoDetailViewContract):
         interactor.getDownloadLink(id)
     }
 
-    override fun onSuccess(image: String) {
-        view.onSuccess(image)
+    override fun onDownloadLinkSuccess(url: String) {
+        view.onSuccess(url)
     }
 
-    override fun onError(error: String) {
+    override fun onError(error: ApiError) {
         view.onError(error)
     }
-
 }

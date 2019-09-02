@@ -3,10 +3,7 @@ package com.github.calo001.fondo.ui.detail
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Matrix
 import android.os.Bundle
-import android.view.MotionEvent
-import android.view.ScaleGestureDetector
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,13 +13,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.github.calo001.fondo.R
+import com.github.calo001.fondo.manager.history.HistoryManager
 import com.github.calo001.fondo.ui.dialog.DetailUserFragment
 import com.github.calo001.fondo.model.Photo
+import com.github.calo001.fondo.network.ApiError
 import com.github.calo001.fondo.service.NotificationService
 import com.github.calo001.fondo.util.makeStatusBarTransparent
 import kotlinx.android.synthetic.main.activity_photo_detail.*
-import kotlin.math.max
-import kotlin.math.min
 
 class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
     PhotoDetailViewContract {
@@ -30,6 +27,7 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
     private lateinit var mCurrentPhoto: Photo
     private lateinit var mDownloadLink: String
     private val presenter = PhotoDetailPresenterImpl(this)
+    private val historyManager = HistoryManager()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +47,7 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
     private fun setupEvents() {
         fabWallpaper.setOnClickListener {
             presenter.getDownloadLink(mCurrentPhoto.id)
+            historyManager.addToHistory(mCurrentPhoto)
             it.visibility = View.GONE
         }
     }
@@ -118,8 +117,8 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
         }
     }
 
-    override fun onError(error: String) {
-        Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+    override fun onError(error: ApiError) {
+        Toast.makeText(this, error.message, Toast.LENGTH_LONG).show()
     }
 
     companion object {
