@@ -3,7 +3,7 @@ package com.github.calo001.fondo.base
 import com.github.calo001.fondo.model.Photo
 import com.github.calo001.fondo.network.ApiError
 
-abstract class BasePhotoPresenter<V: BasePhotoViewContract, I : BasePhotoInteractorContract>
+abstract class BasePhotoPresenterImpl<V: BasePhotoViewContract, I : BasePhotoInteractorContract>
     (open val view: V): BasePhotoPresenterContract {
 
     abstract val interactor: I
@@ -18,9 +18,5 @@ abstract class BasePhotoPresenter<V: BasePhotoViewContract, I : BasePhotoInterac
 
     override fun onDownloadLinkSuccess(url: String) {
         view.onDownloadLinkSuccess(url)
-    }
-
-    override fun addToHistory(photo: Photo) {
-        interactor.addToHistory(photo)
     }
 }

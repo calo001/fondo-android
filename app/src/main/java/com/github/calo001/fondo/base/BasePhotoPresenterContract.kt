@@ -7,5 +7,4 @@ interface BasePhotoPresenterContract {
     fun onError(error: ApiError)
     fun getDownloadLink(id: String)
     fun onDownloadLinkSuccess(url: String)
-    fun addToHistory(photo: Photo)
 }

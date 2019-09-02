@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.adapter.PhotosAdapter
 import com.github.calo001.fondo.adapter.PhotosAdapter.OnItemInteraction
+import com.github.calo001.fondo.manager.history.HistoryManager
 import com.github.calo001.fondo.listener.InfiniteScrollListener
 import com.github.calo001.fondo.listener.InfiniteScrollListener.OnLoadMoreListener
 import com.github.calo001.fondo.model.Photo
@@ -30,12 +31,14 @@ import kotlinx.android.synthetic.main.fragment_photos.*
 
 abstract class BasePhotoFragment<P : BasePhotoPresenterContract> : Fragment(), BasePhotoViewContract,
     OnItemInteraction, OnLoadMoreListener {
+
     private lateinit var mScrollListener: InfiniteScrollListener
     private var listener: OnFragmentInteractionListener? = null
     protected lateinit var mAdapter: PhotosAdapter
     protected var mPage = FIRST_PAGE
-    var mDownloadLink: String? = null
-    var mTmpPhoto: Photo? = null
+    private var mDownloadLink: String? = null
+    private var mTmpPhoto: Photo? = null
+    private val historyManager = HistoryManager()
 
     abstract val presenter: P
 
@@ -114,7 +117,7 @@ abstract class BasePhotoFragment<P : BasePhotoPresenterContract> : Fragment(), B
     override fun onSetWallClick(photo: Photo) {
         mTmpPhoto = photo
         presenter.getDownloadLink(photo.id)
-        presenter.addToHistory(photo)
+        historyManager.addToHistory(photo)
     }
 
     fun scrollToUp() {
