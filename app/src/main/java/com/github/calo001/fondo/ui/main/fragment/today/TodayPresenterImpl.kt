@@ -1,10 +1,10 @@
 package com.github.calo001.fondo.ui.main.fragment.today
 
-import com.github.calo001.fondo.base.BasePhotoPresenter
+import com.github.calo001.fondo.base.BasePhotoPresenterImpl
 import com.github.calo001.fondo.model.Photo
 
 class TodayPresenterImpl (override val view: TodayViewContract) :
-    BasePhotoPresenter<TodayViewContract, TodayInteractorContract>(view),
+    BasePhotoPresenterImpl<TodayViewContract, TodayInteractorContract>(view),
     TodayPresenterContract {
 
     override val interactor: TodayInteractorContract = TodayInteractorImpl(this) // Must change

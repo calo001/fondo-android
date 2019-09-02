@@ -1,10 +1,10 @@
 package com.github.calo001.fondo.ui.main.fragment.search
 
-import com.github.calo001.fondo.base.BasePhotoPresenter
+import com.github.calo001.fondo.base.BasePhotoPresenterImpl
 import com.github.calo001.fondo.model.Result
 
 class SearchPresenterImpl(override val view: SearchViewContract) :
-    BasePhotoPresenter<SearchViewContract, SearchInteractorContract>(view),
+    BasePhotoPresenterImpl<SearchViewContract, SearchInteractorContract>(view),
     SearchPresenterContract {
 
     override val interactor: SearchInteractorContract = SearchInteractorImpl(this)

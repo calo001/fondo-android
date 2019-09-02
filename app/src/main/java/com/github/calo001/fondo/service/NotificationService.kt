@@ -4,9 +4,9 @@ import android.app.IntentService
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.media.ThumbnailUtils
-import com.github.calo001.fondo.manager.FondoDownloadManager
-import com.github.calo001.fondo.manager.FondoNotificationManager
-import com.github.calo001.fondo.manager.FondoWallpaperManager
+import com.github.calo001.fondo.manager.download.FondoDownloadManager
+import com.github.calo001.fondo.manager.notification.FondoNotificationManager
+import com.github.calo001.fondo.manager.wallpaper.FondoWallpaperManager
 import com.github.calo001.fondo.util.getExternalDir
 import java.io.File
 
@@ -19,7 +19,8 @@ class NotificationService: IntentService(DOWNLOAD_SERVICE), FondoDownloadManager
     override fun onHandleIntent(intent: Intent?) {
         getURLfromExtras(intent)
         setupIntentData(intent)
-        mNotificationManager = FondoNotificationManager(this)
+        mNotificationManager =
+            FondoNotificationManager(this)
         mDownloadManager = FondoDownloadManager(this)
         mDownloadManager.downloadImage(mUrl, mPhotoFileName, getExternalDir(this))
     }
@@ -51,7 +52,10 @@ class NotificationService: IntentService(DOWNLOAD_SERVICE), FondoDownloadManager
 
     private fun setupWallpaper(file: File) {
         val wallpaperManager =
-            FondoWallpaperManager(this, file.absolutePath)
+            FondoWallpaperManager(
+                this,
+                file.absolutePath
+            )
         wallpaperManager.setWallpaper()
     }
 
