@@ -3,7 +3,7 @@ package com.github.calo001.fondo.ui.dialog.search
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.transition.*
+import android.transition.ArcMotion
 import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View

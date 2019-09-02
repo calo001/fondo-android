@@ -20,9 +20,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.adapter.PhotosAdapter
 import com.github.calo001.fondo.adapter.PhotosAdapter.OnItemInteraction
-import com.github.calo001.fondo.manager.history.HistoryManager
 import com.github.calo001.fondo.listener.InfiniteScrollListener
 import com.github.calo001.fondo.listener.InfiniteScrollListener.OnLoadMoreListener
+import com.github.calo001.fondo.manager.history.HistoryManager
 import com.github.calo001.fondo.model.Photo
 import com.github.calo001.fondo.network.ApiError
 import com.github.calo001.fondo.service.NotificationService

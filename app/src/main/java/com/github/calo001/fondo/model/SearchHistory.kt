@@ -1,7 +1,7 @@
 package com.github.calo001.fondo.model
 
-import androidx.room.Entity
 import androidx.room.ColumnInfo
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
 

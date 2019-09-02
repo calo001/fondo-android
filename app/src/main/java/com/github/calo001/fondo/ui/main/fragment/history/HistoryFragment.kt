@@ -1,6 +1,5 @@
 package com.github.calo001.fondo.ui.main.fragment.history
 
-import android.util.Log
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.base.BasePhotoFragment
 import com.github.calo001.fondo.model.Photo

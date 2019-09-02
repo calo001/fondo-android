@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.github.calo001.fondo.R
-import com.github.calo001.fondo.model.SearchHistory
 import kotlinx.android.synthetic.main.item_search_history.view.*
 
 class SearchHistoryAdapter(

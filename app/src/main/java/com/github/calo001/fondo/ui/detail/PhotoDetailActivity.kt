@@ -14,10 +14,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.manager.history.HistoryManager
-import com.github.calo001.fondo.ui.dialog.DetailUserFragment
 import com.github.calo001.fondo.model.Photo
 import com.github.calo001.fondo.network.ApiError
 import com.github.calo001.fondo.service.NotificationService
+import com.github.calo001.fondo.ui.dialog.DetailUserFragment
 import com.github.calo001.fondo.util.makeStatusBarTransparent
 import kotlinx.android.synthetic.main.activity_photo_detail.*
 

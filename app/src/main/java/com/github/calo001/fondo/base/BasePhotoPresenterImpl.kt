@@ -1,6 +1,5 @@
 package com.github.calo001.fondo.base
 
-import com.github.calo001.fondo.model.Photo
 import com.github.calo001.fondo.network.ApiError
 
 abstract class BasePhotoPresenterImpl<V: BasePhotoViewContract, I : BasePhotoInteractorContract>

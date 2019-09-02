@@ -1,12 +1,11 @@
 package com.github.calo001.fondo.ui.main.fragment.error
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-
+import androidx.fragment.app.Fragment
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.network.ApiError
 import kotlinx.android.synthetic.main.fragment_error.*

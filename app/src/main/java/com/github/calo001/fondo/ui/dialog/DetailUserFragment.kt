@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.model.Photo
-import com.github.calo001.fondo.ui.detail.OnSetAsWallpaperListener
 import kotlinx.android.synthetic.main.dialog_bottom_sheet.*
 
 class DetailUserFragment(private val photo: Photo) : RoundedBottomSheetDialogFragment() {

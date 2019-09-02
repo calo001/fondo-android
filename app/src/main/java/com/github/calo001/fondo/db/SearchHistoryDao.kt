@@ -1,6 +1,9 @@
 package com.github.calo001.fondo.db
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
 import com.github.calo001.fondo.model.SearchHistory
 import io.reactivex.Completable
 import io.reactivex.Observable
