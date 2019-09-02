@@ -1,9 +1,10 @@
-package com.github.calo001.fondo.base.history
+package com.github.calo001.fondo.manager.history
 
 import com.github.calo001.fondo.model.Photo
 import com.github.calo001.fondo.repository.HistoryRepository
 
-abstract class BaseHistoryInteractorImpl<P: BaseHistoryPresenterContract> (val presenter: P) : BaseHistoryInteractorContract {
+class HistoryInteractorImpl(val presenter: HistoryPresenterContract) : HistoryInteractorContract {
+
     override fun addToHistory(photo: Photo) {
         val repo = HistoryRepository()
         val result = repo.saveToHistory(photo)

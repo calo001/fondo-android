@@ -1,4 +1,4 @@
-package com.github.calo001.fondo.manager
+package com.github.calo001.fondo.manager.sharedpreferences
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -20,7 +20,9 @@ object FondoSharePreferences {
 
     fun getNextNotificationCount(): Int {
         val next = getNotificationCount() + 1
-        updateNotificationCount(next)
+        updateNotificationCount(
+            next
+        )
         return next
     }
 }

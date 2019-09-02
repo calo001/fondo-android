@@ -1,4 +1,4 @@
-package com.github.calo001.fondo.manager
+package com.github.calo001.fondo.manager.json
 
 import com.github.calo001.fondo.Fondo
 import com.github.calo001.fondo.model.*

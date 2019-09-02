@@ -1,4 +1,4 @@
-package com.github.calo001.fondo.manager
+package com.github.calo001.fondo.manager.download
 
 import com.github.calo001.fondo.repository.UnsplashRepository
 import io.reactivex.Observable

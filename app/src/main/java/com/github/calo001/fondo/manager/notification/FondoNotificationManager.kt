@@ -1,4 +1,4 @@
-package com.github.calo001.fondo.manager
+package com.github.calo001.fondo.manager.notification
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -8,6 +8,7 @@ import android.graphics.Color
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.github.calo001.fondo.R
+import com.github.calo001.fondo.manager.sharedpreferences.FondoSharePreferences
 import java.util.*
 
 class FondoNotificationManager(val context: Context) {
@@ -15,7 +16,8 @@ class FondoNotificationManager(val context: Context) {
         context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     private lateinit var mNotificationBuilder: NotificationCompat.Builder
     private var mTimePreviousProgress: Long = Calendar.getInstance().timeInMillis
-    private val mNotificationID = FondoSharePreferences.getNextNotificationCount()
+    private val mNotificationID =
+        FondoSharePreferences.getNextNotificationCount()
 
     init {
         setupNotificationChannel()

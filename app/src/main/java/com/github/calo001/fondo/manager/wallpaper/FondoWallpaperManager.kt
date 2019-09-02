@@ -1,4 +1,4 @@
-package com.github.calo001.fondo.manager
+package com.github.calo001.fondo.manager.wallpaper
 
 import android.app.WallpaperManager
 import android.content.Context
