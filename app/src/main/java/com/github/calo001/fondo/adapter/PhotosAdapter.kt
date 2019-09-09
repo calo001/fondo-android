@@ -4,16 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.cardview.widget.CardView
+import android.view.animation.AnimationUtils
+import androidx.appcompat.widget.TooltipCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
+import com.github.calo001.fondo.GlideApp
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.model.Photo
+import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_header.view.*
 import kotlinx.android.synthetic.main.item_photo.view.*
 
@@ -23,7 +22,6 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
 ) :
     RecyclerView.Adapter<PhotosAdapter.DynamicViewHolder>() {
 
-    private var glide: RequestManager = Glide.with(context)
     private lateinit var title: String
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DynamicViewHolder {
@@ -52,39 +50,12 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
     override fun onBindViewHolder(holder: DynamicViewHolder, position: Int) {
         when (holder) {
             is ItemViewHolder -> {
-                glide
-                    .load(items[position]?.urls?.small)
-                    .placeholder(R.drawable.back_loading_photo)
-                    .thumbnail(0.01f)
-                    .fitCenter()
-                    .transition(withCrossFade())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(holder.photo)
-
-                holder.author.text = items[position]?.user?.name
-
-                holder.cardView.setOnClickListener { view ->
-                    items[position]?.let { photo ->
-                        interaction.onItemClick(view, photo)
-                    }
-                }
-
-                holder.btnShare.setOnClickListener {
-                    items[position]?.let { photo ->
-                        interaction.onShareClick(photo)
-                    }
-                }
-
-                holder.btnSetWall.setOnClickListener {
-                    items[position]?.let { photo ->
-                        interaction.onSetWallClick(photo)
-                        it.alpha = 0.4f
-                        it.isEnabled = false
-                    }
+                items[position]?.let {
+                    holder.bind(it, interaction)
                 }
             }
             is HeaderViewHolder -> {
-                holder.header.text = title
+                //holder.header.text = title
             }
         }
     }
@@ -155,22 +126,81 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
         private const val VIEW_TYPE_HEADER = 2
     }
 
-    open class DynamicViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
-    class ProgressViewHolder(itemView: View): DynamicViewHolder(itemView)
-    class HeaderViewHolder(itemView: View): DynamicViewHolder(itemView) {
-        val header: TextView = itemView.header
+    abstract class DynamicViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), LayoutContainer
+    class ProgressViewHolder(val itemView: View): DynamicViewHolder(itemView) {
+        override val containerView: View?
+            get() = containerView
+    }
+
+    class HeaderViewHolder(val itemView: View): DynamicViewHolder(itemView) {
+        override val containerView: View?
+            get() = containerView
+
+        fun bind(title: String) {
+            containerView?.header?.text = title
+        }
     }
 
     class ItemViewHolder(itemView: View) : DynamicViewHolder(itemView) {
-        val author: TextView = itemView.txtAutor
-        val photo: ImageView = itemView.imgPhoto
-        val cardView: CardView = itemView.cardPhoto
-        val btnShare: ImageView = itemView.btnShare
-        val btnSetWall: ImageView = itemView.btnSetWall
+        override val containerView: View?
+            get() = itemView
+
+        fun bind(item: Photo, interaction: OnItemInteraction) {
+            GlideApp.with(itemView.context)
+                .load(item.urls.small)
+                .placeholder(R.drawable.back_loading_photo)
+                .thumbnail(0.01f)
+                .fitCenter()
+                .transition(withCrossFade())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(itemView.imgPhoto)
+
+            containerView?.txtAutor?.let { txtAuthor ->
+                txtAuthor.text = item.user.name
+                val tooltipText =  txtAuthor.resources?.getString(R.string.author)
+                TooltipCompat.setTooltipText(txtAuthor, tooltipText)
+            }
+
+
+            containerView?.cardPhoto?.setOnClickListener { view ->
+                interaction.onItemClick(item)
+            }
+
+            containerView?.btnSuccess?. let { btnSuccess ->
+                btnSuccess.visibility = View.GONE
+                val tooltipText =  btnSuccess.resources?.getString(R.string.chossen)
+                TooltipCompat.setTooltipText(btnSuccess, tooltipText)
+            }
+
+            containerView?.btnShare?.let {
+                TooltipCompat.setTooltipText(it, it.resources.getString(R.string.share_photo))
+                it.setOnClickListener {
+                    interaction.onShareClick(item)
+                }
+            }
+
+            containerView?.btnSetWall?.let { btnWall ->
+                btnWall.visibility = View.VISIBLE
+                val tooltipText =  btnWall.resources.getString(R.string.set_as_wallpaper)
+                TooltipCompat.setTooltipText(btnWall, tooltipText)
+                btnWall.setOnClickListener { view ->
+                    val animOut = AnimationUtils.loadAnimation(view.context, R.anim.fade_out_rotate)
+                    view.startAnimation(animOut)
+                    view.visibility = View.GONE
+
+                    interaction.onSetWallClick(item)
+
+                    val btnSuccess = containerView?.btnSuccess
+                    val animIn = AnimationUtils.loadAnimation(btnSuccess?.context, R.anim.fade_in_rotate)
+                    btnSuccess?.visibility = View.VISIBLE
+                    btnSuccess?.startAnimation(animIn)
+                }
+            }
+        }
     }
 
     interface OnItemInteraction {
-        fun onItemClick(view: View, item: Photo)
+        fun onItemClick(item: Photo)
         fun onShareClick(photo: Photo)
         fun onSetWallClick(photo: Photo)
     }
