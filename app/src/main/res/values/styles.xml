@@ -1,49 +1,98 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
 
-        <!-- enable window content transitions -->
         <!-- API LOLIPOP -->
         <item name="android:windowActivityTransitions" tools:targetApi="lollipop">true</item>
+
+        <!-- Other material colors -->
+        <item name="android:colorBackground">@color/primaryLightColor</item>
+
+        <!-- Dark or light status bar icons-->
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+
+        <!-- Material components -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.MyApp.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.MyApp.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.MyApp.LargeComponent</item>
+
+        <!-- Bottom nav bar-->
+        <item name="bottomNavigationStyle">@style/BottomNavView</item>
+
+        <!-- CardView -->
+        <item name="materialCardViewStyle">@style/Card</item>
+
+        <!-- Font family -->
+        <item name="android:fontFamily">@font/open_sans_semibold</item>
+    </style>
+
+    <style name="ShapeAppearance.MyApp.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
+    <style name="ShapeAppearance.MyApp.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="ShapeAppearance.MyApp.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
     </style>
 
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <!-- set the rounded drawable as background to your bottom sheet -->
-    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/back_bottom_sheet</item>
-    </style>
-
-    <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
-        <item name="android:windowIsFloating">false</item>
-        <item name="bottomSheetStyle">@style/BottomSheet</item>
-        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/black</item>
-    </style>
-
-    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog">
+    <style name="FullScreenDialogStyle" parent="AppTheme">
 
     </style>
 
-    <!-- FULL DIALOG THEME -->
-    <style name="FullScreenDialogStyle" parent="Theme.AppCompat.Dialog">
-        <item name="android:windowNoTitle">true</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
+    <style name="CardButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="iconTint">@android:color/white</item>
+    </style>
 
-        <!-- Set this to true if you want full screen without status bar -->
-        <item name="android:windowFullscreen">false</item>
-        <item name="android:windowIsFloating">false</item>
+    <style name="BottomNavView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:background">@color/uiTransparent</item>
+        <item name="labelVisibilityMode">selected</item>
+        <item name="itemIconTint">@drawable/bottom_navigation_states</item>
+        <item name="itemTextColor">@drawable/bottom_navigation_states</item>
+        <item name="elevation">0dp</item>
+    </style>
 
-        <!-- Background of window color -->
-        <item name="android:windowBackground">@color/colorPrimary</item>
+    <style name="Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardElevation">3dp</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardBackgroundColor">@color/search_back</item>
+    </style>
+
+    <style name="AppbarDetail" parent="Widget.Design.AppBarLayout">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="ToolbarDetail" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="Fab" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="shapeAppearance">@style/Diamond</item>
+    </style>
+
+    <style name="Diamond">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">28dp</item>
+    </style>
+
+    <style name="ButtonProfile" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/primaryTextColor</item>
+        <item name="android:textColor">@color/colorPrimary</item>
     </style>
 </resources>

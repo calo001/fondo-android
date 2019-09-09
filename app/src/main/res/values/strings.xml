@@ -64,4 +64,9 @@
     <string name="visit_unsplash">Visit Unsplash.com</string>
     <string name="unsplash_link"><![CDATA[https://unsplash.com/?utm_source=Fondo&utm_medium=referral]]></string>
     <string name="show_more">Show more</string>
+    <string name="set_as_wallpaper">Set as wallpaper</string>
+    <string name="share_photo">Share photo</string>
+    <string name="chossen">As wallpaper</string>
+    <string name="author">Author\'s name</string>
+    <string name="visit_profile">Visit profile</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.github.calo001.fondo.ui.dialog.search
 
+import android.app.Dialog
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.DialogFragment
@@ -26,15 +28,10 @@ class SearchDialogFragment: DialogFragment(), SearchDialogViewContract, OnSearch
     private var presenter: SearchDialogPresenterContract = SearchDialogPresenterImpl(this)
     private lateinit var recycler: RecyclerView
     private lateinit var adapter: SearchHistoryAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL, R.style.FullScreenDialogStyle)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            sharedElementEnterTransition = TransitionInflater.from(context)
-                .inflateTransition(android.R.transition.explode)
-            enterTransition = ArcMotion()
-        }
+        setStyle(STYLE_NO_TITLE, R.style.AppTheme)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

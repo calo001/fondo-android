@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:animateLayoutChanges="true"
+        android:id="@+id/cardPhoto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        app:cardElevation="3dp"
-        app:cardCornerRadius="@dimen/card_radius"
+        android:layout_marginLeft="@dimen/card_material_margin"
+        android:layout_marginRight="@dimen/card_material_margin"
         android:clickable="true"
         android:focusable="true"
-        android:id="@+id/cardPhoto">
+        >
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -39,51 +38,93 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:id="@+id/bottomShadow"/>
+
         <TextView
-                tools:text="Autor"
+                android:id="@+id/txtAutor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtAutor"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
                 android:layout_margin="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:shadowColor="@color/darker_gray"
                 android:shadowDx="0"
                 android:shadowDy="0"
                 android:shadowRadius="8"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
                 app:fontFamily="@font/open_sans_semibold"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/verticalSeparatorActions"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/bottomShadow"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/btnSetWall"
-                android:layout_marginRight="8dp"
-                android:paddingTop="8dp" android:paddingBottom="8dp"/>
-        <ImageButton
+                tools:text="Autor" />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSuccess"
+                style="@style/CardButton"
                 android:layout_width="40dp"
                 android:layout_height="0dp"
-                app:srcCompat="@drawable/ic_share"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:clickable="true"
                 android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:padding="8dp"
+                android:visibility="gone"
+                app:icon="@drawable/ic_check"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/txtAutor"
+                app:layout_constraintStart_toStartOf="@+id/verticalSeparatorActions"
+                app:layout_constraintTop_toTopOf="@+id/bottomShadow"
+                app:srcCompat="@drawable/ic_share" />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnShare"
+                style="@style/CardButton"
+                android:layout_width="40dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:padding="8dp"
+                app:icon="@drawable/ic_share"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/btnShare"
                 app:layout_constraintTop_toTopOf="@+id/bottomShadow"
-                android:padding="8dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"/>
-        <ImageButton
+                app:srcCompat="@drawable/ic_share"
+                />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSetWall"
+                style="@style/CardButton"
                 android:layout_width="40dp"
-                android:layout_height="0dp" app:srcCompat="@drawable/ic_wallpaper"
-                android:id="@+id/btnSetWall" app:layout_constraintEnd_toStartOf="@+id/btnShare"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/bottomShadow"
-                android:padding="8dp"
-                android:background="?android:attr/selectableItemBackground"
+                android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:clickable="true"
+                android:contentDescription="@string/app_name"
                 android:focusable="true"
-                android:contentDescription="@string/app_name"/>
+                android:padding="8dp"
+                app:icon="@drawable/ic_wallpaper"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnShare"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/verticalSeparatorActions"
+                app:layout_constraintTop_toTopOf="@+id/bottomShadow"
+                app:srcCompat="@drawable/ic_wallpaper" />
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/verticalSeparatorActions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="106dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

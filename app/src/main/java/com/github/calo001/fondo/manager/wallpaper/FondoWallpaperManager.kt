@@ -2,6 +2,7 @@ package com.github.calo001.fondo.manager.wallpaper
 
 import android.app.WallpaperManager
 import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.util.Log
@@ -20,6 +21,7 @@ class FondoWallpaperManager(val context: Context, val path: String) {
                     .getCropAndSetWallpaperIntent(uri)
                 wallIntent.setDataAndType(uri, "image/*")
                 wallIntent.putExtra("mimeType", "image/*")
+                wallIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 context.startActivity(wallIntent)
             } else {
                 wallpaperManager.setBitmap(BitmapFactory.decodeFile(path))

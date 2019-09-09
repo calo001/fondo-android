@@ -3,15 +3,23 @@ package com.github.calo001.fondo.ui.detail
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.manager.history.HistoryManager
 import com.github.calo001.fondo.model.Photo
@@ -19,7 +27,10 @@ import com.github.calo001.fondo.network.ApiError
 import com.github.calo001.fondo.service.NotificationService
 import com.github.calo001.fondo.ui.dialog.DetailUserFragment
 import com.github.calo001.fondo.util.makeStatusBarTransparent
+import com.github.calo001.fondo.util.setMarginTop
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_photo_detail.*
+import kotlinx.android.synthetic.main.progress_layout.*
 
 class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
     PhotoDetailViewContract {
@@ -33,6 +44,7 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_photo_detail)
 
+        setSupportActionBar(toolbarDetail)
         setupStatusbar()
         getExtraInfo()
         setupFragment()
@@ -41,15 +53,21 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
     }
 
     private fun setupStatusbar() {
-        makeStatusBarTransparent("#00000000")
+        supportActionBar?.title = null
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        val color = ContextCompat.getColor(this, android.R.color.transparent)
+        makeStatusBarTransparent(color)
+        ViewCompat.setOnApplyWindowInsetsListener(detailContainer) { _, insets ->
+            toolbarDetail.setMarginTop(insets.systemWindowInsetTop)
+            insets.consumeSystemWindowInsets()
+        }
     }
 
     private fun setupEvents() {
         fabWallpaper.setOnClickListener {
             presenter.getDownloadLink(mCurrentPhoto.id)
             historyManager.addToHistory(mCurrentPhoto)
-            it.alpha = 0.4f
-            it.isEnabled = false
+            (it as FloatingActionButton).hide()
         }
     }
 
@@ -87,6 +105,28 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
     private fun showImage() {
         Glide.with(this)
             .load(mCurrentPhoto.urls.regular)
+            .listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    finish()
+                    return false
+                }
+
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    progress.visibility = View.GONE
+                    return false
+                }
+            })
             .thumbnail(0.01f)
             .transition(DrawableTransitionOptions.withCrossFade())
             .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -99,10 +139,6 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
 
     private fun setupFragment() {
         detailFragment = DetailUserFragment( mCurrentPhoto)
-    }
-
-    fun showDetails(view: View) {
-        detailFragment.show(supportFragmentManager, detailFragment.tag)
     }
 
     override fun onSetWallpaper() {
@@ -120,6 +156,21 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
 
     override fun onError(error: ApiError) {
         Toast.makeText(this, error.message, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_detail, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            R.id.showMore -> {
+                detailFragment.show(supportFragmentManager, detailFragment.tag)
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     companion object {

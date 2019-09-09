@@ -12,6 +12,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/btnVisitProfile"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -22,7 +23,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white"
+            android:layout_marginTop="8dp"
             android:orientation="vertical"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
@@ -40,7 +41,8 @@
                 android:drawableStart="@drawable/ic_earth"
                 android:drawableLeft="@drawable/ic_earth"
                 android:drawablePadding="8dp"
-                android:text="location" />
+                android:text="location"
+                android:textIsSelectable="true" />
 
         <TextView
                 android:id="@+id/txtImgDescription"
@@ -50,7 +52,8 @@
                 android:drawableStart="@drawable/ic_text_description"
                 android:drawableLeft="@drawable/ic_text_description"
                 android:drawablePadding="8dp"
-                android:text="description" />
+                android:text="description"
+                android:textIsSelectable="true" />
 
         <TextView
                 android:id="@+id/txtImgCreatedAt"
@@ -60,7 +63,8 @@
                 android:drawableStart="@drawable/ic_calendar"
                 android:drawableLeft="@drawable/ic_calendar"
                 android:drawablePadding="8dp"
-                android:text="created at" />
+                android:text="created at"
+                android:textIsSelectable="true" />
 
         <TextView
                 android:id="@+id/txtImgWidth"
@@ -70,7 +74,8 @@
                 android:drawableStart="@drawable/ic_arrow_left_right"
                 android:drawableLeft="@drawable/ic_arrow_left_right"
                 android:drawablePadding="8dp"
-                android:text="width" />
+                android:text="width"
+                android:textIsSelectable="true" />
 
         <TextView
                 android:id="@+id/txtImgHeight"
@@ -80,7 +85,8 @@
                 android:drawableStart="@drawable/ic_arrow_up_down"
                 android:drawableLeft="@drawable/ic_arrow_up_down"
                 android:drawablePadding="8dp"
-                android:text="height" />
+                android:text="height"
+                android:textIsSelectable="true" />
 
         <TextView
                 android:id="@+id/txtImgColor"
@@ -90,7 +96,8 @@
                 android:drawableStart="@drawable/ic_color"
                 android:drawableLeft="@drawable/ic_color"
                 android:drawablePadding="8dp"
-                android:text="color" />
+                android:text="color"
+                android:textIsSelectable="true" />
     </LinearLayout>
 
     <TextView
@@ -99,10 +106,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="username"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textIsSelectable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/userPicture"
             app:layout_constraintTop_toTopOf="parent" />
@@ -117,18 +126,22 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="user bio"
+            android:textIsSelectable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/userPicture"
             app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
             android:id="@+id/btnVisitProfile"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:text="Visit profile"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/visit_profile"
+            style="@style/ButtonProfile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/userPicture"

@@ -28,7 +28,7 @@
     <PreferenceCategory app:title="@string/customization">
 
         <SwitchPreferenceCompat
-                app:key="sync"
+                app:key="dark-mode"
                 app:title="@string/enable_dark_mode" />
 
     </PreferenceCategory>

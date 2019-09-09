@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#F5F5F5</color>
-    <color name="colorPrimaryDark">#F5F5F5</color>
-    <color name="colorAccent">#000000</color>
+    <!-- Material components colors -->
+    <color name="primaryColor">#fafafa</color>
+    <color name="primaryLightColor">#ffffff</color>
+    <color name="primaryDarkColor">#c7c7c7</color>
+    <color name="secondaryColor">#fafafa</color>
+    <color name="secondaryLightColor">#ffffff</color>
+    <color name="secondaryDarkColor">#c7c7c7</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#000000</color>
+    <color name="colorSecondary">#1a1a1a</color>
+
+    <!-- Classic colors for IU -->
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#c7c7c7</color>
+    <color name="colorAccent">#1a1a1a</color>
+    <color name="colorSuccess">#2ECC71</color>
+
+    <!-- Other colors -->
     <color name="black">#000000</color>
     <color name="gray">#818181</color>
-    <color name="search_gray">#E9E9E9</color>
     <color name="gradient_green">#2af598</color>
     <color name="gradient_blue">#009efd</color>
     <color name="nature_color_1">#B5AC49</color>
@@ -32,7 +46,9 @@
     <color name="flatlay_color_2">#E99C00</color>
     <color name="texture_pattern_color_1">#13547A</color>
     <color name="texture_pattern_color_2">#42B18D</color>
-    <color name="colorBottomNavbar">#E6F5F5F5</color>
-    <color name="statusTransparent">#CDF5F5F5</color>
     <color name="darker_gray">#4D000000</color>
+
+    <!-- Transparents colors  -->
+    <color name="uiTransparent">#E6F5F5F5</color>
+    <color name="search_back">#F3F3F3</color>
 </resources>

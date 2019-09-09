@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import com.github.calo001.fondo.R
@@ -21,6 +22,7 @@ import com.github.calo001.fondo.ui.main.fragment.search.SearchFragment
 import com.github.calo001.fondo.ui.main.fragment.today.TodayFragment
 import com.github.calo001.fondo.ui.settings.SettingsActivity
 import com.github.calo001.fondo.util.makeStatusBarTransparent
+import com.github.calo001.fondo.util.setMarginTop
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener, OnFragmentInteractionListener {
@@ -44,9 +46,10 @@ class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener, 
     }
 
     private fun setupStatusbar() {
-        makeStatusBarTransparent("#CDF5F5F5")
+        val color = ContextCompat.getColor(this, R.color.uiTransparent)
+        makeStatusBarTransparent(color)
         ViewCompat.setOnApplyWindowInsetsListener(mainContainer) { _, insets ->
-            //mainCardView.setMarginTop(insets.systemWindowInsetTop)
+            mainCardView.setMarginTop(insets.systemWindowInsetTop)
             insets.consumeSystemWindowInsets()
         }
     }
@@ -55,14 +58,8 @@ class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener, 
         supportActionBar?.title = null
         toolbar.setOnClickListener {
             val dialog = SearchDialogFragment()
-            val ft =
-                ViewCompat.getTransitionName(toolbar)?.let { transitionName ->
-                    supportFragmentManager.beginTransaction()
-                        .addSharedElement(toolbar, transitionName)
-                }
-            if (ft != null) {
-                dialog.show(ft, SearchDialogFragment.TAG)
-            }
+            val ft = supportFragmentManager.beginTransaction()
+            dialog.show(ft, SearchDialogFragment.TAG)
         }
     }
 

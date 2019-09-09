@@ -28,6 +28,7 @@ import com.github.calo001.fondo.network.ApiError
 import com.github.calo001.fondo.service.NotificationService
 import com.github.calo001.fondo.ui.detail.PhotoDetailActivity
 import kotlinx.android.synthetic.main.fragment_photos.*
+import kotlinx.android.synthetic.main.progress_layout.*
 
 abstract class BasePhotoFragment<P : BasePhotoPresenterContract> : Fragment(), BasePhotoViewContract,
     OnItemInteraction, OnLoadMoreListener {
@@ -87,17 +88,10 @@ abstract class BasePhotoFragment<P : BasePhotoPresenterContract> : Fragment(), B
         listener?.onFragmentDataError(error)
     }
 
-    override fun onItemClick(view: View, item: Photo) {
+    override fun onItemClick(item: Photo) {
         val intent = Intent(activity, PhotoDetailActivity::class.java)
         intent.putExtra(PhotoDetailActivity.EXTRA_OBJECT, item)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val options = ActivityOptions
-                .makeSceneTransitionAnimation(activity, view, resources.getString(R.string.photo_transition))
-            startActivity(intent, options.toBundle())
-        } else {
-            startActivity(intent)
-        }
+        startActivity(intent)
     }
 
     override fun onShareClick(photo: Photo) {
