@@ -2,11 +2,9 @@ package com.github.calo001.fondo.base
 
 import android.Manifest
 import android.app.Activity
-import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.adapter.PhotosAdapter
 import com.github.calo001.fondo.adapter.PhotosAdapter.OnItemInteraction
+import com.github.calo001.fondo.config.Constants.PERMISSION_REQUEST_CODE
 import com.github.calo001.fondo.listener.InfiniteScrollListener
 import com.github.calo001.fondo.listener.InfiniteScrollListener.OnLoadMoreListener
 import com.github.calo001.fondo.manager.history.HistoryManager
@@ -141,10 +140,9 @@ abstract class BasePhotoFragment<P : BasePhotoPresenterContract> : Fragment(), B
 
     private fun requestPermission() {
         activity?.let {
-            ActivityCompat.requestPermissions(
-                it,
+            requestPermissions(
                 arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                PhotoDetailActivity.PERMISSION_REQUEST_CODE
+                PERMISSION_REQUEST_CODE
             )
         }
     }
@@ -158,7 +156,7 @@ abstract class BasePhotoFragment<P : BasePhotoPresenterContract> : Fragment(), B
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when(requestCode) {
-            PhotoDetailActivity.PERMISSION_REQUEST_CODE -> {
+            PERMISSION_REQUEST_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     startImageDownload()
                 } else {
