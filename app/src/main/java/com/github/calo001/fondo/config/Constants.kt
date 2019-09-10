@@ -6,4 +6,5 @@ object Constants {
     const val SP_FILE = "fondo_sp"
     const val SP_KEY_NOTIFICATION_COUNT = "sp_notification_count"
     const val SP_KEY_DARK_MODE = "dark_mode"
+    const val PERMISSION_REQUEST_CODE = 1
 }

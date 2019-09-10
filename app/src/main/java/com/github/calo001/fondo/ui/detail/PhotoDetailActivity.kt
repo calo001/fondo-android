@@ -21,6 +21,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.github.calo001.fondo.R
+import com.github.calo001.fondo.config.Constants.PERMISSION_REQUEST_CODE
 import com.github.calo001.fondo.manager.history.HistoryManager
 import com.github.calo001.fondo.model.Photo
 import com.github.calo001.fondo.network.ApiError
@@ -174,7 +175,6 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
     }
 
     companion object {
-        const val PERMISSION_REQUEST_CODE = 1
         const val EXTRA_OBJECT = "PhotoObject"
     }
 }

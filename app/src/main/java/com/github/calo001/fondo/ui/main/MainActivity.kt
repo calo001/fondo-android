@@ -69,7 +69,6 @@ class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener, 
 
             if (supportFragmentManager.findFragmentByTag(TodayFragment.TAG) == null) {
                 ft.add(R.id.mainFragment, mainFragment, TodayFragment.TAG)
-                activeFragment = mainFragment
             }
 
             if (supportFragmentManager.findFragmentByTag(SearchFragment.TAG) == null) {
@@ -92,6 +91,7 @@ class MainActivity : AppCompatActivity(), OnSearchListener, OnCategoryListener, 
                 ft.hide(errorFragment)
             }
 
+            activeFragment = mainFragment
             ft.commit()
         }
     }
