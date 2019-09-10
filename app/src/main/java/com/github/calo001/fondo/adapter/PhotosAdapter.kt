@@ -55,7 +55,7 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
                 }
             }
             is HeaderViewHolder -> {
-                //holder.header.text = title
+                holder.bind(title)
             }
         }
     }
@@ -132,9 +132,8 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
             get() = containerView
     }
 
-    class HeaderViewHolder(val itemView: View): DynamicViewHolder(itemView) {
-        override val containerView: View?
-            get() = containerView
+    class HeaderViewHolder(itemView: View): DynamicViewHolder(itemView) {
+        override val containerView: View? = itemView
 
         fun bind(title: String) {
             containerView?.header?.text = title
