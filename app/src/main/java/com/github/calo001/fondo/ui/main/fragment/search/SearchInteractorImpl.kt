@@ -2,7 +2,6 @@ package com.github.calo001.fondo.ui.main.fragment.search
 
 import android.annotation.SuppressLint
 import com.github.calo001.fondo.base.BasePhotoInteractorImpl
-import com.github.calo001.fondo.model.Photo
 import com.github.calo001.fondo.model.Result
 import com.github.calo001.fondo.network.ApiError
 import com.github.calo001.fondo.repository.UnsplashRepository

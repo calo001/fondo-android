@@ -2,7 +2,6 @@ package com.github.calo001.fondo
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.preference.SwitchPreferenceCompat
 import com.github.calo001.fondo.manager.sharedpreferences.FondoSharePreferences
 
 class Fondo : Application() {

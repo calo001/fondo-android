@@ -1,15 +1,10 @@
 package com.github.calo001.fondo.ui.dialog.search
 
-import android.app.Dialog
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
-import android.transition.ArcMotion
-import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.DialogFragment
