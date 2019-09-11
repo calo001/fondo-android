@@ -12,9 +12,11 @@ class TodayInteractorImpl (override val presenter: TodayPresenterContract):
     override fun loadPhotos(page: Int) {
         UnsplashRepository.getTodayPhotos(page)
             .subscribe ( { list ->
-                val listSorted = list.sortedByDescending {
-                    it.height
-                }
+                val listSorted = list.sortedWith(Comparator{ a, b ->
+                    val c = a.width / a.height
+                    val d = b.width / b.height
+                    c - d
+                })
                 presenter.onPhotosSuccess(listSorted)
             }, { error ->
                 val apiError = ApiError(error)
