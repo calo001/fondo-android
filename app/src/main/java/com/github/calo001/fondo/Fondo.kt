@@ -22,5 +22,5 @@ class Fondo : Application() {
         AppCompatDelegate.setDefaultNightMode(current)
     }
 
-    fun getCurrentDarkMode(): Int = FondoSharePreferences.getDarkMode()
+    private fun getCurrentDarkMode(): Int = FondoSharePreferences.getDarkMode()
 }

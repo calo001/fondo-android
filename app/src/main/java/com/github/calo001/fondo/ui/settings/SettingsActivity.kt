@@ -1,11 +1,14 @@
 package com.github.calo001.fondo.ui.settings
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
+import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.github.calo001.fondo.R
@@ -45,24 +48,12 @@ class SettingsActivity : AppCompatActivity() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
-            val switch = findPreference<SwitchPreferenceCompat>("dark-mode")
+            val listTheme = findPreference<ListPreference>("list")
 
-            when (currentMode) {
-                AppCompatDelegate.MODE_NIGHT_YES -> switch?.isChecked = true
-                AppCompatDelegate.MODE_NIGHT_NO -> switch?.isChecked = false
-            }
-
-            switch?.setOnPreferenceClickListener {
-                when (switch.isChecked) {
-                    true -> {
-                        newMode = AppCompatDelegate.MODE_NIGHT_YES
-                        true
-                    }
-                    false -> {
-                        newMode = AppCompatDelegate.MODE_NIGHT_NO
-                        true
-                    }
-                }
+            listTheme?.setOnPreferenceChangeListener { preference, newValue ->
+                newMode = newValue.toString().toInt()
+                Toast.makeText(context, getString(R.string.changes_apply_message), Toast.LENGTH_SHORT).show()
+                true
             }
         }
 

@@ -69,4 +69,12 @@
     <string name="chossen">As wallpaper</string>
     <string name="author">Author\'s name</string>
     <string name="visit_profile">Visit profile</string>
+
+    <string name="entry_mode_dark">Dark</string>
+    <string name="entry_mode_light">Light</string>
+    <string name="entry_mode_battery">Set by Battery Saver</string>
+    <string name="entry_mode_default">System default</string>
+    <string name="select_theme">Choose light, dark or device configuration</string>
+    <string name="unsplash_summary">The internet’s source of freely useable images.</string>
+    <string name="changes_apply_message">Changes are apply when back to home</string>
 </resources>

@@ -19,18 +19,21 @@
 
     <PreferenceCategory app:title="@string/about">
         <Preference
-            app:title="@string/visit_unsplash">
+            app:title="@string/visit_unsplash"
+                android:summary="@string/unsplash_summary">
             <intent android:action="android.intent.action.VIEW"
                 android:data="@string/unsplash_link"/>
         </Preference>
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/customization">
-
-        <SwitchPreferenceCompat
-                app:key="dark-mode"
-                app:title="@string/enable_dark_mode" />
-
+        <ListPreference
+                android:key="list"
+                android:title="Select a theme"
+                android:entries="@array/themes_names_array"
+                android:entryValues="@array/themes_values_array"
+                android:summary="@string/select_theme"
+                />
     </PreferenceCategory>
 
 </PreferenceScreen>

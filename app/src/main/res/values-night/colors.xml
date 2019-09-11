@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material components colors -->
+    <color name="primaryColor">#1a1a1a</color>
+    <color name="primaryLightColor">#404040</color>
+    <color name="primaryDarkColor">#000000</color>
+    <color name="secondaryColor">#1a1a1a</color>
+    <color name="secondaryLightColor">#404040</color>
+    <color name="secondaryDarkColor">#000000</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#ffffff</color>
+    <color name="colorSecondary">#fafafa</color>
+
+    <!-- Classic colors for IU -->
+    <color name="colorPrimary">#404040</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#fafafa</color>
+
+    <!-- Others -->
+    <color name="uiTransparent">#CD000000</color>
+    <color name="search_back">#222222</color>
+</resources>
