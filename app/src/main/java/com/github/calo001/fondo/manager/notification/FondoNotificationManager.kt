@@ -2,7 +2,9 @@ package com.github.calo001.fondo.manager.notification
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Build
@@ -73,6 +75,7 @@ class FondoNotificationManager(val context: Context) {
             setContentText(context.resources.getString(R.string.wallpaperDownloadComplete))
             setSmallIcon(android.R.drawable.stat_sys_download_done)
             setAutoCancel(true)
+            setContentIntent(PendingIntent.getActivity(context, 0, Intent(), 0))
             setStyle(NotificationCompat.BigPictureStyle()
                 .bigPicture(thumbnailUtil)
                 .bigLargeIcon(null))
