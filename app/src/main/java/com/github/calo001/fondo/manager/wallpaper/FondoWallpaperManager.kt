@@ -4,7 +4,6 @@ import android.app.WallpaperManager
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import com.github.calo001.fondo.Fondo
 import com.github.calo001.fondo.util.getContentUri
 
 class FondoWallpaperManager(val context: Context, val path: String) {

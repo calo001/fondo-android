@@ -43,6 +43,8 @@ class SearchDialogFragment: DialogFragment(), SearchDialogViewContract, OnSearch
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        searchView.requestFocus()
+
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let { adapter.filter(it) }

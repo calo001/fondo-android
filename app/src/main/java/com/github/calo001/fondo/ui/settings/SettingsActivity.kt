@@ -1,7 +1,6 @@
 package com.github.calo001.fondo.ui.settings
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.SwitchPreferenceCompat
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.manager.sharedpreferences.FondoSharePreferences
 import com.github.calo001.fondo.ui.main.MainActivity
