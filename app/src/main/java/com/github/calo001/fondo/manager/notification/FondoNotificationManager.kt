@@ -83,6 +83,10 @@ class FondoNotificationManager(val context: Context) {
         mNotificationManager.notify(mNotificationID, mNotificationBuilder.build())
     }
 
+    fun cancelNotification() {
+        mNotificationManager.cancel(mNotificationID)
+    }
+
     companion object {
         const val ID_DOWNLOAD_NOTIFICATION = "id_notification"
         const val NAME_DOWNLOAD_NOTIFICATION = "name_download_notification"

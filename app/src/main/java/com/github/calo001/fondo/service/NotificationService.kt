@@ -4,6 +4,8 @@ import android.app.IntentService
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.media.ThumbnailUtils
+import android.widget.Toast
+import com.github.calo001.fondo.R
 import com.github.calo001.fondo.manager.download.FondoDownloadManager
 import com.github.calo001.fondo.manager.notification.FondoNotificationManager
 import com.github.calo001.fondo.manager.wallpaper.FondoWallpaperManager
@@ -48,6 +50,11 @@ class NotificationService: IntentService(DOWNLOAD_SERVICE), FondoDownloadManager
 
         mNotificationManager.updateNotificationForTerminate(thumbnailImage)
         setupWallpaper(outputFile)
+    }
+
+    override fun onError() {
+        Toast.makeText(this, resources.getString(R.string.download_error), Toast.LENGTH_SHORT).show()
+        mNotificationManager.cancelNotification()
     }
 
     private fun setupWallpaper(file: File) {

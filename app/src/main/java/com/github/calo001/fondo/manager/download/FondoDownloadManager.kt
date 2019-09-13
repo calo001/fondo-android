@@ -1,14 +1,18 @@
 package com.github.calo001.fondo.manager.download
 
+import android.annotation.SuppressLint
+import android.util.Log
 import com.github.calo001.fondo.repository.UnsplashRepository
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.exceptions.OnErrorNotImplementedException
 import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
 import java.io.BufferedInputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.lang.Error
 
 class FondoDownloadManager(private val listener: DownloadListener) {
 
@@ -25,20 +29,37 @@ class FondoDownloadManager(private val listener: DownloadListener) {
         }
     }
 
+    private fun deleteCorruptedFile(fileName: String, externalDirectory: String) {
+        val file = File(externalDirectory, fileName)
+        if (file.exists()) {
+            file.delete()
+        }
+    }
+
+    @SuppressLint("CheckResult")
     private fun download(url: String, fileName: String, externalDirectory: String) {
         UnsplashRepository.downloadImage(url)
-            .flatMap {
-                saveImage(it, externalDirectory, fileName)
+            .flatMap { body ->
+                saveImage(body, externalDirectory, fileName)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
+            }
+            .doOnError {
+                listener.onError()
+                deleteCorruptedFile(fileName, externalDirectory)
             }
             .doOnComplete {
                 listener.onDownloadComplete(File(externalDirectory, fileName))
             }
-            .subscribe()
+            .subscribe({
+                Log.d("OnNext", "onnextMessage")
+            }, {
+                Log.d("OnNext", "onerrorMessage")
+                listener.onError()
+                deleteCorruptedFile(fileName, externalDirectory)
+            })
     }
 
-    @Throws(IOException::class)
     private fun saveImage(body: ResponseBody, externalDirectory: String, fileName: String): Observable<File> {
         return Observable.create {
             var count: Int
@@ -49,16 +70,20 @@ class FondoDownloadManager(private val listener: DownloadListener) {
             val outputStream = FileOutputStream(outputFile)
             var total: Long = 0
 
-            count = inputStream.read(data)
-            while (count != -1) {
-                total += count.toLong()
-                mProgress = ((total * 100).toDouble() / fileSize.toDouble()).toInt()
-                listener.onProgressChange(mProgress)
-                outputStream.write(data, 0, count)
-
+            try {
                 count = inputStream.read(data)
+                while (count != -1) {
+                    total += count.toLong()
+                    mProgress = ((total * 100).toDouble() / fileSize.toDouble()).toInt()
+                    listener.onProgressChange(mProgress)
+                    outputStream.write(data, 0, count)
 
-                it.onNext(outputFile)
+                    count = inputStream.read(data)
+
+                    it.onNext(outputFile)
+                }
+            } catch (e: OnErrorNotImplementedException) {
+                it.onError(e)
             }
 
             outputStream.flush()
@@ -76,5 +101,6 @@ class FondoDownloadManager(private val listener: DownloadListener) {
     interface DownloadListener {
         fun onProgressChange(progress: Int)
         fun onDownloadComplete(outputFile: File)
+        fun onError()
     }
 }
