@@ -11,8 +11,6 @@ import okhttp3.ResponseBody
 import java.io.BufferedInputStream
 import java.io.File
 import java.io.FileOutputStream
-import java.io.IOException
-import java.lang.Error
 
 class FondoDownloadManager(private val listener: DownloadListener) {
 
