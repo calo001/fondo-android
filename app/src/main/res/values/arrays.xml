@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Reply Preference -->
     <string-array name="reply_entries">
         <item>Reply</item>
