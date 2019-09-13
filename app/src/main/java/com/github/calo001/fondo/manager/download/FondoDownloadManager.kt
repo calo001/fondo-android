@@ -16,7 +16,12 @@ class FondoDownloadManager(private val listener: DownloadListener) {
 
     fun downloadImage(url: String?, fileName: String?, externalDirectory: String) {
         if (url != null && fileName != null) {
-            download(url, fileName, externalDirectory)
+            val file = File(externalDirectory, fileName)
+            if(file.exists()) {
+                listener.onDownloadComplete(file)
+            } else {
+                download(url, fileName, externalDirectory)
+            }
         }
     }
 
