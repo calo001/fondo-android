@@ -1,6 +1,5 @@
 package com.github.calo001.fondo.repository
 
-import com.github.calo001.fondo.config.Constants
 import com.github.calo001.fondo.model.DownloadLinkResponse
 import com.github.calo001.fondo.model.Photo
 import com.github.calo001.fondo.model.Result
@@ -14,19 +13,19 @@ object UnsplashRepository {
     private val client by lazy { UnsplashApiService.create() }
 
     fun getTodayPhotos(page: Int, perPage: Int = 30, orderBy: String = "latest"): Observable<List<Photo>> {
-        return client.todayPhotos(Constants.API_KEY_UNSPLASH, page, perPage, orderBy)
+        return client.todayPhotos(page, perPage, orderBy)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun getQueryPhotos(query: String, page: Int, perPage: Int = 30): Observable<Result> {
-        return client.searchPhotos(Constants.API_KEY_UNSPLASH, query, page, perPage)
+        return client.searchPhotos(query, page, perPage)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun getDownloadLinkLocation(id: String): Observable<DownloadLinkResponse> {
-        return client.getLinkLocation(id, Constants.API_KEY_UNSPLASH)
+        return client.getLinkLocation(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
