@@ -5,15 +5,14 @@ import com.github.calo001.fondo.model.DownloadLinkResponse
 import com.github.calo001.fondo.model.Photo
 import com.github.calo001.fondo.model.Result
 import io.reactivex.Observable
-import okhttp3.CipherSuite
-import okhttp3.ConnectionSpec
-import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.*
-import java.util.*
+import retrofit2.http.GET
+import retrofit2.http.Query
+import retrofit2.http.Streaming
+import retrofit2.http.Url
 
 
 interface UnsplashApiService {
