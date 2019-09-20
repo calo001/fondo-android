@@ -3,12 +3,7 @@
     <!-- Material components colors -->
     <color name="primaryColor">#fafafa</color>
     <color name="primaryLightColor">#ffffff</color>
-    <color name="primaryDarkColor">#c7c7c7</color>
-    <color name="secondaryColor">#fafafa</color>
-    <color name="secondaryLightColor">#ffffff</color>
-    <color name="secondaryDarkColor">#c7c7c7</color>
     <color name="primaryTextColor">#000000</color>
-    <color name="secondaryTextColor">#000000</color>
     <color name="colorSecondary">#1a1a1a</color>
 
     <!-- Classic colors for IU -->
@@ -18,7 +13,6 @@
     <color name="colorSuccess">#2ECC71</color>
 
     <!-- Other colors -->
-    <color name="black">#000000</color>
     <color name="gray">#818181</color>
     <color name="gradient_green">#2af598</color>
     <color name="gradient_blue">#009efd</color>

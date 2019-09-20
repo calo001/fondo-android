@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">Fondo</string>
     <string name="action_settings">Settings</string>
-    <string name="toolbar_title_today">Today</string>
-    <string name="action_search">Search</string>
-    <string name="action_night_mode">Night mode</string>
     <string name="content_description_photo_from_unsplash">Photo from unsplash</string>
     <string name="animal">Animal</string>
     <string name="nature">Nature</string>
@@ -30,12 +27,10 @@
     <string name="wallpaperDownloadComplete">Wallpaper Download Complete</string>
     <string name="today">TODAY</string>
     <string name="search_photos_unsplash">Search photos Unsplash</string>
-    <string name="simple_fragment_transition">search_transition</string>
     <string name="search_header">SEARCH</string>
     <string name="share_photo_by">Share photo by</string>
     <string name="photo_by">Photo by</string>
     <string name="on_unsplash">on Unsplash </string>
-    <string name="share_photo_to">Share photo to...</string>
     <string name="history">HISTORY</string>
     <string name="categories">CATEGORIES</string>
     <string name="auth_error">Auth error</string>
@@ -45,22 +40,12 @@
     <string name="title_activity_settings">Settings</string>
 
     <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="about">About</string>
     <string name="customization">Customization</string>
-    <string name="enable_dark_mode">Enable dark mode</string>
     <string name="visit_unsplash">Visit Unsplash.com</string>
     <string name="unsplash_link"><![CDATA[https://unsplash.com/?utm_source=Fondo&utm_medium=referral]]></string>
     <string name="show_more">Show more</string>
@@ -70,10 +55,6 @@
     <string name="author">Author\'s name</string>
     <string name="visit_profile">Visit profile</string>
 
-    <string name="entry_mode_dark">Dark</string>
-    <string name="entry_mode_light">Light</string>
-    <string name="entry_mode_battery">Set by Battery Saver</string>
-    <string name="entry_mode_default">System default</string>
     <string name="select_theme">Choose light, dark or device configuration</string>
     <string name="unsplash_summary">The internet’s source of freely useable images.</string>
     <string name="changes_apply_message">Changes are apply when back to home</string>
