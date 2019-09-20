@@ -25,13 +25,14 @@ class DetailUserFragment(private val photo: Photo) : RoundedBottomSheetDialogFra
             .apply(RequestOptions.circleCropTransform())
             .into(userPicture)
 
+        // Do not remove the ? in bio and description, it fails if not check null
         txtUsername.text = photo.user.username
         txtUserBio.text = photo.user.bio?.trim()
         txtLocation.text = photo.user.location
         txtImgDescription.text = photo.description?.trim()
         txtImgCreatedAt.text = photo.created_at
-        txtImgWidth.text = photo.width.toString()
-        txtImgHeight.text = photo.height.toString()
+        txtImgWidth.text = "${photo.width} px"
+        txtImgHeight.text = "${photo.height} px"
         txtImgColor.text = photo.color
 
         with(txtLocation) {

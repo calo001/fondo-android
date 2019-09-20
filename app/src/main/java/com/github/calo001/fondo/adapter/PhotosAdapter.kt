@@ -105,8 +105,6 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
                 notifyItemRangeInserted(count, items.size)
             }
         }
-        val last = items[items.lastIndex]
-        last
     }
 
     fun clear() {
@@ -127,9 +125,9 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
     }
 
     abstract class DynamicViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), LayoutContainer
-    class ProgressViewHolder(val itemView: View): DynamicViewHolder(itemView) {
+    class ProgressViewHolder(itemView: View): DynamicViewHolder(itemView) {
         override val containerView: View?
-            get() = containerView
+            get() = itemView
     }
 
     class HeaderViewHolder(itemView: View): DynamicViewHolder(itemView) {
@@ -161,7 +159,7 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
             }
 
 
-            containerView?.cardPhoto?.setOnClickListener { view ->
+            containerView?.cardPhoto?.setOnClickListener { _ ->
                 interaction.onItemClick(item)
             }
 

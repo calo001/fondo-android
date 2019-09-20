@@ -15,7 +15,7 @@ class SearchHistoryAdapter(
     private var items: MutableList<String>,
     val context: Context,
     val listener: OnSearchHistoryClickListener) : RecyclerView.Adapter<SearchHistoryAdapter.SearchViewHolder>() {
-    var backupList: List<String>? = null
+    private var backupList: List<String>? = null
 
     init {
         backupList = items
@@ -32,7 +32,7 @@ class SearchHistoryAdapter(
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         holder.item.text = items[position]
-        holder.contraint.setOnClickListener {
+        holder.constraint.setOnClickListener {
             listener.onSearchHistoryClick(items[position])
         }
         holder.btnClose.setOnClickListener {
@@ -40,7 +40,6 @@ class SearchHistoryAdapter(
             items.removeAt(position)
             backupList = items
             notifyDataSetChanged()
-            //Toast.makeText(context, "Delete", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -56,7 +55,7 @@ class SearchHistoryAdapter(
     class SearchViewHolder(holder: View): RecyclerView.ViewHolder(holder) {
         val item: TextView = holder.term
         val btnClose: ImageView = holder.btnDelete
-        val contraint: ConstraintLayout = holder.contraint
+        val constraint: ConstraintLayout = holder.contraint
     }
 
     interface OnSearchHistoryClickListener {

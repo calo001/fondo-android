@@ -159,7 +159,7 @@ abstract class BasePhotoFragment<P : BasePhotoPresenterContract> : Fragment(), B
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     startImageDownload()
                 } else {
-                    Toast.makeText(context, "Permission denied", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, resources.getString(R.string.permission_denied), Toast.LENGTH_SHORT).show()
                 }
             }
         }

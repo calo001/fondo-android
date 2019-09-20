@@ -7,7 +7,7 @@ class TodayPresenterImpl (override val view: TodayViewContract) :
     BasePhotoPresenterImpl<TodayViewContract, TodayInteractorContract>(view),
     TodayPresenterContract {
 
-    override val interactor: TodayInteractorContract = TodayInteractorImpl(this) // Must change
+    override val interactor: TodayInteractorContract = TodayInteractorImpl(this)
 
     override fun loadPhotos(page: Int) {
         interactor.loadPhotos(page)

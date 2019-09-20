@@ -78,4 +78,5 @@
     <string name="unsplash_summary">The internet’s source of freely useable images.</string>
     <string name="changes_apply_message">Changes are apply when back to home</string>
     <string name="download_error">Download error</string>
+    <string name="permission_denied">Permission denied</string>
 </resources>

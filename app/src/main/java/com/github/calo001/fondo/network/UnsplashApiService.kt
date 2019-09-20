@@ -14,7 +14,9 @@ import retrofit2.http.Query
 import retrofit2.http.Streaming
 import retrofit2.http.Url
 
-
+/*
+ * Check API documentation at: https://github.com/calo001/fondo-backend-open-source
+ */
 interface UnsplashApiService {
     @GET("photos")
     fun todayPhotos(@Query("page") page: Int,

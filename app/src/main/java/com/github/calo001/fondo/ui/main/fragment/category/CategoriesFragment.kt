@@ -24,10 +24,6 @@ import kotlinx.android.synthetic.main.fragment_categories.*
 class CategoriesFragment : Fragment(), OnCategoryInteraction {
     private var listener: OnCategoryListener? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

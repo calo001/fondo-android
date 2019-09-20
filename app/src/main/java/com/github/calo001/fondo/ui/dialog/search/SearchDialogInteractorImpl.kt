@@ -18,7 +18,7 @@ class SearchDialogInteractorImpl(private val presenter: SearchDialogPresenterCon
             .subscribe({ list ->
                 presenter.onGetHistorySuccess(list)
             }, {
-                presenter.onError(it.localizedMessage)
+                it.message?.let { msg -> presenter.onError(msg) }
             })
     }
 

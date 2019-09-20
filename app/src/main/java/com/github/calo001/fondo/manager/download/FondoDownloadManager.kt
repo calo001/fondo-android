@@ -49,10 +49,7 @@ class FondoDownloadManager(private val listener: DownloadListener) {
             .doOnComplete {
                 listener.onDownloadComplete(File(externalDirectory, fileName))
             }
-            .subscribe({
-                Log.d("OnNext", "onnextMessage")
-            }, {
-                Log.d("OnNext", "onerrorMessage")
+            .subscribe({}, {
                 listener.onError()
                 deleteCorruptedFile(fileName, externalDirectory)
             })

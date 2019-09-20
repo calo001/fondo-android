@@ -12,11 +12,11 @@ object FondoSharePreferences {
     private val sharedPreferences: SharedPreferences = Fondo.getInstance()
         .getSharedPreferences(SP_FILE, Context.MODE_PRIVATE)
 
-    fun getNotificationCount(): Int {
+    private fun getNotificationCount(): Int {
         return sharedPreferences.getInt(SP_KEY_NOTIFICATION_COUNT, 0)
     }
 
-    fun updateNotificationCount(value: Int) {
+    private fun updateNotificationCount(value: Int) {
         sharedPreferences.edit().putInt(SP_KEY_NOTIFICATION_COUNT, value).apply()
     }
 
