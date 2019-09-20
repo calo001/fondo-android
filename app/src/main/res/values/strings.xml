@@ -4,21 +4,20 @@
     <string name="content_description_photo_from_unsplash">Photo from unsplash</string>
     <string name="animal">Animal</string>
     <string name="nature">Nature</string>
-    <string name="food_drink"><![CDATA[Food & drink]]></string>
+    <string name="food_drink">Food &amp; drink</string>
     <string name="space">Space</string>
     <string name="sport">Sport</string>
-    <string name="business_work"><![CDATA[Business & work]]></string>
+    <string name="business_work">Business &amp; work</string>
     <string name="fashion">Fashion</string>
-    <string name="art_culture"><![CDATA[Art & culture]]></string>
+    <string name="art_culture">Art &amp; culture</string>
     <string name="architecture">Architecture</string>
-    <string name="texture_pattern"><![CDATA[Texture & pattern]]></string>
+    <string name="texture_pattern">Texture &amp; pattern</string>
     <string name="technology">Technology</string>
     <string name="flatlay">Flatlay</string>
     <string name="menu_bnavbar_daily">Daily</string>
     <string name="menu_bnavbar_categories">Categories</string>
     <string name="menu_bnavbar_history">History</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="photo_transition">photo_transition</string>
     <string name="download">Download</string>
@@ -38,10 +37,6 @@
     <string name="empty_history">No photos added yet</string>
     <string name="empty_search">Photos not found</string>
     <string name="title_activity_settings">Settings</string>
-
-    <!-- Preference Titles -->
-
-    <!-- Messages Preferences -->
 
     <!-- Sync Preferences -->
     <string name="about">About</string>

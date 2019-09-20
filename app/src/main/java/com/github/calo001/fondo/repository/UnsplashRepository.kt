@@ -19,7 +19,8 @@ object UnsplashRepository {
     }
 
     fun getQueryPhotos(query: String, page: Int, perPage: Int = 30): Observable<Result> {
-        return client.searchPhotos(query, page, perPage)
+        val cleanQuery = query.replace(" ","-")
+        return client.searchPhotos(cleanQuery, page, perPage)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
