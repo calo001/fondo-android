@@ -5,7 +5,8 @@
 </div>
 
 <p align="center">
-            <img src="https://raw.githubusercontent.com/calo001/resources/master/images/fondosoon.png?token=ACI2QHNX4VMZXP327NIN27K5QVUAA" width="400px" alt="Soon available">
+  <a href="https://play.google.com/store/apps/details?id=com.github.calo001.fondo" target="_blank">
+    <img src="resources/google-play-badge.png" width="200px" alt="Soon available"></a>
 </p>
 
 <br>
