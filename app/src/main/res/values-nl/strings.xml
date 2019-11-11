@@ -14,14 +14,12 @@
     <string name="texture_pattern">Texturen en patronen</string>
     <string name="technology">Technologie</string>
     <string name="flatlay">Egaal</string>
-    <string name="menu_bnavbar_daily">Dagelijks</string>
-    <string name="menu_bnavbar_categories">Categorieën</string>
+    <string name="menu_bnavbar_today">Dagelijks</string>
+    <string name="menu_bnavbar_categories">Categorieï¿½n</string>
     <string name="menu_bnavbar_history">Geschiedenis</string>
 
-    <string name="hello_blank_fragment">Hallo blanco fragment</string>
-    <string name="photo_transition">photo_transition</string>
     <string name="download">Downloaden</string>
-    <string name="downloadingWallpaper">Bezig met downloaden van achtergrond...</string>
+    <string name="downloadingWallpaper">Bezig met downloaden van achtergrondâ€¦</string>
     <string name="downloaded">Gedownload</string>
     <string name="wallpaperDownloadComplete">De achtergrond is gedownload</string>
     <string name="today">VANDAAG</string>
@@ -31,11 +29,11 @@
     <string name="photo_by">Foto van</string>
     <string name="on_unsplash">op Unsplash </string>
     <string name="history">GESCHIEDENIS</string>
-    <string name="categories">CATEGORIEËN</string>
+    <string name="categories">CATEGORIEï¿½N</string>
     <string name="auth_error">Authentcatiefout</string>
-    <string name="no_photos_found">Geen foto's gevonden</string>
-    <string name="empty_history">Nog geen foto's toegevoegd</string>
-    <string name="empty_search">Foto's niet gevonden</string>
+    <string name="no_photos_found">Geen foto\'s gevonden</string>
+    <string name="empty_history">Nog geen foto\'s toegevoegd</string>
+    <string name="empty_search">Foto\'s niet gevonden</string>
     <string name="title_activity_settings">Instellingen</string>
 
     <!-- Sync Preferences -->
@@ -51,8 +49,14 @@
     <string name="visit_profile">Profiel bekijken</string>
 
     <string name="select_theme">Kies licht, donker of n.a.v. de apparaatinstellingen</string>
-    <string name="unsplash_summary">Dé internetbron met vrij te gebruiken afbeeldingen.</string>
+    <string name="unsplash_summary">Dï¿½ internetbron met vrij te gebruiken afbeeldingen.</string>
     <string name="changes_apply_message">De wijzigingen worden toegepast zodra je naar het startscherm gaat</string>
     <string name="download_error">Downloadfout</string>
     <string name="permission_denied">Machtiging geweigerd</string>
+
+    <string name="dark">Donker</string>
+    <string name="light">Licht</string>
+    <string name="battery_saver">Set by Battery Saver</string>
+    <string name="system_default">System default</string>
+    <string name="select_theme_title">Select a theme</string>
 </resources>

@@ -14,12 +14,10 @@
     <string name="texture_pattern">Texture &amp; pattern</string>
     <string name="technology">Technology</string>
     <string name="flatlay">Flatlay</string>
-    <string name="menu_bnavbar_daily">Daily</string>
+    <string name="menu_bnavbar_today">Today</string>
     <string name="menu_bnavbar_categories">Categories</string>
     <string name="menu_bnavbar_history">History</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="photo_transition">photo_transition</string>
     <string name="download">Download</string>
     <string name="downloadingWallpaper">Downloading wallpaper</string>
     <string name="downloaded">Downloaded</string>
@@ -55,4 +53,10 @@
     <string name="changes_apply_message">Changes are apply when back to home</string>
     <string name="download_error">Download error</string>
     <string name="permission_denied">Permission denied</string>
+
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
+    <string name="battery_saver">Set by Battery Saver</string>
+    <string name="system_default">System default</string>
+    <string name="select_theme_title">Select a theme</string>
 </resources>

@@ -29,7 +29,7 @@
     <PreferenceCategory app:title="@string/customization">
         <ListPreference
                 android:key="list"
-                android:title="Select a theme"
+                android:title="@string/select_theme_title"
                 android:entries="@array/themes_names_array"
                 android:entryValues="@array/themes_values_array"
                 android:summary="@string/select_theme"

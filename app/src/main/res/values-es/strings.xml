@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fondo</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="content_description_photo_from_unsplash">Foto de unsplash</string>
+    <string name="animal">Animal</string>
+    <string name="nature">Naturaleza</string>
+    <string name="food_drink">Comida &amp; bebida</string>
+    <string name="space">Espacio</string>
+    <string name="sport">Deporte</string>
+    <string name="business_work">Negocios &amp; trabajo</string>
+    <string name="fashion">Moda</string>
+    <string name="art_culture">Arte &amp; cultura</string>
+    <string name="architecture">Arquitectura</string>
+    <string name="texture_pattern">Textura &amp; patron</string>
+    <string name="technology">Tecnología</string>
+    <string name="flatlay">Flatlay</string>
+    <string name="menu_bnavbar_today">Hoy</string>
+    <string name="menu_bnavbar_categories">Categorias</string>
+    <string name="menu_bnavbar_history">Historial</string>
+
+    <string name="download">Descarga</string>
+    <string name="downloadingWallpaper">Descargando fondo de pantalla</string>
+    <string name="downloaded">Descargado</string>
+    <string name="wallpaperDownloadComplete">Descarga completa de fondo de pantalla</string>
+    <string name="today">HOY</string>
+    <string name="search_photos_unsplash">Busca fotos de Unsplash</string>
+    <string name="search_header">BÚSQUEDA</string>
+    <string name="share_photo_by">Comparte foto de</string>
+    <string name="photo_by">Foto de</string>
+    <string name="on_unsplash">en Unsplash </string>
+    <string name="history">HISTORIAL</string>
+    <string name="categories">CATEGORIAS</string>
+    <string name="auth_error">Error de autenticación</string>
+    <string name="no_photos_found">Fotos no encontradas</string>
+    <string name="empty_history">Aún no hay fotos agregadas</string>
+    <string name="empty_search">Fotos no encontradas</string>
+    <string name="title_activity_settings">Ajustes</string>
+
+    <!-- Sync Preferences -->
+    <string name="about">Acerca de</string>
+    <string name="customization">Personalización</string>
+    <string name="visit_unsplash">Visita Unsplash.com</string>
+    <string name="unsplash_link"><![CDATA[https://unsplash.com/?utm_source=Fondo&utm_medium=referral]]></string>
+    <string name="show_more">Mostrar más</string>
+    <string name="set_as_wallpaper">Usar como fondo de pantalla</string>
+    <string name="share_photo">Compartir foto</string>
+    <string name="chossen">Como fondo de pantalla</string>
+    <string name="author">Nombre del autor</string>
+    <string name="visit_profile">Visita perfil</string>
+
+    <string name="select_theme">Selecciona Claro, Oscuro o la Configuración de tu dispositivo</string>
+    <string name="unsplash_summary">La fuente de imágenes de libre uso en Internet.</string>
+    <string name="changes_apply_message">Los cambios se aplican cuando regresas a la pantalla principal</string>
+    <string name="download_error">Error de descarga</string>
+    <string name="permission_denied">Permiso denegado</string>
+
+    <string name="dark">Oscuro</string>
+    <string name="light">Claro</string>
+    <string name="battery_saver">Establecido por Ahorro de batería</string>
+    <string name="system_default">Configuración del sistema</string>
+    <string name="select_theme_title">Selecciona un tema</string>
+</resources>
