@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/cardPhoto"
@@ -10,34 +9,26 @@
         android:layout_marginRight="@dimen/card_material_margin"
         android:clickable="true"
         android:focusable="true"
-        >
+        app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
         <ImageView
+                android:id="@+id/imgPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:adjustViewBounds="true"
-                android:id="@+id/imgPhoto"
                 android:contentDescription="@string/content_description_photo_from_unsplash"
                 android:scaleType="fitXY"
                 android:src="@drawable/back_loading_photo"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:targetApi="lollipop"
-                android:transitionName="@string/photo_transition"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:background="@drawable/dark_gradient"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:id="@+id/bottomShadow"/>
+                app:layout_constraintTop_toBottomOf="@+id/txtAutor"
+                tools:targetApi="lollipop" />
 
         <TextView
                 android:id="@+id/txtAutor"
@@ -45,86 +36,80 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:shadowColor="@color/darker_gray"
-                android:shadowDx="0"
-                android:shadowDy="0"
-                android:shadowRadius="8"
-                android:textColor="@android:color/white"
                 android:textSize="18sp"
                 app:fontFamily="@font/open_sans_semibold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/verticalSeparatorActions"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/bottomShadow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgProfile"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Autor" />
 
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSuccess"
                 style="@style/CardButton"
-                android:layout_width="40dp"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 android:clickable="true"
                 android:contentDescription="@string/app_name"
                 android:focusable="true"
                 android:padding="8dp"
-                android:visibility="gone"
+                android:visibility="invisible"
                 app:icon="@drawable/ic_check"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/txtAutor"
-                app:layout_constraintStart_toStartOf="@+id/verticalSeparatorActions"
-                app:layout_constraintTop_toTopOf="@+id/bottomShadow"
+                app:layout_constraintEnd_toStartOf="@+id/btnShare"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgPhoto"
                 app:srcCompat="@drawable/ic_share" />
 
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnShare"
                 style="@style/CardButton"
                 android:layout_width="40dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginBottom="4dp"
                 android:clickable="true"
                 android:contentDescription="@string/app_name"
                 android:focusable="true"
                 android:padding="8dp"
                 app:icon="@drawable/ic_share"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/bottomShadow"
-                app:srcCompat="@drawable/ic_share"
-                />
+                app:layout_constraintEnd_toEndOf="@+id/imgPhoto"
+                app:layout_constraintTop_toBottomOf="@+id/imgPhoto"
+                app:srcCompat="@drawable/ic_share" />
 
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSetWall"
-                style="@style/CardButton"
-                android:layout_width="40dp"
-                android:layout_height="0dp"
+                style="@style/FondoButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginBottom="4dp"
                 android:clickable="true"
                 android:contentDescription="@string/app_name"
                 android:focusable="true"
                 android:padding="8dp"
-                app:icon="@drawable/ic_wallpaper"
+                android:text="@string/set_as_wallpaper"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btnShare"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/verticalSeparatorActions"
-                app:layout_constraintTop_toTopOf="@+id/bottomShadow"
-                app:srcCompat="@drawable/ic_wallpaper" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgPhoto" />
 
-        <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/verticalSeparatorActions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_end="106dp" />
+        <ImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/txtAutor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txtAutor"
+                tools:srcCompat="@mipmap/ic_launcher" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

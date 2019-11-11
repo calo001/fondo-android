@@ -27,9 +27,10 @@ import com.github.calo001.fondo.model.Photo
 import com.github.calo001.fondo.network.ApiError
 import com.github.calo001.fondo.service.NotificationService
 import com.github.calo001.fondo.ui.dialog.DetailUserFragment
+import com.github.calo001.fondo.util.hideWithAnimation
 import com.github.calo001.fondo.util.makeStatusBarTransparent
 import com.github.calo001.fondo.util.setMarginTop
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.github.calo001.fondo.util.showWithAnimation
 import kotlinx.android.synthetic.main.activity_photo_detail.*
 import kotlinx.android.synthetic.main.progress_layout.*
 
@@ -68,12 +69,12 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
         fabWallpaper.setOnClickListener {
             presenter.getDownloadLink(mCurrentPhoto.id)
             historyManager.addToHistory(mCurrentPhoto)
-            (it as FloatingActionButton).hide()
         }
     }
 
     private fun checkPermission(): Boolean {
-        val result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        val result = ContextCompat.checkSelfPermission(this,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE)
         return result == PackageManager.PERMISSION_GRANTED
     }
 
@@ -124,7 +125,7 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
                     dataSource: DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    progress.visibility = View.GONE
+                    progress?.visibility = View.GONE
                     return false
                 }
             })
@@ -150,6 +151,8 @@ class PhotoDetailActivity : AppCompatActivity(), OnSetAsWallpaperListener,
         mDownloadLink = image
         if (checkPermission()) {
             startImageDownload()
+            fabWallpaper.hideWithAnimation(R.anim.collapse)
+            bigImageView.showWithAnimation()
         } else {
             requestPermission()
         }

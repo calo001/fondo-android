@@ -7,11 +7,15 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.TooltipCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
+import com.bumptech.glide.request.RequestOptions
 import com.github.calo001.fondo.GlideApp
 import com.github.calo001.fondo.R
 import com.github.calo001.fondo.model.Photo
+import com.github.calo001.fondo.util.hideWithAnimation
+import com.github.calo001.fondo.util.showWithAnimation
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_header.view.*
 import kotlinx.android.synthetic.main.item_photo.view.*
@@ -23,6 +27,7 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
     RecyclerView.Adapter<PhotosAdapter.DynamicViewHolder>() {
 
     private lateinit var title: String
+    private val glide = Glide.with(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DynamicViewHolder {
         return when (viewType) {
@@ -138,12 +143,13 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
         }
     }
 
-    class ItemViewHolder(itemView: View) : DynamicViewHolder(itemView) {
+    inner class ItemViewHolder(itemView: View) : DynamicViewHolder(itemView) {
         override val containerView: View?
             get() = itemView
 
         fun bind(item: Photo, interaction: OnItemInteraction) {
-            GlideApp.with(itemView.context)
+
+            glide
                 .load(item.urls.small)
                 .placeholder(R.drawable.back_loading_photo)
                 .thumbnail(0.01f)
@@ -151,6 +157,12 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
                 .transition(withCrossFade())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(itemView.imgPhoto)
+
+            glide
+                .load(item.user.profile_image.small)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .apply(RequestOptions.circleCropTransform())
+                .into(itemView.imgProfile)
 
             containerView?.txtAutor?.let { txtAuthor ->
                 txtAuthor.text = item.user.name
@@ -181,16 +193,11 @@ class PhotosAdapter(private var items: MutableList<Photo?>,
                 val tooltipText =  btnWall.resources.getString(R.string.set_as_wallpaper)
                 TooltipCompat.setTooltipText(btnWall, tooltipText)
                 btnWall.setOnClickListener { view ->
-                    val animOut = AnimationUtils.loadAnimation(view.context, R.anim.fade_out_rotate)
-                    view.startAnimation(animOut)
-                    view.visibility = View.GONE
+                    view.hideWithAnimation()
 
                     interaction.onSetWallClick(item)
 
-                    val btnSuccess = containerView?.btnSuccess
-                    val animIn = AnimationUtils.loadAnimation(btnSuccess?.context, R.anim.fade_in_rotate)
-                    btnSuccess?.visibility = View.VISIBLE
-                    btnSuccess?.startAnimation(animIn)
+                    containerView?.btnSuccess?.showWithAnimation()
                 }
             }
         }

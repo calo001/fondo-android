@@ -36,7 +36,6 @@
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
                             android:drawableStart="@drawable/ic_search"
-                            android:drawableLeft="@drawable/ic_search"
                             android:drawablePadding="8dp"
                             android:text="@string/search_photos_unsplash"/>
                 </androidx.appcompat.widget.Toolbar>
@@ -53,16 +52,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+                app:layout_constraintBottom_toTopOf="@+id/bottomNavigationViewBackground"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
         </FrameLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
-            android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+            android:id="@+id/bottomNavigationViewBackground"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:menu="@menu/menu_bottom_navbar"
-            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
-    />
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_margin="@dimen/bottom_navbar_margin"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="@dimen/card_navbar_radius"
+            app:cardElevation="@dimen/card_navbar_elevation"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigationView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/bottom_navbar_height"
+                app:menu="@menu/menu_bottom_navbar" />
+    </androidx.cardview.widget.CardView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

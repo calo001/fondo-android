@@ -11,6 +11,7 @@
     <color name="colorPrimaryDark">#c7c7c7</color>
     <color name="colorAccent">#1a1a1a</color>
     <color name="colorSuccess">#2ECC71</color>
+    <color name="colorSuggest">#192ECCB4</color>
 
     <!-- Other colors -->
     <color name="gray">#818181</color>

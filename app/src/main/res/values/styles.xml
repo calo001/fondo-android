@@ -50,14 +50,16 @@
     </style>
 
     <style name="CardButton" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="iconTint">@android:color/white</item>
+        <item name="iconTint">@color/colorSecondary</item>
+        <item name="backgroundTint">@android:color/transparent</item>
     </style>
 
     <style name="BottomNavView" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="android:background">@color/uiTransparent</item>
-        <item name="labelVisibilityMode">selected</item>
         <item name="itemIconTint">@drawable/bottom_navigation_states</item>
         <item name="itemTextColor">@drawable/bottom_navigation_states</item>
+        <item name="labelVisibilityMode">selected</item>
+        <item name="itemHorizontalTranslationEnabled">true</item>
         <item name="elevation">0dp</item>
     </style>
 
@@ -78,17 +80,14 @@
         <item name="elevation">0dp</item>
     </style>
 
-    <style name="Fab" parent="Widget.MaterialComponents.FloatingActionButton">
-        <item name="shapeAppearance">@style/Diamond</item>
-    </style>
-
     <style name="Diamond">
         <item name="cornerFamily">cut</item>
         <item name="cornerSize">28dp</item>
     </style>
 
-    <style name="ButtonProfile" parent="Widget.MaterialComponents.Button">
-        <item name="backgroundTint">@color/primaryTextColor</item>
-        <item name="android:textColor">@color/colorPrimary</item>
+    <style name="FondoButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">@color/colorSecondary</item>
+        <item name="iconTint">@color/colorSecondary</item>
+        <item name="backgroundTint">@color/colorSuggest</item>
     </style>
 </resources>

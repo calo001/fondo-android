@@ -5,7 +5,9 @@ import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatDelegate
+import com.github.calo001.fondo.R
 
 fun Activity.makeStatusBarTransparent(color: Int) {
     if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -33,4 +35,16 @@ fun View.setMarginTop(marginTop: Int){
     val menuLayoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
     menuLayoutParams.setMargins(0, marginTop, 0, 0)
     this.layoutParams = menuLayoutParams
+}
+
+fun View.showWithAnimation(anim: Int = R.anim.fade_in) {
+    val animation = AnimationUtils.loadAnimation(this.context, anim)
+    this.visibility = View.VISIBLE
+    this.startAnimation(animation)
+}
+
+fun View.hideWithAnimation(anim: Int = R.anim.fade_out) {
+    val animation = AnimationUtils.loadAnimation(this.context, anim)
+    startAnimation(animation)
+    visibility = View.GONE
 }

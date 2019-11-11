@@ -2,4 +2,9 @@
     <dimen name="photo_radius">4dp</dimen>
     <dimen name="photo_padding">8dp</dimen>
     <dimen name="card_material_margin">6dp</dimen>
+    <dimen name="bottom_navbar_margin">16dp</dimen>
+    <dimen name="bottom_navbar_height">50dp</dimen>
+    <dimen name="card_navbar_radius">25dp</dimen>
+    <dimen name="card_navbar_elevation">16dp</dimen>
+    <dimen name="button_wall_radius">25dp</dimen>
 </resources>

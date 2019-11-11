@@ -46,9 +46,9 @@ abstract class BasePhotoFragment<P : BasePhotoPresenterContract> : Fragment(), B
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val linearLayoutManager = LinearLayoutManager(activity)
-        mScrollListener = InfiniteScrollListener(linearLayoutManager, this)
-        rvPhotos.layoutManager = linearLayoutManager
+        val layoutManager = LinearLayoutManager(activity)
+        mScrollListener = InfiniteScrollListener(layoutManager, this)
+        rvPhotos.layoutManager = layoutManager
         rvPhotos.addOnScrollListener(mScrollListener)
 
         activity?.let {

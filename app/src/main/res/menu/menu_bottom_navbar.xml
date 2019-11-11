@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/navbar_home"
           android:icon="@drawable/home"
-          android:title="@string/menu_bnavbar_daily"/>
+          android:title="@string/menu_bnavbar_today"/>
     <item android:id="@+id/navbar_categories"
           android:icon="@drawable/view_day"
           android:title="@string/menu_bnavbar_categories"/>
