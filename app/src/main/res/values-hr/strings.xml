@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">Fondo</string>
+    <string name="action_settings">Postavke</string>
+    <string name="content_description_photo_from_unsplash">Unsplash slike</string>
+    <string name="animal">Životinje</string>
+    <string name="nature">Priroda</string>
+    <string name="food_drink">Jela i pića</string>
+    <string name="space">Svemir</string>
+    <string name="sport">Sport</string>
+    <string name="business_work">Posao</string>
+    <string name="fashion">Moda</string>
+    <string name="art_culture">Umjetnost i kultura</string>
+    <string name="architecture">Arhitektura</string>
+    <string name="texture_pattern">Teksture i uzorci</string>
+    <string name="technology">Tehnologija</string>
+    <string name="flatlay">Pogled odozgo</string>
+    <string name="menu_bnavbar_today">Danas</string>
+    <string name="menu_bnavbar_categories">Kategorije</string>
+    <string name="menu_bnavbar_history">Povijest</string>
+
+    <string name="download">Preuzmi</string>
+    <string name="downloadingWallpaper">Preuzmi sliku pozadine</string>
+    <string name="downloaded">Preuzeto</string>
+    <string name="wallpaperDownloadComplete">Preuzimanje slike pozadine završeno</string>
+    <string name="today">DANAS</string>
+    <string name="search_photos_unsplash">Pretraži Unsplash slike</string>
+    <string name="search_header">PRETRAŽI</string>
+    <string name="share_photo_by">Dijeli sliku od</string>
+    <string name="photo_by">Slika od</string>
+    <string name="on_unsplash">na Unsplash </string>
+    <string name="history">POVIJEST</string>
+    <string name="categories">KATEGORIJE</string>
+    <string name="auth_error">Greška autentifikacije</string>
+    <string name="no_photos_found">Nema slika</string>
+    <string name="empty_history">Nijedna slika još nije dodana</string>
+    <string name="empty_search">Slike nisu pronađene</string>
+    <string name="title_activity_settings">Postavke</string>
+
+    <!-- Sync Preferences -->
+    <string name="about">Informacije</string>
+    <string name="customization">Prilagodbe</string>
+    <string name="visit_unsplash">Posjeti Unsplash.com</string>
+    <string name="unsplash_link"><![CDATA[https://unsplash.com/?utm_source=Fondo&utm_medium=referral]]></string>
+    <string name="show_more">Pokaži više</string>
+    <string name="set_as_wallpaper">Postavi kao sliku pozadine</string>
+    <string name="share_photo">Dijeli sliku</string>
+    <string name="chossen">Kao slika pozadine</string>
+    <string name="author">Ime autora</string>
+    <string name="visit_profile">Posjeti profil</string>
+
+    <string name="select_theme">Odaberi svijetlu ili tamnu temu ili konfiguraciju uređaja</string>
+    <string name="unsplash_summary">Internetski izvor besplatnih slika.</string>
+    <string name="changes_apply_message">Promjene stupaju na snagu pri povratku na glavni ekran</string>
+    <string name="download_error">Greška u preuzimanju</string>
+    <string name="permission_denied">Dozvola odbijena</string>
+
+    <string name="dark">Tamna</string>
+    <string name="light">Svijetla</string>
+    <string name="battery_saver">Postavljeno aplikacijom za štednju baterije</string>
+    <string name="system_default">Standardne postavke sustava</string>
+    <string name="select_theme_title">Odaberi temu</string>
+</resources>
