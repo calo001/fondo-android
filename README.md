@@ -23,9 +23,6 @@
         <td>
           <img src="resources/screenshot_3.png" alt="Screenshot">
         </td>
-        <td>
-          <img src="resources/screenshot_4.png" alt="Screenshot">
-        </td>
       </tr>
     </table>
 </p>
@@ -36,14 +33,12 @@
 ## Special thanks
 
 <p align="center">
-  <a href="http://unsplash.com" target="_blank">
-    <img src="resources/unsplash_logo.png" width="300px" alt="Screenshot">
+  <a href="https://wall.alphacoders.com" target="_blank">
+    <img src="https://static.alphacoders.com/alpha_system_360.png" alt="Screenshot" height="200px">
   </a>
 </p>
-<p align="center">
-Beautiful, free photos.
-Gifted by the world’s most generous community of photographers. 🎁
-</p>
+<h3 align="center"><a href="https://wall.alphacoders.com">Wallpaper Abyss</a></h3>
+<p align="center">Focused on discovering desktop computer wallpapers and backgrounds.</p>
 
 ## License
 
